@@ -7,5 +7,7 @@ public class Cliente {
 		
 		qualquer coisa
 		
+		outra qualquer coisa
+		
 	}
 }
