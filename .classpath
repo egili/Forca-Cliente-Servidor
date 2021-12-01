@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="Cliente"/>
 	<classpathentry kind="src" path="Classes Comuns"/>
 	<classpathentry kind="src" path="Servidor"/>
+	<classpathentry kind="src" path="Clientes"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
