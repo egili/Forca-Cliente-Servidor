@@ -9,5 +9,6 @@ public class Cliente {
 		
 		outra qualquer coisa
 		
+		System.out.print(" teste");
 	}
 }
