@@ -6,5 +6,6 @@ public class Cliente {
 		
 		System.out.println("îsto funciona");
 		
+		System.out.print(" teste");
 	}
 }
