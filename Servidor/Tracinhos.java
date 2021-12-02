@@ -18,7 +18,8 @@ public class Tracinhos implements Cloneable
         
              this.texto[i] = '_';
     }
-
+    
+    //sera exibido a todos os clientes no Grupo
     public void revele (int posicao, char letra) throws Exception
     {
            if(posicao < 0 || posicao >= this.texto.length)
