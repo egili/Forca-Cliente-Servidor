@@ -8,6 +8,9 @@ public class SupervisoraDeConexao extends Thread
     private Parceiro            usuario;
     private Socket              conexao;
     private ArrayList<Parceiro> usuarios;
+    private static Palavra   palavra;
+    private static Tracinhos tracinhos;
+    private static ControladorDeLetrasJaDigitadas  controladorDeLetrasJaDigitadas;
 
     public SupervisoraDeConexao
     (Socket conexao, ArrayList<Parceiro> usuarios)
@@ -72,9 +75,11 @@ public class SupervisoraDeConexao extends Thread
             synchronized (this.usuarios)
             {
                 this.usuarios.add  (this.usuario);
-                if(usuarios.size()%3==0);
+                if(usuarios.size()%3==0)
                 {
-               
+                	
+                	palavra = BancoDePalavras.getPalavraSorteada();
+                	tracinhos = new Tracinhos(palavra.getTamanho());
                     int jogadores = usuarios.size();
 
                     for (Parceiro jogador: this.usuarios) {
@@ -88,45 +93,35 @@ public class SupervisoraDeConexao extends Thread
 
             for(;;)
             {
-                Comunicado comunicado = this.usuario.envie ();
-
-                if (comunicado==null)
-                    return;
-                else if (comunicado instanceof PedidoDeOperacao)
-                {
-					PedidoDeOperacao pedidoDeOperacao = (PedidoDeOperacao)comunicado;
-					
-					switch (pedidoDeOperacao.getOperacao())
+               Comunicado comunicado = this.usuario.envie();
+               
+               if (comunicado == null)
+            	   return;
+               else if (comunicado instanceof PedidoDeLetra ) {
+            	   if (controladorDeLetrasJaDigitadas.isJaDigitada (letra))
+						System.err.println ("Essa letra ja foi digitada!\n");
+					else
 					{
-						case '+':
-						    this.valor += pedidoDeOperacao.getValor();
-						    break;
-						    
-						case '-':
-						    this.valor -= pedidoDeOperacao.getValor();
-						    break;
-						    
-						case '*':
-						    this.valor *= pedidoDeOperacao.getValor();
-						    break;
-						    
-						case '/':
-						    this.valor /= pedidoDeOperacao.getValor();
-                    }
+						controladorDeLetrasJaDigitadas.registre (letra);
+
+						int qtd = palavra.getQuantidade (letra);
+
+						if (qtd==0)
+						{
+							System.err.println ("A palavra nao tem essa letra!\n");
+							controladorDeErros.registreUmErro ();
+						}
+						else
+						{
+							for (int i=0; i<qtd; i++)
+							{
+								int posicao = palavra.getPosicaoDaIezimaOcorrencia (i,letra);
+								tracinhos.revele (posicao, letra);
+							}
+							this.usuario.receba(new ComunicadoDeVitoria());
+						}
                 }
-                else if (comunicado instanceof PedidoDeResultado)
-                {
-                    this.usuario.receba (new Resultado (this.valor));
-                }
-                else if (comunicado instanceof PedidoParaSair)
-                {
-                    synchronized (this.usuarios)
-                    {
-                        this.usuarios.remove (this.usuario);
-                    }
-                    this.usuario.adeus();
-                }
-            }
+               }
         }
         catch (Exception erro)
         {
