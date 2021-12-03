@@ -87,7 +87,7 @@ public class SupervisoraDeConexao extends Thread
                     }
 
                 }
-                System.out.println("Infelizmente servidor est· cheio");
+                System.out.println("Infelizmente servidor est√° cheio");
             }
            
 
@@ -136,4 +136,3 @@ public class SupervisoraDeConexao extends Thread
             return;
         }
     }
-}
