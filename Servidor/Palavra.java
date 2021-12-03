@@ -1,5 +1,7 @@
 /*
- possivelmente sera alterada para usar com sockets
+ possivelmente sera alterada para usar com sockets --> usar a mesma estrutura de parceiros
+  (ou referenciar parceiros?)
+ implementar set pra usar como conjunto = Lunara;
  */
 
 public class Palavra implements Comparable<Palavra> {

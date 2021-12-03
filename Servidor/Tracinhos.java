@@ -1,6 +1,6 @@
 /*
  possivelmente sera alterada para usar com sockets
- implementar metodo clone
+ implementar metodo clone --> ok para clone
  */
 
 public class Tracinhos implements Cloneable
@@ -89,10 +89,19 @@ public class Tracinhos implements Cloneable
     	
     	t.texto = this.texto;    		
     }
-/*
+
     public Object clone ()
     {
-        /// retornar uma copia de this
+        Tracinhos ret = null;
+        
+        try
+        {
+        ret = new Tracinhos (this);
+        }
+        
+        catch (Exception erro) {}
+        return ret;
+        }
     }
-    */
+    
 }
