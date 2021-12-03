@@ -1,3 +1,5 @@
+/*Classe Cliente = Lunara, acompanhar atualizações do servidor para arrumar as opções 1,2 e 3*/
+
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -87,12 +89,30 @@ public class Cliente
         int opcao=' ';
         do
         {
-            System.out.println ("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
-            System.out.println ("Tecle 1 para entrar no jogo");
-           //System.out.println("Tecle 2 para saber se é a sua vez de jogar!");
+            System.out.println("Bem-vindo(a) ao jogo forca servidor! - Trabalho final de java");
+            System.out.println("Instituição Estudantil: Cotuca/Unicamp");
+            System.out.println("Curso: 59 - Técnico em Desenvolvimento de Sistemas Noturno");
+            System.out.println("Disciplina: DS201 - Técnicas De Programação II");
+            System.out.println("Professor: André de Carvalho");
+            System.out.println("Esse jogo foi desenvolvido por:");
+            System.out.println("RA 20668 - Elisângela Sanntos, RA 20669 - Eliseu Gilli");
+            System.out.println("RA 21101 - Leandro de Freitas, RA 21106 - Lunara Cunha");
+            System.out.println("Antes de passarmos ao menu, vamos te passar algumas regras desse jogo");
+            System.out.println("Regra 1: Você pode escolher digitar uma letra ou palavra quando for a sua vez de jogar na partida");
+            System.out.println("Regra 2: Você terá uma palavra a ser advinhada por partida para o grupo de 3 jogadores");
+            System.out.println("Regra 3: Sempre terá um ganhador e dois perdedores por partida");
+            System.out.println("Regra 4: Para cada palavra terá uma dica para ajudar na advinhação da palavra");
+            System.out.println("Regra 5: Você pode escolher uma palavra a qualquer momento da partida");
+            System.out.println("Regra 6: Se você digitar a palavra e errar; seu jogo acaba,você termina como perdedor, e os outros dois jogadores continuam na sala até um dos dois advinharem a palavra sorteada");
+            System.out.println("Regra 7: Se você digitar a palavra e acertar, seu jogo acaba, você termina como ganhador e os outros dois jogadores ficam como perdedores");
+            System.out.println("Regra 8: Se você digitar uma letra e errar, passa a vez para o próximo jogador em sentido horário na sala, até que um dos 3 acerte a palavra sorteada ");
+            System.out.println("Regra 9: Se você digitar a última letra para a palavra e acertar, você termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
+            System.out.println("Regra 10: Se por algum motivo você sair do jogo pois perdeu e tentar voltar ao jogo, terá que esperar em uma sala para aguardar futuros jogadores que vão estar nessa sala até completar um grupo de 3 jogadores para iniciar uma nova partida");
+        	System.out.println("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
+            System.out.println("Tecle 1 para entrar no jogo");
             System.out.println("Tecle 2 para digitar a letra!");
             System.out.println("Tecle 3 para digitar a palavra!");
-           
+            
             
            try
            {
@@ -130,21 +150,7 @@ public class Cliente
             
             }
             
-            /*
-            if (opcao =='2')
-            {
-             servidor.receba(new PedidoVezDeJogar());
-             Comunicado comunicado = null;
-             do
- 			{
- 				comunicado = (Comunicado)servidor.espie ();
- 			}
-             while(!(comunicado instanceof VezDeJogar));
-             VezDeJogar vezdejogar = (VezDeJogar) servidor.envie();
-             System.out.println("Jogador" + jogador[i]+ "é a sua vez de jogar");
-            }
-            */
-            
+                       
             if(opcao =='2')
             {
              servidor.receba(new PedidoDeLetra());
@@ -265,7 +271,9 @@ public class Cliente
                 }
                               
                 
-            }// fecha a opção 4
+            }// fecha a opção 3
+            
+        }// fecha a lista das 3 opções no do, a linha 152 
                                  
            }// fecha a main
            

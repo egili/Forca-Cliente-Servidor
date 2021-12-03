@@ -20,6 +20,17 @@
  obs: cliente = jogador
  */
 
-public class Grupo {
+
+/* Ediçao dia 02-12-2021 por Lunara(como resultado da reunião de mesmo dia):
+ *  Colocar método para VezDeJogar para controlar quando cada jogador estará ativo pra jogar; 
+ * classe Grupo controla as ações do jogador e devolve pro cliente. 
+ * A classe Supervisora recebe os pedidos do cliente 
+ * e devolve os comunicados ao cliente. 
+ * NOVO NOME DA CLASSE GRUPO = CONTROLADORADEPARTIDA.java
+ * Classe ControladoraDePartida = Eliseu
+ * Classe SupervidoraDeConexao = Leandro*/
+
+
+public class ControladoraDePartida {
 
 }

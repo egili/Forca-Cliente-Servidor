@@ -1,11 +1,17 @@
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Iterator;
+
 /*
  validar se o uso dessa classe eh necessario e
  eventualmente fazer todas as alteracoes
+ Classe ControladorDeLetrasJaDigitadas = Lunara;
  */
 
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 {
     private String letrasJaDigitadas;
+    public 
 
     public ControladorDeLetrasJaDigitadas ()
     {
@@ -84,15 +90,14 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             throw new Exception("c era null");
         this.letrasJaDigitadas = c.letrasJaDigitadas;
     }
-/*
+
     public Object clone ()
     {
         ControladorDeLetrasJaDigitadas ret = null;
         try{
             ret = new ControladorDeLetrasJaDigitadas(this);
         }
-        catch (Exception ignored) {
-        }
+        catch (Exception ignored) {}        }
         return ret;
-    }*/
+    }
 }
