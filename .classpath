@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Cliente"/>
 	<classpathentry kind="src" path="Classes Comuns"/>
 	<classpathentry kind="src" path="Servidor"/>
 	<classpathentry kind="src" path="Clientes"/>
