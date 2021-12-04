@@ -7,9 +7,10 @@ public class SupervisoraDeConexao extends Thread
     private double              valor=0;
     private Parceiro            usuario;
     private Socket              conexao;
-    private ArrayList<Parceiro> usuarios;
+    private final ArrayList<Parceiro> usuarios;
     private static Palavra   palavra;
     private static Tracinhos tracinhos;
+    private static ControladorDeErro controladorDeErros;
     private static ControladorDeLetrasJaDigitadas  controladorDeLetrasJaDigitadas;
 
     public SupervisoraDeConexao
@@ -77,7 +78,6 @@ public class SupervisoraDeConexao extends Thread
                 this.usuarios.add  (this.usuario);
                 if(usuarios.size()%3==0)
                 {
-                	
                 	palavra = BancoDePalavras.getPalavraSorteada();
                 	tracinhos = new Tracinhos(palavra.getTamanho());
                     int jogadores = usuarios.size();
@@ -85,9 +85,9 @@ public class SupervisoraDeConexao extends Thread
                     for (Parceiro jogador: this.usuarios) {
                        jogador.receba(new ControladorDePartida());
                     }
-
+                    this.usuarios.get(0).receba(new ComunicadoDeVez());
                 }
-                System.out.println("Infelizmente servidor est√° cheio");
+                System.out.println("Infelizmente servidor est· cheio");
             }
            
 
@@ -98,8 +98,12 @@ public class SupervisoraDeConexao extends Thread
                if (comunicado == null)
             	   return;
                else if (comunicado instanceof PedidoDeLetra ) {
-            	   if (controladorDeLetrasJaDigitadas.isJaDigitada (letra))
-						System.err.println ("Essa letra ja foi digitada!\n");
+                   boolean jaDigitadas = false;
+                   boolean palavraTemLetra =false;
+                   PedidoDeLetra pedidoDeLetra = (PedidoDeLetra)comunicado;
+                   char letra = pedidoDeLetra.getLetra();
+                   if (controladorDeLetrasJaDigitadas.isJaDigitada(letra))
+                       jaDigitadas = true;
 					else
 					{
 						controladorDeLetrasJaDigitadas.registre (letra);
@@ -121,18 +125,12 @@ public class SupervisoraDeConexao extends Thread
 							this.usuario.receba(new ComunicadoDeVitoria());
 						}
                 }
+                   ComunicadoDeLetra comunicadoDeLetra = new ComunicadoDeLetra();
+                   comunicadoDeLetra.setJaDigitada(jaDigitadas);
+                   comunicadoDeLetra.setPalavraTemLetra(palavraTemLetra);
+                   this.usuario.receba(comunicadoDeLetra);
                }
         }
-        catch (Exception erro)
-        {
-            try
-            {
-                transmissor.close ();
-                receptor   .close ();
-            }
-            catch (Exception falha)
-            {} // so tentando fechar antes de acabar a thread
-
-            return;
-        }
-    }
+     
+    
+}
