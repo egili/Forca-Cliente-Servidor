@@ -20,17 +20,50 @@
  obs: cliente = jogador
  */
 
-
-/* Ediçao dia 02-12-2021 por Lunara(como resultado da reunião de mesmo dia):
- *  Colocar método para VezDeJogar para controlar quando cada jogador estará ativo pra jogar; 
- * classe Grupo controla as ações do jogador e devolve pro cliente. 
- * A classe Supervisora recebe os pedidos do cliente 
- * e devolve os comunicados ao cliente. 
- * NOVO NOME DA CLASSE GRUPO = CONTROLADORADEPARTIDA.java
- * Classe ControladoraDePartida = Eliseu
- * Classe SupervidoraDeConexao = Leandro*/
-
-
 public class ControladoraDePartida {
+	
+	public ControladoraDePartida() {
+	// construtor
+	}
+	
+	public static void push(Cliente cliente) throws Exception{
+	// insere o jogador na partida
+	}
+	
+	public static void pop(Cliente cliente) throws Exception{
+	// remove o jogador da partida
+	}
+	
+	public static void vezDeJogar() throws Exception{
+	// se o jogador estiver na partida há mais tempo -> primeiro a jogar
+	}
+	
+	public static String vencer() throws Exception{
+	
+	}
+	
+	public static String perder() throws Exception{
+		
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+	}
+	
+	@Override
+	public String toString() {
+		
+	}
+	
+	@Override
+	public int hashCode() {
+	
+        int ret = 258;
+
+        ret = ret * 11 + servidor.hashCode();
+
+        return Math.abs(ret);
+	}
 
 }
