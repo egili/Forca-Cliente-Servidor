@@ -21,7 +21,6 @@ public class Grupo<X> { // fila
 		jogadores[ultimo] = jogador; // a ultima posicao do vetor recebe o cliente
 		ultimo = (byte) ((ultimo++) % jogadores.length);
 		total++;
-
 	}
 
 	public Cliente removerDoGrupo() throws Exception
