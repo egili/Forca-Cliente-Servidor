@@ -13,7 +13,7 @@ public class Grupo<X> { // fila
 		this.total = 0;
 	}
 
-	private void inserirNoGrupo(Cliente jogador) throws Exception 
+	public void inserirNoGrupo(Cliente jogador) throws Exception 
 	{
 		if (jogador == null)
 			throw new Exception("jogador ausente");
@@ -24,7 +24,7 @@ public class Grupo<X> { // fila
 
 	}
 
-	private Cliente removerDoGrupo() throws Exception
+	public Cliente removerDoGrupo() throws Exception
 	{
 		if (this.isVazio())
 			throw new Exception("impossivel remover de um grupo vazio");
@@ -35,12 +35,12 @@ public class Grupo<X> { // fila
 		return jogadorASerRemovido;
 	}
 
-	private boolean isVazio() 
+	public boolean isVazio() 
 	{
 		return jogadores.length == 0 ? true : false;
 	}
 
-	private boolean isCheio() 
+	public boolean isCheio() 
 	{
 		return jogadores.length == 3 ? true : false;
 	}
