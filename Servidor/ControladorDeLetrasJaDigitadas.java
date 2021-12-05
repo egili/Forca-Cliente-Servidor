@@ -1,37 +1,101 @@
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.Iterator;
+import java.lang.String;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.Object;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.lang.StringBuilder;
+import java.net.Socket;
 
 /*
  validar se o uso dessa classe eh necessario e
  eventualmente fazer todas as alteracoes
  Classe ControladorDeLetrasJaDigitadas = Lunara;
+  Edição dia 04-12-2021 (lembrete): usar vetor como conjunto tal como na classe Conjunto, porém ver a implementação da classe Vector
+  do professor no dia 28-10 
+ 
+ Perguntas:
+ 1. Tenho que realmente usar a classe Conjunto tendo em vista que a cada 3 jogadores terá apenas 1 partida?
+ 2. Quando usa ArrayList o Vetor é compartilhado, porém, cada partida terá o seu vetor de letrasjaidigitadas de acordo
+ com a palavra sorteada. Então não faz sentido compartilhar vetor.
+ 3. Na aula do dia 28-10 mostra que o Vetor tem sincronismo interno, sendo declarado no cabeçalho do método. Não sendo 
+ compartilhado, fazer uma lógica de que quando terminar a partida, isto é, quando o 1 jogador receber o comunicado de vitoria
+ e os 2 demais jogadores receberem o comunicado de perda, o vetor deve ser totalmente limpo pelo remova ANTES de começar uma nova
+ partida,
+ 4. Interface Set não funciona, pois usando Character ou String ele barra completamente o Vetor. Por isso se optou por usar
+ Vector com validações para elementos repetidos, armazenamento, quando o vetor começar vazio no construtor.
+ 5. REVISAR CÓDIGO COM NBOUANI EM 06/12/2021. Revisar synchronized para saber se é no cabeçalho ou dentro do método;
+ um arraylist ele tem limite para inserir elementos ou cresce a medida em que ele vai sendo acrescentado?
  */
 
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 {
-    private String letrasJaDigitadas;
-    public 
-
-    public ControladorDeLetrasJaDigitadas ()
+	
+    
+     private static final byte TAMANHO_INICIAL = 10;
+     private ArrayList<String> letrasjadigitadas = new ArrayList<String>();
+     List<ArrayList<String>> listaDeArrayDeletrasjadigitadas = Arrays.asList(letrasjadigitadas);
+     ArrayList<String> arrayletrasjadigitadas = letrasjadigitadas;
+     private char letra;
+     private  char  caracter = letra;
+     private int qtd;
+	 //private StringBuilder stringBuilder = new StringBuilder(); 
+	 private int posicao;
+	 
+    public ControladorDeLetrasJaDigitadas()
+    { 
+       this.letrasjadigitadas = new ArrayList<String>(TAMANHO_INICIAL); 
+       this.qtd = 0;
+       if (letrasjadigitadas == null)
+       {
+    	System.out.println("Letras ausentes");   
+    	
+       }   
+        
+     }
+    
+    public int size()
     {
-        this.letrasJaDigitadas = "";
+      return this.qtd;
     }
 
     public boolean isJaDigitada (char letra)
-    {
-        int i = this.letrasJaDigitadas.indexOf(letra);
-        if (i == -1)
-
-            return false;
-
-        return true;
+    
+        {
+     	 	
+         for (int i = 0 ; i<letrasjadigitadas.size(); letra ++)
+    	{
+         i = this.letrasjadigitadas.indexOf(letra);
+	     
+         if (i == -1)
+         {
+        	return false; 
+         }
+         
+         return true;
+    	}
     }
 
-    public void registre (char letra) throws Exception
+    
+    public synchronized void adicionarletra (char letra)
+	{ 
+    	char caracter = letra;
+    	Arrays.toString(letrasjadigitadas.toArray());
+        if (this.qtd==this.letrasjadigitadas.size())
+	    this.letrasjadigitadas.set(qtd, letrasjadigitadas.get(this.qtd) + letra);
+       this.qtd++;
+ 
+	}
+
+
+    public synchronized void registrarletra (char letra,  int posicao) throws Exception
     {
+    	
         if(isJaDigitada(letra))
-            throw new Exception("Letra ja digitada");
+            throw new Exception("Letra já foi digitada");
         
         boolean num = false;
         try{
@@ -41,18 +105,120 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             num = false;
         }
         if (num) {
-            throw new Exception("n�o pode ser numero");
+            throw new Exception(" Letra não pode ser numero");
         }
-        
-        this.letrasJaDigitadas = this.letrasJaDigitadas + letra;
- 
-    }
+      
+         char  caracter = letra;
+        boolean contemCaracter = new ArrayList<String>(arrayletrasjadigitadas).contains(String.valueOf(caracter));
+            		
+        for (int i = 0 ; i<letrasjadigitadas.size(); letra ++)
+        {
+        	if ( !contemCaracter)
+        	{
+        		i = this.letrasjadigitadas.indexOf(posicao.getIezimaOcorrencia).charAt(letra);
+        		this.letrasjadigitadas.adicionarletra(letra);
+        		
+        	}
+        }
+         
+   }
+    
+    
+	public synchronized void removerletrasdalista (int posicao) throws ArrayIndexOutOfBoundsException
+	{
+           String[] args;		
+		   Socket conexao=null;
+	        try
+	        {
+	            String host = Cliente.HOST_PADRAO;
+	            int    porta= Cliente.PORTA_PADRAO;
+
+	            if (args.length>0)
+	                host = args[0];
+
+	            if (args.length==2)
+	                porta = Integer.parseInt(args[1]);
+
+	            conexao = new Socket (host, porta);
+	        }
+	        catch (Exception erro)
+	        {
+	            System.err.println ("Indique o servidor e a porta corretos!\n");
+	            return;
+	        }
+
+	        ObjectOutputStream transmissor=null;
+	        try
+	        {
+	            transmissor =
+	            new ObjectOutputStream(
+	            conexao.getOutputStream());
+	        }
+	        catch (Exception erro)
+	        {
+	            System.err.println ("Indique o servidor e a porta corretos!\n");
+	            return;
+	        }
+
+	        ObjectInputStream receptor=null;
+	        try
+	        {
+	            receptor =
+	            new ObjectInputStream(
+	            conexao.getInputStream());
+	        }
+	        catch (Exception erro)
+	        {
+	            System.err.println ("Indique o servidor e a porta corretos!\n");
+	            return;
+	        }
+
+
+		Parceiro cliente = null;
+		
+		try {
+		cliente = new Parceiro (conexao, receptor, transmissor);	
+		} catch (Exception e) {
+			  System.err.println ("Indique o servidor e a porta corretos!\n");
+	            return;
+		}  
+		   
+		 Palavra palavra = new Palavra(null);
+		
+		   if(letrasjadigitadas.size() == palavra.getTamanho())
+		   {
+			   
+		   }
+			   
+			   this.letrasjadigitadas.clear();
+		   
+		/*PENSANDO COMO NO MÉTODO ORIGINAL VECTOR.JAVA
+		 * 	if (posicao<0 || posicao>this.qtd-1)
+		    throw new java.lang.ArrayIndexOutOfBoundsException (posicao);
+		
+		int posicaoanterior = posicao-1;
+		int m = posicao+1; 
+		 String atual = this.letrasjadigitadas.get(i);
+		 
+        for (int m ; m<this.qtd; m++)
+          
+        this.letrasjadigitadas.set(posicaoanterior, atual);
+       
+		this.qtd--;
+		this.letrasjadigitadas.get(this.qtd, null);
+	
+		 *  */
+	
+	
+	}
+
     @Override
     public String toString ()
     {
+    	
         String ret = "";
-        for (int letra = 0; letra < this.letrasJaDigitadas.length(); letra++){
-            ret += letrasJaDigitadas.charAt(letra) + ",";
+        for (int letra = 0; letra < this.letrasjadigitadas.size(); letra++){
+            ret += letrasjadigitadas.charAt(letra) + ",";
         }
 
         return  ret;
