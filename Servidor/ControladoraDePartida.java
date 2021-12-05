@@ -9,7 +9,6 @@
 	 2. aparece a mensagem "aguardando outros jogadores"
 	 3. starta a aceitadora de conexao (lembrando que uma aceitadora para varias supervisoras (1 - N))
  
- 
  como deve funcionar a classe:
  	1.cada vez que a aceitadora de conexao for startada, o ciente que tentou se conectar será armazenado no grupo (estrutura de dados)
  	2.o primeiro jogador a entrar no grupo eh o primeiro a jogar (principio de FILA)
@@ -21,49 +20,21 @@
  */
 
 public class ControladoraDePartida {
-	
+
 	public ControladoraDePartida() {
-	// construtor
-	}
-	
-	public static void push(Cliente cliente) throws Exception{
-	// insere o jogador na partida
-	}
-	
-	public static void pop(Cliente cliente) throws Exception{
-	// remove o jogador da partida
-	}
-	
-	public static void vezDeJogar() throws Exception{
-	// se o jogador estiver na partida há mais tempo -> primeiro a jogar
-	}
-	
-	public static String vencer() throws Exception{
-	
-	}
-	
-	public static String perder() throws Exception{
-		
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		
-	}
-	
-	@Override
-	public String toString() {
-		
-	}
-	
-	@Override
-	public int hashCode() {
-	
-        int ret = 258;
-
-        ret = ret * 11 + servidor.hashCode();
-
-        return Math.abs(ret);
+		// construtor
 	}
 
+	public static void vezDeJogar() throws Exception {
+		// se o jogador estiver na partida há mais tempo -> primeiro a jogar
+		// vai remover o jogador do grupo e depois inseri-lo novamente
+	}
+
+	public static String vencer() throws Exception {
+		return "Voce venceu!";
+	}
+
+	public static String perder() throws Exception {
+		return "Voce perdeu e sera removido da partida";
+	}
 }
