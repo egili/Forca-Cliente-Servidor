@@ -27,7 +27,7 @@ public class ControladoraDePartida {
 
 	public static void vezDeJogar() throws Exception {
 		// se o jogador estiver na partida há mais tempo -> primeiro a jogar
-		// vai remover o jogador do grupo e depois inseri-lo novamente
+		// vai remover o jogador do Grupo e depois inseri-lo novamente
 	}
 
 	public static String vencer() throws Exception {
