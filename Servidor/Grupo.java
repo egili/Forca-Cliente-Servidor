@@ -42,12 +42,15 @@ public class Grupo<X> { // fila
 
 	public boolean isCheio() 
 	{
-		return jogadores.length == 3 ? true : false;
+		return jogadores.length == this.TAMANHO_GRUPO ? true : false;
 	}
 
 	@Override
 	public String toString() 
 	{
+		if(this.isVazio())
+			return "nenhum jogador no grupo";
+		
 		String ret = "{";
 		
 		ret += this.jogadores[0];
