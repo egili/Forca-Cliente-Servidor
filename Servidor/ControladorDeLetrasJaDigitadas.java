@@ -32,10 +32,7 @@ import java.net.Socket;
  */
 
 public class ControladorDeLetrasJaDigitadas implements Cloneable
-{
-	
-    
-     
+{ 
      private ArrayList<String> letrasJaDigitadas = new ArrayList<String>();
 //     List<ArrayList<String>> listaDeArrayDeletrasjadigitadas = Arrays.asList(letrasJaDigitadas);
 //     ArrayList<String> arrayletrasJaDigitadas = letrasJaDigitadas;
@@ -44,8 +41,12 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
      private byte qtd, posicao;
 	 //private StringBuilder stringBuilder = new StringBuilder(); 
 	
-	 
     public ControladorDeLetrasJaDigitadas() throws Exception
+
+    private String letrasJaDigitadas;
+ 
+    public ControladorDeLetrasJaDigitadas()
+
     {
     	  if (letrasJaDigitadas == null)
                 throw new Exception ("Letras ausentes");   
@@ -132,9 +133,6 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }
          
    }
-    
-    
-
 
     @Override
     public String toString ()
@@ -187,7 +185,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         try{
             ret = new ControladorDeLetrasJaDigitadas(this);
         }
-        catch (Exception ignored) {}        }
+        catch (Exception ignored) {}        
         return ret;
     }
 }

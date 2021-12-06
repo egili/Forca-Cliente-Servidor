@@ -9,7 +9,6 @@
 	 2. aparece a mensagem "aguardando outros jogadores"
 	 3. starta a aceitadora de conexao (lembrando que uma aceitadora para varias supervisoras (1 - N))
  
- 
  como deve funcionar a classe:
  	1.cada vez que a aceitadora de conexao for startada, o ciente que tentou se conectar será armazenado no grupo (estrutura de dados)
  	2.o primeiro jogador a entrar no grupo eh o primeiro a jogar (principio de FILA)
@@ -20,17 +19,22 @@
  obs: cliente = jogador
  */
 
-
-/* Ediçao dia 02-12-2021 por Lunara(como resultado da reunião de mesmo dia):
- *  Colocar método para VezDeJogar para controlar quando cada jogador estará ativo pra jogar; 
- * classe Grupo controla as ações do jogador e devolve pro cliente. 
- * A classe Supervisora recebe os pedidos do cliente 
- * e devolve os comunicados ao cliente. 
- * NOVO NOME DA CLASSE GRUPO = CONTROLADORADEPARTIDA.java
- * Classe ControladoraDePartida = Eliseu
- * Classe SupervidoraDeConexao = Leandro*/
-
-
 public class ControladoraDePartida {
 
+	public ControladoraDePartida() {
+		// construtor
+	}
+
+	public static void vezDeJogar() throws Exception {
+		// se o jogador estiver na partida há mais tempo -> primeiro a jogar
+		// vai remover o jogador do Grupo e depois inseri-lo novamente
+	}
+
+	public static String vencer() throws Exception {
+		return "Voce venceu!";
+	}
+
+	public static String perder() throws Exception {
+		return "Voce perdeu e sera removido da partida";
+	}
 }
