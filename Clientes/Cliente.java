@@ -113,7 +113,7 @@ public class Cliente
             System.out.println("Tecle 2 para digitar a letra!");
             System.out.println("Tecle 3 para digitar a palavra!");
             
-            
+       /**Capturar um int,se o que o jogador digitar for diferente de 1,2,3 dispara erro de opção inválida**/     
            try
            {
         	opcao = Teclado.getUmInt();   
@@ -129,8 +129,8 @@ public class Cliente
 				System.err.println ("Opcao invalida!\n");
 				continue;
 			}
-            //quando o jogador tecla 1, ele pede para entrar no jogo. O comunicado começa nulo 
-            //e o servidor espia enquando o comunicado não for uma instância da aceitadora de conexão
+            /**Se entra na opção 1, o servidor recebe um pedido para entrar e o comunicado começa nulo, depois entra num do para espiar o comunicado. 
+             * Quando o comunicado for instância da aceitadora de conexão, ele vai enviar um objeto de aceitadora para a conexão e o jogador recebe a mensagem de conexão aceita*/
             
             if (opcao =='1')
             {
@@ -141,27 +141,31 @@ public class Cliente
 				comunicado = (Comunicado)servidor.espie ();
 			}
             
-            // quando o comunicado for uma aceitadora de conexão, o servidor envia uma aceitadora de
-            // conexao, e depois esse jogador tem que entrar no grupo a espera de formar um trio na sala
-            // para realmente jogar
+            /**quando o comunicado for uma aceitadora de conexão, o servidor envia uma aceitadora de conexao, e depois esse jogador tem que entrar no grupo a espera 
+             * até formar um trio na salapara realmente jogar**/
+            
+            
 			while (!(comunicado instanceof AceitadoraDeConexao));
              AceitadoraDeConexao aceitadoradeconexao = (AceitadoraDeConexao) servidor.envie();
             System.out.println("Jogador, a sua conexão com o nosso servidor foi aceita");
             
             }
-            
+            //*Se entrar na opção 2, o servidor recebe um pedido de letra e o comunicado começa nulo, entra no do de espiar o comunicado. *//
                        
             if(opcao =='2')
             {
-             servidor.receba(new PedidoDeLetra());
+             servidor.receba(new PedidoDeLetra()); //a classe pedido de letra tem um erro
              Comunicado comunicado = null;
              do
              {
               comunicado = (Comunicado)servidor.espie();	 
              }
-             // enquanto o comunicado não for uma instância de controlador de letra já digitada, ele fica
-             // no looping do do:
+           /**Enquanto o comunicado não for uma instância de controlador de letra já digitada, ele fica
+            no looping do while**/
+             
              // como eu mostro o painel das letras já digitadas?
+             
+             
              // ao sair do looping, o vetor da letra é instanciado e declarado -- tem que ter na classe ControladorDeLetraJaDigitada!
              // os tracinhos são instanciados e declarados.
              // pede uma letra e posição da letra ao jogador
@@ -172,24 +176,39 @@ public class Cliente
              // se passou a última letra da palavra e acertou ,ele vence o jogo e os demais perdem
              // senão estiver no if de cima ele passa a vez ao próximo jogador em sentido horário.
              
-             while (!(comunicado instanceof ControladorDeLetrasJaDgitadas));
+             
+             
+             
+             /**Quando o comunicado for instância de controlador de letras, eu declaro vários objetos: 
+              * O estoque de letras como vetor, tracinhos, palavra. 
+              * Peço para digitar uma letra e a posição. 
+              * Peço o método tracinhos, verifico se a letra já foi digitada e registro (métodos da controladora de letras). 
+              * Crio um vetor todo mundo de grupo para revelar a posição e a letra todos e que o objeto tracinhos também revele. 
+              * Verifico se dentro da palavra sorteada tem a posição da letra e mostro os tracinhos faltantes, e depois se acertou ou errou. 
+              * Se a posição tiver o mesmo comprimento, acertou for verdadeiro e realmente existir a posição da iezima ocorrencia 
+              * (isso seria se acertasse a última letra da palavra), o jogador ativo ganharia a partida e os demais receberiam um comunicado de desligamento. 
+              * *Senão, pularia para o próximo jogador a vez de jogar**/
+             
+             while (!(comunicado instanceof ControladorDeLetrasJaDigitadas));
              ControladorDeLetrasJaDigitadas EstoqueDeLetras[] <String> = new EstoqueDeLetras[];
-             Tracinhos tracinhos = new Tracinhos;
-             Palavra palavra = new palavra;
+             Tracinhos tracinhos = new Tracinhos();
+             Palavra palavra = new palavra();
+             
              // fazer método em tracinhos que mostre o vetor das letras já digitadas ANTES do jogador
              // dizer a letra, exceto se o vetor tiver vazio ele vai ser obrigado a dar uma letra de palpite
+             
              System.out.println("Digite uma letra:" + letra);
              System.out.println("Diga uma posição que esteja a letra requerida:" + posicao);
              tracinhos.tracinhos();
-             EstoqueDeLetras.isJaDigitada;
-             EstoqueDeLetras.registre;
+             EstoqueDeLetras.isJaDigitada();
+             EstoqueDeLetras.registre();
              // revelar para todo mundo:
              Grupo TodoMundo [] = new TodoMundo[];
               TodoMundo.revele[posicao, letra]; // revela para todos na sala
               tracinhos.revele(posicao,letra); // revela somente para o jogador ativo
               palavra.getPosicaoDaIezimaOcorrencia(i,letra);
              tracinhos.isAindaComTracinhos();
-             AcertoOuErro acertoouerro = new AcertoOuErro;
+             AcertoOuErro acertoouerro = new AcertoOuErro();
              
             
              // se acertar a última letra da palavra vence
@@ -207,22 +226,24 @@ public class Cliente
             
                     
              
-             else if
+             else
              {
              jogador[i+1].VezDeJogar(); // depois que o jogador ativo já jogou e passou o resultado da letra
              // na palavra, obrigatoriamente temos que chamar o outro
-             System.out.println ("É a vez do jogador ": + jogador[i+1] + "jogar!");
+             System.out.println ("É a vez do jogador " + jogador[i+1] + "jogar!");
              }
              // independente de acertar ou errar, pelo fato de já ter jogado, passa a vez para o próximo
              
              
             }
             
+            
+            /**Na opção 3 seria a mesma lógica da opção 2 depois do while, quando montei estava sem acesso a supervisora e a classe grupo que 
+            agora se chama ControladoraDePartida, por isso a escrita das 3 opções tem que ser revisadas com mais calma
+            -->trocando letra por palavra, porém se o jogador ativo errar a palavra ele sai do jogo e os outros dois ficam até o primeiro deles ganhar acertando a palavra**/
+            
             if(opcao == '3')
             {
-            	// segue a mesma lógica da opção 3, trocando letra por palavra, porém se o jogador ativo errar a palavra
-            	// ele sai do jogo e os outros dois ficam até o primeiro deles ganhar acertando a palavra
-            
                 servidor.receba(new PedidoDePalavra());
                 Comunicado comunicado = null;
                 do
@@ -230,20 +251,21 @@ public class Cliente
                 comunicado = (Comunicado)servidor.espie();	 
                 }
                 
-                while (!(comunicado instanceof ControladorDePalavrasJaDigitadas))
-               ControladorDePalavrasJaDigitadas EstoqueDePalavras[] <String> = new EstoqueDePalavras[];
-                Tracinhos tracinhos = new Tracinhos;
-                Palavra palavra = new palavra;
-                System.out.println("Digite uma palavra:" + palavra);
-                tracinhos.tracinhos();
-                EstoqueDePalavras.isJaDigitada;
-                EstoqueDePalavras.registre;
-                Grupo TodoMundo [] = new TodoMundo[];
-                TodoMundo.revele[posicao, letra]; // revela para todos na sala
-                tracinhos.revele(posicao,letra); // revela somente para o jogador ativo
-                palavra.getPosicaoDaIezimaOcorrencia(i,letra);
-               tracinhos.isAindaComTracinhos();
-                AcertoOuErro acertoouerro = new AcertoOuErro;
+                while (!(comunicado instanceof ControladorDePalavrasJaDigitadas)) {
+                	
+	               ControladorDePalavrasJaDigitadas EstoqueDePalavras[] <String> = new EstoqueDePalavras[];
+	                Tracinhos tracinhos = new Tracinhos();
+	                Palavra palavra = new palavra();
+	                System.out.println("Digite uma palavra:" + palavra);
+	                tracinhos.tracinhos();
+	                EstoqueDePalavras.isJaDigitada();
+	                EstoqueDePalavras.registre();
+	                Grupo TodoMundo [] = new TodoMundo[];
+	                TodoMundo.revele[posicao, letra]; // revela para todos na sala
+	                tracinhos.revele(posicao,letra); // revela somente para o jogador ativo
+	                palavra.getPosicaoDaIezimaOcorrencia(i,letra);
+	               tracinhos.isAindaComTracinhos();
+	                AcertoOuErro acertoouerro = new AcertoOuErro();
                
                
                 if ((palavra != palavra.getTamanho()) ||(acertou == false) ||((palavra.getPosicaoDaIezimaOcorrencia(i, letra))== (quantidadeDeOcorrencias == 0)))
@@ -252,7 +274,7 @@ public class Cliente
                 	servidor.receba(new PedidoParaSair());
                  ComunicadoDeDesligamento comunicadodedesligamento = (ComunicadoDeDesligamento) servidor.envie();
                  jogador[i+1].VezDeJogar();
-                 System.out.println ("É a vez do jogador ": + jogador[i+1] + "jogar!");
+                 System.out.println ("É a vez do jogador ", + jogador[i+1] + "jogar!");
                                	 
                 }
                
@@ -271,11 +293,11 @@ public class Cliente
                 }
                               
                 
-            }// fecha a opção 3
+            }//end opção 3
             
-        }// fecha a lista das 3 opções no do, a linha 152 
+        }//end lista das 3 opções no do, a linha 152 
                                  
-           }// fecha a main
+           }//end main
            
-           }// fecha a classe Cliente
+           }// end Cliente
             
