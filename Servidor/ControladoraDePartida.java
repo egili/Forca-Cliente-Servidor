@@ -26,7 +26,7 @@ public class ControladoraDePartida {
 	}
 
 	public static void vezDeJogar() throws Exception {
-		// se o jogador estiver na partida há mais tempo -> primeiro a jogar
+		// se o jogador estiver na partida ha mais tempo -> primeiro a jogar
 		// vai remover o jogador do Grupo e depois inseri-lo novamente
 	}
 
