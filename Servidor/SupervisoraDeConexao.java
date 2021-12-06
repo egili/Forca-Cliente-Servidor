@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -87,7 +88,7 @@ public class SupervisoraDeConexao extends Thread
                     }
                     this.usuarios.get(0).receba(new ComunicadoDeVez());
                 }
-                System.out.println("Infelizmente servidor está cheio");
+                System.out.println("Infelizmente servidor estï¿½ cheio");
             }
         } catch(Exception e) {}
 
