@@ -1,12 +1,19 @@
-/*
-  colocar novas palavras no banco
-*/
-
 public class BancoDePalavras
 {
     private static String[] palavras = 
     {
-		
+    		"Axioma",
+    		"Azulejo",
+    		"Topázio",
+    		"Catarro",
+    		"Coçar",
+    		"Crespo",
+    		"Cripta",
+    		"Duplex",
+    		"Icterícia",
+    		"Intrigante",
+    		"Vertiginoso",
+    		"Xilofone"
     };
 
     public static Palavra getPalavraSorteada ()

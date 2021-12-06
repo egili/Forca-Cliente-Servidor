@@ -1,6 +1,3 @@
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.Iterator;
 
 /*
  validar se o uso dessa classe eh necessario e
@@ -11,9 +8,8 @@ import java.util.Iterator;
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 {
     private String letrasJaDigitadas;
-    public 
-
-    public ControladorDeLetrasJaDigitadas ()
+ 
+    public ControladorDeLetrasJaDigitadas()
     {
         this.letrasJaDigitadas = "";
     }
@@ -97,7 +93,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         try{
             ret = new ControladorDeLetrasJaDigitadas(this);
         }
-        catch (Exception ignored) {}        }
+        catch (Exception ignored) {}        
         return ret;
     }
 }
