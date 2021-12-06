@@ -2,18 +2,18 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class SupervisoraDeConexao extends Thread
+public class SupervisoraDeConexao extends Thread 
 {
-    private double              valor=0;
-    private Parceiro            usuario;
-    private Socket              conexao;
-    private final ArrayList<Parceiro> usuarios;
-    private static Palavra   palavra;
-    private static Tracinhos tracinhos;
-    private static ControladorDeErro controladorDeErros;
-    private static ControladorDeLetrasJaDigitadas  controladorDeLetrasJaDigitadas;
+	private double valor = 0;
+	private Parceiro usuario;
+	private Socket conexao;
+	private final ArrayList<Parceiro> usuarios;
+	private static Palavra palavra;
+	private static Tracinhos tracinhos;
+	private static ControladorDeErro controladorDeErros;
+	private static ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
 
-    public SupervisoraDeConexao
+	public SupervisoraDeConexao
     (Socket conexao, ArrayList<Parceiro> usuarios)
     throws Exception
     {
@@ -27,7 +27,7 @@ public class SupervisoraDeConexao extends Thread
         this.usuarios = usuarios;
     }
 
-    public void run ()
+	public void run ()
     {
 
         ObjectOutputStream transmissor;
@@ -81,7 +81,7 @@ public class SupervisoraDeConexao extends Thread
                 	palavra = BancoDePalavras.getPalavraSorteada();
                 	tracinhos = new Tracinhos(palavra.getTamanho());
                     int jogadores = usuarios.size();
-
+           
                     for (Parceiro jogador: this.usuarios) {
                        jogador.receba(new ControladorDePartida());
                     }
@@ -89,7 +89,7 @@ public class SupervisoraDeConexao extends Thread
                 }
                 System.out.println("Infelizmente servidor está cheio");
             }
-           
+        } catch(Exception e) {}
 
             for(;;)
             {
@@ -131,6 +131,6 @@ public class SupervisoraDeConexao extends Thread
                    this.usuario.receba(comunicadoDeLetra);
                }
         }
-     
+    }  
     
 }
