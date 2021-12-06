@@ -35,29 +35,27 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
 {
 	
     
-     private static final byte TAMANHO_INICIAL = 10;
-     private ArrayList<String> letrasjadigitadas = new ArrayList<String>();
-     List<ArrayList<String>> listaDeArrayDeletrasjadigitadas = Arrays.asList(letrasjadigitadas);
-     ArrayList<String> arrayletrasjadigitadas = letrasjadigitadas;
+     
+     private ArrayList<String> letrasJaDigitadas = new ArrayList<String>();
+//     List<ArrayList<String>> listaDeArrayDeletrasjadigitadas = Arrays.asList(letrasJaDigitadas);
+//     ArrayList<String> arrayletrasJaDigitadas = letrasJaDigitadas;
      private char letra;
-     private  char  caracter = letra;
-     private int qtd;
+//     private  char  caracter = letra;
+     private byte qtd, posicao;
 	 //private StringBuilder stringBuilder = new StringBuilder(); 
-	 private int posicao;
+	
 	 
-    public ControladorDeLetrasJaDigitadas()
-    { 
-       this.letrasjadigitadas = new ArrayList<String>(TAMANHO_INICIAL); 
+    public ControladorDeLetrasJaDigitadas() throws Exception
+    {
+    	  if (letrasJaDigitadas == null)
+                throw new Exception ("Letras ausentes");   
+              	
+       this.letrasJaDigitadas = new ArrayList<String>(qtd); 
        this.qtd = 0;
-       if (letrasjadigitadas == null)
-       {
-    	System.out.println("Letras ausentes");   
-    	
-       }   
-        
+         
      }
     
-    public int size()
+    public byte size()
     {
       return this.qtd;
     }
@@ -66,32 +64,31 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     
         {
      	 	
-         for (int i = 0 ; i<letrasjadigitadas.size(); letra ++)
+         for (int i = 0 ; i<letrasJaDigitadas.size(); letra ++)
     	{
-         i = this.letrasjadigitadas.indexOf(letra);
+         i = this.letrasJaDigitadas.indexOf(letra);
 	     
          if (i == -1)
-         {
-        	return false; 
-         }
+            return false; 
+         
          
          return true;
     	}
     }
 
     
-    public synchronized void adicionarletra (char letra, int posicao)
+    public synchronized void adicionarletra (char letra, byte posicao)
 	{ 
     	char caracter = letra;
-    	Arrays.toString(letrasjadigitadas.toArray());
-        if (this.qtd==this.letrasjadigitadas.size())
-	    this.letrasjadigitadas.set(posicao, letrasjadigitadas.get(this.qtd) + letra);
+    	Arrays.toString(letrasJaDigitadas.toArray());
+        if (this.qtd==this.letrasJaDigitadas.size())
+	    this.letrasJaDigitadas.set(posicao, letrasJaDigitadas.get(this.qtd) + letra);
        this.qtd++;
  
 	}
 
 
-    public synchronized void registrarletra (char letra,  int posicao) throws Exception
+    public synchronized void registrarletra (char letra,  byte posicao) throws Exception
     {
     	
         if(isJaDigitada(letra))
@@ -109,9 +106,9 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }
       
          char  caracter = letra;
-     	Arrays.toString(letrasjadigitadas.toArray());
+     	Arrays.toString(letrasJaDigitadas.toArray());
      	// usar 2 for e um  if para quebrar a palavra em char, e cada char tem um índice.
-        boolean contemCaracter = new ArrayList<String>(arrayletrasjadigitadas).contains(String.valueOf(caracter));
+        boolean contemCaracter = new ArrayList<String>(arrayletrasJaDigitadas).contains(String.valueOf(caracter));
         String palavra; 
         char [] letras = new char[palavra.length()] ;
         
@@ -123,11 +120,11 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         	
         }
         
-        for (int i = 0 ; i<letrasjadigitadas.size(); letra ++)
+        for (int i = 0 ; i<letrasJaDigitadas.size(); letra ++)
         {
         	if ( !contemCaracter)
         	{
-        		i = this.letrasjadigitadas.indexOf(palavra.getPosicaoDaIezimaOcorrencia(ondeocorre, letra));
+        		i = this.letrasJaDigitadas.indexOf(palavra.getPosicaoDaIezimaOcorrencia(ondeocorre, letra));
         		
          this.adicionarletra(letra, i);
         		
@@ -144,8 +141,8 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     {
     	
         String ret = "";
-        for (int letra = 0; letra < this.letrasjadigitadas.size(); letra++){
-            ret += letrasjadigitadas.charAt(letra) + ",";
+        for (int letra = 0; letra < this.letrasJaDigitadas.size(); letra++){
+            ret += letrasJaDigitadas.charAt(letra) + ",";
         }
 
         return  ret;
