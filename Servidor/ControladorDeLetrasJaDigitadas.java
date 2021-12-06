@@ -80,12 +80,12 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     }
 
     
-    public synchronized void adicionarletra (char letra)
+    public synchronized void adicionarletra (char letra, int posicao)
 	{ 
     	char caracter = letra;
     	Arrays.toString(letrasjadigitadas.toArray());
         if (this.qtd==this.letrasjadigitadas.size())
-	    this.letrasjadigitadas.set(qtd, letrasjadigitadas.get(this.qtd) + letra);
+	    this.letrasjadigitadas.set(posicao, letrasjadigitadas.get(this.qtd) + letra);
        this.qtd++;
  
 	}
@@ -109,14 +109,27 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }
       
          char  caracter = letra;
+     	Arrays.toString(letrasjadigitadas.toArray());
+     	// usar 2 for e um  if para quebrar a palavra em char, e cada char tem um índice.
         boolean contemCaracter = new ArrayList<String>(arrayletrasjadigitadas).contains(String.valueOf(caracter));
-            		
+        String palavra; 
+        char [] letras = new char[palavra.length()] ;
+        
+        letras = palavra.toCharArray();
+        palavra = palavra.valueOf(letras);
+        for (int k = 0; k<palavra.length(); k++)
+        {
+        	int ondeocorre = k;
+        	
+        }
+        
         for (int i = 0 ; i<letrasjadigitadas.size(); letra ++)
         {
         	if ( !contemCaracter)
         	{
-        		i = this.letrasjadigitadas.indexOf(posicao.getIezimaOcorrencia).charAt(letra);
-        		this.letrasjadigitadas.adicionarletra(letra);
+        		i = this.letrasjadigitadas.indexOf(palavra.getPosicaoDaIezimaOcorrencia(ondeocorre, letra));
+        		
+         this.adicionarletra(letra, i);
         		
         	}
         }
@@ -124,93 +137,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
    }
     
     
-	public synchronized void removerletrasdalista (int posicao) throws ArrayIndexOutOfBoundsException
-	{
-           String[] args;		
-		   Socket conexao=null;
-	        try
-	        {
-	            String host = Cliente.HOST_PADRAO;
-	            int    porta= Cliente.PORTA_PADRAO;
 
-	            if (args.length>0)
-	                host = args[0];
-
-	            if (args.length==2)
-	                porta = Integer.parseInt(args[1]);
-
-	            conexao = new Socket (host, porta);
-	        }
-	        catch (Exception erro)
-	        {
-	            System.err.println ("Indique o servidor e a porta corretos!\n");
-	            return;
-	        }
-
-	        ObjectOutputStream transmissor=null;
-	        try
-	        {
-	            transmissor =
-	            new ObjectOutputStream(
-	            conexao.getOutputStream());
-	        }
-	        catch (Exception erro)
-	        {
-	            System.err.println ("Indique o servidor e a porta corretos!\n");
-	            return;
-	        }
-
-	        ObjectInputStream receptor=null;
-	        try
-	        {
-	            receptor =
-	            new ObjectInputStream(
-	            conexao.getInputStream());
-	        }
-	        catch (Exception erro)
-	        {
-	            System.err.println ("Indique o servidor e a porta corretos!\n");
-	            return;
-	        }
-
-
-		Parceiro cliente = null;
-		
-		try {
-		cliente = new Parceiro (conexao, receptor, transmissor);	
-		} catch (Exception e) {
-			  System.err.println ("Indique o servidor e a porta corretos!\n");
-	            return;
-		}  
-		   
-		 Palavra palavra = new Palavra(null);
-		
-		   if(letrasjadigitadas.size() == palavra.getTamanho())
-		   {
-			   
-		   }
-			   
-			   this.letrasjadigitadas.clear();
-		   
-		/*PENSANDO COMO NO MÉTODO ORIGINAL VECTOR.JAVA
-		 * 	if (posicao<0 || posicao>this.qtd-1)
-		    throw new java.lang.ArrayIndexOutOfBoundsException (posicao);
-		
-		int posicaoanterior = posicao-1;
-		int m = posicao+1; 
-		 String atual = this.letrasjadigitadas.get(i);
-		 
-        for (int m ; m<this.qtd; m++)
-          
-        this.letrasjadigitadas.set(posicaoanterior, atual);
-       
-		this.qtd--;
-		this.letrasjadigitadas.get(this.qtd, null);
-	
-		 *  */
-	
-	
-	}
 
     @Override
     public String toString ()
