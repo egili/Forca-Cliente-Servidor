@@ -124,7 +124,7 @@ public class Cliente
 				System.err.println ("Opcao invalida!\n");
 				continue;
 			}
-            if ("1234".indexOf(opcao)==-1)
+            if ("123".indexOf(opcao)==-1)
 		    {
 				System.err.println ("Opcao invalida!\n");
 				continue;
