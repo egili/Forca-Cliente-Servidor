@@ -24,6 +24,8 @@ public class ControladoraDePartida {
 	public ControladoraDePartida() {
 		// construtor
 	}
+	
+	// Em que momento será colocado no cliente que a partida começou porque temos 3 jogadores?
 
 	public static void vezDeJogar() throws Exception {
 		// se o jogador estiver na partida há mais tempo -> primeiro a jogar

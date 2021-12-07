@@ -135,42 +135,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
           * */
       // COMO EU PEGO A PALAVRA SORTEADA DA CLASSE BANCO DE PALAVRAS, MÉTODO GETPALAVRASORTEADA?
          
-        String palavramontada;
-        int quantidade = palavramontada.length();
-		String LetrasAtrasDoPainel[] = new String [quantidade];  
-          char charc = letra;
-       
-          
-
-       Arrays.toString(letrasJaDigitadas.toArray());
-       this.letrasJaDigitadas.indexOf(charc);
-       String palavrasorteada = null;
-      /* COMO EU PEGO A PALAVRA SORTEADA DO BANCO DE PALAVRAS E COPIO ESSA PALAVRA NA COPIA PALAVRA?*/       
-       Palavra p1 = new Palavra(palavrasorteada);
-       
-          String copiapalavra = palavrasorteada;
-       
-          Palavra p2 = new Palavra(palavramontada);
-      
-      boolean contemLetra = LetrasAtrasDoPainel.equals(charc);
-		
-
-       
-       if (contemLetra == true) 
-       {
-    	byte quantasvezes = y;
-		while
-    	(palavramontada == copiapalavra)
-    	// verificar quantas vezes aparece a letra dentro do vetor LetrasAtrasDoPainel e armazenar em PalavraMontada;
-        for (quantasvezes=0; quantasvezes<palavramontada.length(); quantasvezes ++)
-        	LetrasAtrasDoPainel[quantasvezes].charAt(quantasvezes); // intuito de pegar a posicao;
-        	LetrasAtrasDoPainel[quantasvezes].repeat(charc); // pegar as ocorrencias da letra;
-	    this.adicionarletra(charc, quantasvezes);
-	    // ou para garantir, achar um jeito de usar o método getIezimaPosicaoDaOcorrencia no palavramontada;
-	    
-       }
-		
-		 
+   
     	
        
       }

@@ -50,7 +50,7 @@ public class SupervisoraDeConexao extends Thread
             new ObjectInputStream(
             this.conexao.getInputStream());
         }
-        catch (Exception err0)
+        catch (Exception erro)
         {
             try
             {
@@ -107,7 +107,7 @@ public class SupervisoraDeConexao extends Thread
                        jaDigitadas = true;
 					else
 					{
-						controladorDeLetrasJaDigitadas.registre (letra);
+						controladorDeLetrasJaDigitadas.registrarletra(letra,(byte) posicao);
 
 						int qtd = palavra.getQuantidade (letra);
 
