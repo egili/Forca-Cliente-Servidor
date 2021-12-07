@@ -34,9 +34,31 @@ public class ControladoraDePartida {
 
 	public static String vencer() throws Exception {
 		return "Voce venceu!";
+		
+		  /*METODO VENCER
+          else (chute palavra == copia palavra)
+          System.out.println ("Jogador [falar a posicao do jogador ativo] você ganhou"!);
+          dar comunicado de vitoria
+          chamar método perder aos demais da sala para dar comunicado de desligamento
+          encerrar partida para todos via objeto todo mundo (grupo ou controladora de partida);
+          
+          
+            SITUAÇÃO 2 DO MÉTODO VENCER
+            Como eu sei que o jogador passou uma letra que realmente era a última faltante para completar a copia da palavra?
+          */
+		
 	}
 
 	public static String perder() throws Exception {
 		return "Voce perdeu e sera removido da partida";
+		/*  A partir desses resultados, incrementar na lógica para quando:
+        chute palavra = o que o jogador digitar
+        
+        METODO PERDER
+        if (chute palavra != copia palavra)
+        System.out.println ("Jogador ´[falar a posicao do jogador ativo] você perdeu");
+        dar comunicados de perda;
+       chamar método VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
+       */
 	}
 }

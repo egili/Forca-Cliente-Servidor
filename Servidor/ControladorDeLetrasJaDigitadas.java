@@ -10,26 +10,7 @@ import java.util.List;
 import java.lang.StringBuilder;
 import java.net.Socket;
 
-/*
- validar se o uso dessa classe eh necessario e
- eventualmente fazer todas as alteracoes
- Classe ControladorDeLetrasJaDigitadas = Lunara;
-  Edição dia 04-12-2021 (lembrete): usar vetor como conjunto tal como na classe Conjunto, porém ver a implementação da classe Vector
-  do professor no dia 28-10 
  
- Perguntas:
- 1. Tenho que realmente usar a classe Conjunto tendo em vista que a cada 3 jogadores terá apenas 1 partida?
- 2. Quando usa ArrayList o Vetor é compartilhado, porém, cada partida terá o seu vetor de letrasjaidigitadas de acordo
- com a palavra sorteada. Então não faz sentido compartilhar vetor.
- 3. Na aula do dia 28-10 mostra que o Vetor tem sincronismo interno, sendo declarado no cabeçalho do método. Não sendo 
- compartilhado, fazer uma lógica de que quando terminar a partida, isto é, quando o 1 jogador receber o comunicado de vitoria
- e os 2 demais jogadores receberem o comunicado de perda, o vetor deve ser totalmente limpo pelo remova ANTES de começar uma nova
- partida,
- 4. Interface Set não funciona, pois usando Character ou String ele barra completamente o Vetor. Por isso se optou por usar
- Vector com validações para elementos repetidos, armazenamento, quando o vetor começar vazio no construtor.
- 5. REVISAR CÓDIGO COM NBOUANI EM 06/12/2021. Revisar synchronized para saber se é no cabeçalho ou dentro do método;
- um arraylist ele tem limite para inserir elementos ou cresce a medida em que ele vai sendo acrescentado?
- */
 
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 { 
@@ -75,7 +56,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     public synchronized void adicionarletra (char letra, byte posicao)
 	{ 
     	 Arrays.toString(letrasJaDigitadas.toArray());
-        if (this.qtd==this.letrasJaDigitadas.size())
+        //if (this.qtd==this.letrasJaDigitadas.size())
 	    this.letrasJaDigitadas.set(posicao, letrasJaDigitadas.get(this.qtd) + letra);
        this.qtd++;
  
@@ -101,43 +82,8 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             throw new Exception(" Letra não pode ser numero");
         
          this.adicionarletra(letra, posicao);
-        
-        // segunda parte: verificar se a letra passada realmente faz parte da palavrasorteada e 
-         // acrescentar a letra na(s) posicao(oes) designadas.
-         /*
-          A ideia é que a estrutura de dados letrasjadigitadas funcione como um estoque das letras que vão sendo digitadas dentro de uma partida.
-          A partir dessa estrutura de dados, fazer uma variável que seja uma cópia estável da palavra sorteada, pois para cada partida
-          haverá apenas uma palavra sorteada. A partir dessa cópia, quando o jogador passar uma letra ela será armazenada no letrasjadigitadas.
-          A partir dessa letrasjadigitadas, pegar a posição que foi passada essa letra (lembrando que: sempre será acrescentada na ultima posicao 
-          do letrasjadigitadas, portanto para arraylist usar lastIndexOf ou se for char c = letra, usar toCharArray(posicao letra);).
-          Depois de ver a letra, descobrir na copia da palavra qual a posição que a letra deve ser colocada. Por exemplo se passar a letra A em casa,
-          seriam as posições 1 e 3. Para ver letra e posição, seria bom usar na main (cliente ou servidor?) os métodos  
-          copia palavra = bancoDePalavras.getPalavraSorteada e palavra.getPosicaoDaIezimaOcorrencia
-          
-          A partir desses resultados, incrementar na lógica para quando:
-           chute palavra = o que o jogador digitar
-           
-           METODO PERDER
-           if (chute palavra != copia palavra)
-           System.out.println ("Jogador ´[falar a posicao do jogador ativo] você perdeu");
-           dar comunicados de perda;
-          chamar método VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
-           
-           METODO VENCER
-           else (chute palavra == copia palavra)
-           System.out.println ("Jogador [falar a posicao do jogador ativo] você ganhou"!);
-           dar comunicado de vitoria
-           chamar método perder aos demais da sala para dar comunicado de desligamento
-           encerrar partida para todos via objeto todo mundo (grupo ou controladora de partida);
-           
-            SITUAÇÃO 2 DO MÉTODO VENCER
-            Como eu sei que o jogador passou uma letra que realmente era a última faltante para completar a copia da palavra?
-          * */
-      // COMO EU PEGO A PALAVRA SORTEADA DA CLASSE BANCO DE PALAVRAS, MÉTODO GETPALAVRASORTEADA?
-         
-   
-    	
-       
+    
+               
       }
 
     /*
