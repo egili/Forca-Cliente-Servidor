@@ -10,6 +10,7 @@ public class PedidoDeLetra extends Comunicado {
     private final ArrayList<String> letrasJaDigitadas;
     //ControladorDeLetrasJaDigitadas letra = new ControladorDeLetrasJaDigitadas();  
     private char umaletra;
+    private char letra = umaletra;
     private final byte posicao, quantasvezes;
 	private Socket             conexao;
 	private ObjectInputStream  receptor;
@@ -17,18 +18,44 @@ public class PedidoDeLetra extends Comunicado {
 	String host = Servidor.HOST_PADRAO;
     String porta= Servidor.PORTA_PADRAO;
 	
-   public PedidoDeLetra(char umaletra) throws Exception {
+   public PedidoDeLetra(Socket conexao, char umaletra) throws Exception {
 	   Grupo[] jogadores = new Grupo[3]; 
 	   
 	   // como eu sei que começou a partida????
 	   if (jogadores.length == 3)
-	   {   
-		 Socket conexao=null;
-		 ObjectInputStream receptor=null;
+	   {
+		     
+		   
+		     if (conexao==null)
+	            throw new Exception ("Conexao ausente");
+		     
+		     if  (umaletra == '\0') // char não lê nulo, por padrão ele é zero
+				   throw new Exception ("Letra ausente");
+			
+		     ObjectOutputStream transmissor;
+		        try
+		        {
+		            transmissor =
+		            new ObjectOutputStream(
+		            this.conexao.getOutputStream());
+		        }
+		        catch (Exception erro)
+		        {
+		            return;
+		        }
+		        
+		        ObjectInputStream receptor=null;
+		        try
+		        {
+		            receptor=
+		            new ObjectInputStream(
+		            this.conexao.getInputStream());
+		        }
+		        catch (Exception erro) 
+		        {
+		        	return;
+		        }
 		  Parceiro servidor = null;
-		  conexao = new Socket(host,porta);
-		  receptor = new ObjectInputStream(conexao.getInputStream());
-		  transmissor = new ObjectOutputStream(conexao.getOutputStream());
 		  servidor = new Parceiro (conexao, receptor, transmissor);
 		  ComunicadoComecouPartida comunicadocomecoupartida =null;
 		  Comunicado comunicado = null;		
@@ -41,46 +68,19 @@ public class PedidoDeLetra extends Comunicado {
 		   
 		   while (!(comunicado instanceof ComunicadoComecouPartida))
 			   servidor.receba(new ComunicadoComecouPartida());
-		   if  (umaletra == '\0') // char não lê nulo, por padrão ele é zero
-			   throw new Exception ("Letra ausente");
-		   
+		       this.umaletra = '\0';
+		    
 		  // valida se letra for um número e se a letra já foi escrita,
 		   //senão acrescenta em letrasJaDigitadas
 		   controladorDeLetrasJaDigitadas.registrarletra(umaletra, posicao);
 		   
 		       	            
-		   // registra a umaletra dentro da variavel umaletra.      
-		   this.umaletra = umaletra;
+		   // registra a umaletra dentro da variavel umaletra.
+		   this.conexao  = conexao;
+	       this.umaletra = umaletra;
 	   }
 	   
-	   
-    /* Quando o jogo começar é porque terá 3 jogadores em uma sala.
-	    O primeiro que começar a jogar, a estrutura de letra tem que ser nula,
-	    por exemplo: char letras[] = null;
-	    Toda vez que o jogador passar uma letra validar se realmente é uma letra,
-	    como por exemplo: números, caracteres especiais e espaços vazios tem
-	    que lançar exceções no construtor.
-	    Se trabalhar com vetor, fazer com que tenha tamanho máximo de 26 espaços.
-	    (O vetor de letra que vai se conectar com as letrasjadigitadas, lembrando que:
-	    letrasjadigitadas é o estoque das letras faladas na partida).
-	    Num segundo momento, o vetor de letras terá a posição atual instanciada
-	    em uma outra estrutura que vai passar essa letra nas posições da copia da palavra,
-	    fazendo com que essa última estrutura de letra possa ser repetida.
-	    Exemplo:
-	    letradepainel [] = letra[i]; -- letras que aparecem quando a pessoa advinha a letra
-	    de dentro da palavra no roda a roda;
-	    for ( i = 0;  i<copiadapalavra.length(); i++)
-	     if (letradepainel.equals(copiadapalavra.indexOf[letra])
-	      this.copiadepalavra = letradepainel[i]
-	      return copiadepalavra;
 	      
-	      else
-	      system.out.println("Essa letra " + letra + "não tem na nossa palavra!");
-	      
-	      PS: Pelo banco de palavras, pode ter de 0 até 5 posições para a letra.
-	      Por exemplo, em otorrinolaringologista, tem 5 letras 'o'.
-	    * */
-      
    }
    
    public String adicioneLetraNaPalavra(byte quantasvezes, char charc) throws Exception
