@@ -171,18 +171,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
        }
 		
 		 
-    	    
     	
-    	    
-    	   
-    	    
-    	    
-    	  }
-    	}
-       }
-       
-        
-      
        
       }
 
