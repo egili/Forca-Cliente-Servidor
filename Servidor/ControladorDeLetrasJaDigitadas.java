@@ -35,20 +35,15 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
 { 
      private ArrayList<String> letrasJaDigitadas = new ArrayList<String>();
 //     List<ArrayList<String>> listaDeArrayDeletrasjadigitadas = Arrays.asList(letrasJaDigitadas);
-//     ArrayList<String> arrayletrasJaDigitadas = letrasJaDigitadas;
+     ArrayList<String> arrayletrasJaDigitadas = letrasJaDigitadas;
      private char letra;
 //     private  char  caracter = letra;
      private byte qtd, posicao;
 	 //private StringBuilder stringBuilder = new StringBuilder(); 
 	
-    public ControladorDeLetrasJaDigitadas() throws Exception
+    public ControladorDeLetrasJaDigitadas() throws Exception{
 
-    private String letrasJaDigitadas;
- 
-    public ControladorDeLetrasJaDigitadas()
-
-    {
-    	  if (letrasJaDigitadas == null)
+      	  if (letrasJaDigitadas == null)
                 throw new Exception ("Letras ausentes");   
               	
        this.letrasJaDigitadas = new ArrayList<String>(qtd); 
@@ -71,17 +66,15 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
 	     
          if (i == -1)
             return false; 
-         
-         
-         return true;
+          
     	}
+         return true;
     }
 
     
     public synchronized void adicionarletra (char letra, byte posicao)
 	{ 
-    	char caracter = letra;
-    	Arrays.toString(letrasJaDigitadas.toArray());
+    	 Arrays.toString(letrasJaDigitadas.toArray());
         if (this.qtd==this.letrasJaDigitadas.size())
 	    this.letrasJaDigitadas.set(posicao, letrasJaDigitadas.get(this.qtd) + letra);
        this.qtd++;
@@ -91,7 +84,9 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
 
     public synchronized void registrarletra (char letra,  byte posicao) throws Exception
     {
-    	
+    	// verifica se a letra já foi digitada e se o jogador passa um numero no lugar de letra;
+    	// senão tiver erros, adiciona a letra na posição do letrasjadigitadas, tal como um estoque
+    	// das letras já digitadas.
         if(isJaDigitada(letra))
             throw new Exception("Letra já foi digitada");
         
@@ -102,38 +97,84 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }catch (NumberFormatException erro){
             num = false;
         }
-        if (num) {
+        if (num) 
             throw new Exception(" Letra não pode ser numero");
-        }
-      
-         char  caracter = letra;
-     	Arrays.toString(letrasJaDigitadas.toArray());
-     	// usar 2 for e um  if para quebrar a palavra em char, e cada char tem um índice.
-        boolean contemCaracter = new ArrayList<String>(arrayletrasJaDigitadas).contains(String.valueOf(caracter));
-        String palavra; 
-        char [] letras = new char[palavra.length()] ;
         
-        letras = palavra.toCharArray();
-        palavra = palavra.valueOf(letras);
-        for (int k = 0; k<palavra.length(); k++)
-        {
-        	int ondeocorre = k;
-        	
-        }
+         this.adicionarletra(letra, posicao);
         
-        for (int i = 0 ; i<letrasJaDigitadas.size(); letra ++)
-        {
-        	if ( !contemCaracter)
-        	{
-        		i = this.letrasJaDigitadas.indexOf(palavra.getPosicaoDaIezimaOcorrencia(ondeocorre, letra));
-        		
-         this.adicionarletra(letra, i);
-        		
-        	}
-        }
+        // segunda parte: verificar se a letra passada realmente faz parte da palavrasorteada e 
+         // acrescentar a letra na(s) posicao(oes) designadas.
+         /*
+          A ideia é que a estrutura de dados letrasjadigitadas funcione como um estoque das letras que vão sendo digitadas dentro de uma partida.
+          A partir dessa estrutura de dados, fazer uma variável que seja uma cópia estável da palavra sorteada, pois para cada partida
+          haverá apenas uma palavra sorteada. A partir dessa cópia, quando o jogador passar uma letra ela será armazenada no letrasjadigitadas.
+          A partir dessa letrasjadigitadas, pegar a posição que foi passada essa letra (lembrando que: sempre será acrescentada na ultima posicao 
+          do letrasjadigitadas, portanto para arraylist usar lastIndexOf ou se for char c = letra, usar toCharArray(posicao letra);).
+          Depois de ver a letra, descobrir na copia da palavra qual a posição que a letra deve ser colocada. Por exemplo se passar a letra A em casa,
+          seriam as posições 1 e 3. Para ver letra e posição, seria bom usar na main (cliente ou servidor?) os métodos  
+          copia palavra = bancoDePalavras.getPalavraSorteada e palavra.getPosicaoDaIezimaOcorrencia
+          
+          A partir desses resultados, incrementar na lógica para quando:
+           chute palavra = o que o jogador digitar
+           
+           METODO PERDER
+           if (chute palavra != copia palavra)
+           System.out.println ("Jogador ´[falar a posicao do jogador ativo] você perdeu");
+           dar comunicados de perda;
+          chamar método VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
+           
+           METODO VENCER
+           else (chute palavra == copia palavra)
+           System.out.println ("Jogador [falar a posicao do jogador ativo] você ganhou"!);
+           dar comunicado de vitoria
+           chamar método perder aos demais da sala para dar comunicado de desligamento
+           encerrar partida para todos via objeto todo mundo (grupo ou controladora de partida);
+           
+            SITUAÇÃO 2 DO MÉTODO VENCER
+            Como eu sei que o jogador passou uma letra que realmente era a última faltante para completar a copia da palavra?
+          * */
+      // COMO EU PEGO A PALAVRA SORTEADA DA CLASSE BANCO DE PALAVRAS, MÉTODO GETPALAVRASORTEADA?
          
-   }
+        String palavramontada;
+        int quantidade = palavramontada.length();
+		String LetrasAtrasDoPainel[] = new String [quantidade];  
+          char charc = letra;
+       
+          
 
+       Arrays.toString(letrasJaDigitadas.toArray());
+       this.letrasJaDigitadas.indexOf(charc);
+       String palavrasorteada = null;
+      /* COMO EU PEGO A PALAVRA SORTEADA DO BANCO DE PALAVRAS E COPIO ESSA PALAVRA NA COPIA PALAVRA?*/       
+       Palavra palavra = new Palavra(palavrasorteada);
+       
+          String copiapalavra = palavrasorteada;
+       
+      
+      boolean contemLetra = LetrasAtrasDoPainel.equals(charc);
+		
+
+       
+       if (contemLetra == true) 
+       {
+    	while
+    	(palavramontada == copiapalavra)
+    	// verificar quantas vezes aparece a letra dentro do vetor LetrasAtrasDoPainel e armazenar em PalavraMontada;
+        for (y=0; y<palavramontada.length(); y++)
+        	
+    	   
+    	    
+    	    
+    	  }
+    	}
+       }
+       
+        
+      
+       
+      }
+
+    /*
     @Override
     public String toString ()
     {
@@ -171,7 +212,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             ret = - ret;
         return  ret;
     }
-
+    
     public ControladorDeLetrasJaDigitadas(ControladorDeLetrasJaDigitadas c) throws Exception // construtor de copia
     {
         if(c == null)
@@ -187,5 +228,5 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }
         catch (Exception ignored) {}        
         return ret;
-    }
-}
+    } */
+} 
