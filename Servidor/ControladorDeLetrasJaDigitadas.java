@@ -146,10 +146,11 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
        this.letrasJaDigitadas.indexOf(charc);
        String palavrasorteada = null;
       /* COMO EU PEGO A PALAVRA SORTEADA DO BANCO DE PALAVRAS E COPIO ESSA PALAVRA NA COPIA PALAVRA?*/       
-       Palavra palavra = new Palavra(palavrasorteada);
+       Palavra p1 = new Palavra(palavrasorteada);
        
           String copiapalavra = palavrasorteada;
        
+          Palavra p2 = new Palavra(palavramontada);
       
       boolean contemLetra = LetrasAtrasDoPainel.equals(charc);
 		
@@ -157,11 +158,22 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
        
        if (contemLetra == true) 
        {
-    	while
+    	byte quantasvezes = y;
+		while
     	(palavramontada == copiapalavra)
     	// verificar quantas vezes aparece a letra dentro do vetor LetrasAtrasDoPainel e armazenar em PalavraMontada;
-        for (y=0; y<palavramontada.length(); y++)
-        	
+        for (quantasvezes=0; quantasvezes<palavramontada.length(); quantasvezes ++)
+        	LetrasAtrasDoPainel[quantasvezes].charAt(quantasvezes); // intuito de pegar a posicao;
+        	LetrasAtrasDoPainel[quantasvezes].repeat(charc); // pegar as ocorrencias da letra;
+	    this.adicionarletra(charc, quantasvezes);
+	    // ou para garantir, achar um jeito de usar o método getIezimaPosicaoDaOcorrencia no palavramontada;
+	    
+       }
+		
+		 
+    	    
+    	
+    	    
     	   
     	    
     	    
