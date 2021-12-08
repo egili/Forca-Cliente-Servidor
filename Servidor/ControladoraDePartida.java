@@ -104,8 +104,10 @@ public class ControladoraDePartida {
 	    	for (posicaoDaLetra = 0; posicaoDaLetra<letrasAtrasDoPainel.length ; posicaoDaLetra++)
 	    	letrasAtrasDoPainel[contemLetra] = letrasAtrasDoPainel[posicaoDaLetra]; 	
 	    	letrasAtrasDoPainel[posicaoDaLetra] = letrasAtrasDoPainel[letra];
+	    	
 	    }
-	     return "Voce acertou a letra!";
+		
+	    return "Voce acertou a letra!";
 	}
     
 	// metodo para quando o cliente acertar o último tipo de letra que complete a palavra 
