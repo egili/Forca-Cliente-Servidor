@@ -8,8 +8,7 @@ public class PedidoDeLetra extends Comunicado {
 	private static ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
 	private static Grupo grupo;
 	private static Palavra palavra;
-       private char umaletra;
-    private char letra = umaletra;
+    private char letra;
     private final byte posicao, quantasvezes;
 	private Socket             conexao;
 	private ObjectInputStream  receptor;
@@ -17,7 +16,7 @@ public class PedidoDeLetra extends Comunicado {
 	String host = Servidor.HOST_PADRAO;
     String porta= Servidor.PORTA_PADRAO;
 	
-   public PedidoDeLetra(Socket conexao, char umaletra) throws Exception {
+   public PedidoDeLetra(Socket conexao, char letra) throws Exception {
 	    
 	   
 	   // como eu sei que começou a partida????
@@ -27,7 +26,7 @@ public class PedidoDeLetra extends Comunicado {
 		     if (conexao==null)
 	            throw new Exception ("Conexao ausente");
 		     
-		     if  (umaletra == '\0')
+		     if  (letra == '\0')
 				   throw new Exception ("Letra ausente");
 			
 		     ObjectOutputStream transmissor;
@@ -66,16 +65,16 @@ public class PedidoDeLetra extends Comunicado {
 		   
 		   while (!(comunicado instanceof ComunicadoComecouPartida))
 			   cliente.receba(new ComunicadoComecouPartida());
-		       this.umaletra = '\0';
+		       this.letra = '\0';
 		    
 		  // valida se letra for um número e se a letra já foi escrita,
 		   //senão acrescenta em letrasJaDigitadas
-		   controladorDeLetrasJaDigitadas.registrarletra(umaletra);
+		   controladorDeLetrasJaDigitadas.registrarletra(letra);
 		   
 		       	            
 		   // registra a umaletra dentro da variavel umaletra.
 		   this.conexao  = conexao;
-	       this.umaletra = umaletra;
+	       this.letra = letra;
 	   }
 	   
 	      
@@ -126,11 +125,11 @@ public class PedidoDeLetra extends Comunicado {
    }*/
 
    public char getLetra() {
-       return umaletra;
+       return letra;
     }
 
-   public void setLetra(char umaletra) {
-        this.umaletra = umaletra;
+   public void setLetra(char letra) {
+        this.letra = letra;
    }
     
 }
