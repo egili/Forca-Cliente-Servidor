@@ -17,9 +17,8 @@ public class PedidoDePalavra extends Comunicado {
     
     public PedidoDePalavra (Socket conexao, String chutepalavra) throws Exception
     {
-    	 Grupo[] jogadores = new Grupo[3];
-    	
-    	   if (jogadores.length == 3)
+
+    	   if (grupo.isCheio())
     	   {  
     		   
     		   if (conexao==null)
@@ -31,8 +30,8 @@ public class PedidoDePalavra extends Comunicado {
    		    
    		     int numero = teclado.getUmInt();
    			
-   		      if (chutepalavra == numero)
-   		       throw new Exception ("Palavra não pode ser numero!")
+   		      if (chutepalavra == chutepalavra.valueOf(numero))
+   		       throw new Exception ("Palavra não pode ser numero!");
    		      }
     	   
    		     ObjectOutputStream transmissor;
@@ -77,12 +76,15 @@ public class PedidoDePalavra extends Comunicado {
 		        
 		        String palavrasorteada = null;
 			   	 palavra = BancoDePalavras.getPalavraSorteada();
+			   	 Palavra p1 = new Palavra(palavrasorteada);
+			    String copiapalavra = palavrasorteada;
 			   	int quantidade = copiapalavra.length();
-			     Palavra p1 = new Palavra(palavrasorteada);
-			     String copiapalavra = palavrasorteada;
 			     //Palavra p2 = new Palavra(palavramontada);
 		    	 Palavra p2 = new Palavra (chutepalavra);
-			     if (chutepalavra == palavra)
+			     if (chutepalavra == copiapalavra)
+			     {
+			    	 System.out.println(chutepalavra);
+			     }	
 		    	this.chutepalavra = chutepalavra;
 		    	
 		       

@@ -21,7 +21,7 @@
 
 public class ControladoraDePartida {
 
-	private Grupo<Cliente> grupo;
+	private static Grupo<Cliente> grupo;
 	
 	public ControladoraDePartida(Cliente[] jogadores) throws Exception {
 		
@@ -36,6 +36,26 @@ public class ControladoraDePartida {
 	// Em que momento será colocado no cliente que a partida começou porque temos 3 jogadores?
 
 	public static void vezDeJogar() throws Exception {
+		
+		Cliente jogadorDaVez = grupo.getJogadorDaVez();
+		
+		grupo.removerJogadorDoGrupo();
+		Comunicado comunicado = null;
+		int numJogador = 0;
+		do
+		{
+		grupo.removerJogadorDoGrupo(); 
+		numJogador ++;
+		grupo.inserirJogadorNoGrupo(jogadorDaVez);
+		
+			try
+			{
+				comunicado = new Comunicado();
+			}
+			catch (Exception erro) {}
+		}
+		while ((!(comunicado instanceof ComunicadoDeVitoria));)
+		
 		/* a classe Grupo ja possibilita que ordem de jogada seja como numa fila,
 		   a logica aqui vai ser remover o jogador do Grupo e depois inseri-lo novamente,
 		   isso pois, o jogador removido eh sempre o primeiro do Grupo e sempre sera inserido 

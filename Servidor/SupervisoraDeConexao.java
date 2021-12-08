@@ -141,7 +141,7 @@ public class SupervisoraDeConexao extends Thread
 						{
 							System.err.println ("A palavra nao tem essa letra!\n");
 							try {
-								controladoradepartida.erro ();
+								controladoradepartida.errar();
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
