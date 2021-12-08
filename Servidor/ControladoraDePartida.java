@@ -1,7 +1,6 @@
 import java.net.Socket;
 import java.util.Random;
 
-
 /*
  essa classe representa uma estrutra de dados que, a cada vez que um jogador tenta se conectar, 
  eh armazenado num objeto dela e, será direcionado para a partida quando o grupo possuir 
@@ -26,23 +25,26 @@ import java.util.Random;
 public class ControladoraDePartida {
 
 	private static Grupo<Cliente> grupo;
-    private static char letra;
-    private static Socket conexao;
-    private static BancoDePalavras bancodepalavras;
-    private static Palavra palavra;
-    private static ControladoraDePartida controladoradepartida;
-    
+	private static char letra;
+	private static Socket conexao;
+	private static BancoDePalavras bancodepalavras;
+	private static Palavra palavra;
+	private static ControladoraDePartida controladoradepartida;
+	PedidoDeLetra pedidodeletra = new PedidoDeLetra(conexao, letra);
+	Palavra palavrasorteada = null;
+
 	public ControladoraDePartida(Cliente[] jogadores) throws Exception {
-		
+
 		if (jogadores == null)
-			throw new Exception ("Jogador nao pode ser nulo!");
+			throw new Exception("Jogador nao pode ser nulo!");
 		if (!grupo.isCheio())
-			throw new Exception ("Grupo precisa ter 3 jogadores!");
-		
+			throw new Exception("Grupo precisa ter 3 jogadores!");
+
 		this.grupo = new Grupo<Cliente>(jogadores);
 	}
-	
-	// Em que momento será colocado no cliente que a partida começou porque temos 3 jogadores?
+
+	// Em que momento será colocado no cliente que a partida começou porque temos
+	// 3 jogadores?
 
 	public static void vezDeJogar() throws Exception {
 		
@@ -73,44 +75,39 @@ public class ControladoraDePartida {
 		   TODO: a ideia deste metodo eh fazer com que o jogador saiba que eh sua vez de jogar e que ele possa ser unico a jogar */
 	}
 
-	public static ComunicadoDeAcerto acertar() throws Exception
-	{
+	public static ComunicadoDeAcerto acertar() throws Exception {
 		return new ComunicadoDeAcerto();
 	}
-	
+
 	// metodo para quando o cliente acertar a letra retorna que acertou a letra;
-	
-	public static String acertarletra() throws Exception
-	{
-	    PedidoDeLetra pedidodeletra = new PedidoDeLetra (conexao, letra);
-	    Palavra palavrasorteada = null;
-	    try
-	    {
-	    palavrasorteada = bancodepalavras.getPalavraSorteada();
-	    }
-	    catch (Exception erro) {}
-        Palavra copiapalavra;
-        copiapalavra = palavrasorteada;
-        int quantidade = copiapalavra.getTamanho();
-	    String letrasAtrasDoPainel[] = new String [quantidade];
-	    
-	    int contemLetra = copiapalavra.getQuantidade(letra);
-	    
-	    int posicaoDaLetra = copiapalavra.getPosicaoDaIezimaOcorrencia(contemLetra, letra);
-	    
-	   
-	    if (contemLetra>0)
-	    {
-	    	for (posicaoDaLetra = 0; posicaoDaLetra<letrasAtrasDoPainel.length ; posicaoDaLetra++)
-	    	letrasAtrasDoPainel[contemLetra] = letrasAtrasDoPainel[posicaoDaLetra]; 	
-	    	letrasAtrasDoPainel[posicaoDaLetra] = letrasAtrasDoPainel[letra];
-	    	
-	    }
-		
-	    return "Voce acertou a letra!";
+
+	public static String acertarletra() throws Exception {
+
+		try {
+			palavrasorteada = bancodepalavras.getPalavraSorteada();
+		} catch (Exception erro) {
+		}
+		Palavra copiapalavra;
+		copiapalavra = palavrasorteada;
+		int quantidade = copiapalavra.getTamanho();
+		String letrasAtrasDoPainel[] = new String[quantidade];
+
+		int contemLetra = copiapalavra.getQuantidade(letra);
+
+		int posicaoDaLetra = copiapalavra.getPosicaoDaIezimaOcorrencia(contemLetra, letra);
+
+		if (contemLetra > 0) {
+			for (posicaoDaLetra = 0; posicaoDaLetra < letrasAtrasDoPainel.length; posicaoDaLetra++)
+				letrasAtrasDoPainel[contemLetra] = letrasAtrasDoPainel[posicaoDaLetra];
+			letrasAtrasDoPainel[posicaoDaLetra] = letrasAtrasDoPainel[letra];
+
+		}
+
+		return "Voce acertou a letra!";
 	}
-    
-	// metodo para quando o cliente acertar o �ltimo tipo de letra que complete a palavra 
+
+	// metodo para quando o cliente acertar o �ltimo tipo de letra que complete a
+	// palavra
 	// a ser advinhada
 	public static String completarpalavra () throws Exception
 	{
@@ -157,7 +154,6 @@ public class ControladoraDePartida {
 	  String[] tipodeletraN = new String[18];
 	  tipodeletraN = {tipodeletrap1, tipodeletrap2, tipodeletrap3, tipodeletrap4, tipodeletrap5, tipodeletrap6, tipodeletrap7, tipodeletrap8, tipodeletrap9, tipodeletrap10, tipodeletrap11, tipodeletrap12, tipodeletrap13, tipodeletrap14, tipodeletrap15, tipodeletrap16, tipodeletrap17, tipodeletrap18};
 	  
-	  PedidoDeLetra pedidodeletra = new PedidoDeLetra (conexao, letra);
 	   
 	    try
 	    {}
@@ -190,132 +186,94 @@ public class ControladoraDePartida {
           return "Voc� completou a palavra!";
  	 
 	}
-	
-	public static Palavra acertarpalavra() throws Exception
-	{
-	    PedidoDeLetra pedidodeletra = new PedidoDeLetra (conexao, letra);
-	    Palavra palavrasorteada = null;
-	    try
-	    {
-	    palavrasorteada = bancodepalavras.getPalavraSorteada();
-	    }
-	    catch (Exception erro) {}
-        Palavra copiapalavra;
-        copiapalavra = palavrasorteada;
-        Palavra chutepalavra = null;
-        
-        if (chutepalavra == copiapalavra)
-        
-        	System.out.print("Voc� acertou a palavra + \n"); ;
-        
+
+	public static Palavra acertarpalavra() throws Exception {
+		try {
+			palavrasorteada = bancodepalavras.getPalavraSorteada();
+		} catch (Exception erro) {
+		}
+		Palavra copiapalavra;
+		copiapalavra = palavrasorteada;
+		Palavra chutepalavra = null;
+
+		if (chutepalavra == copiapalavra)
+
+			System.out.print("Voc� acertou a palavra + \n");
+		;
+
 		return copiapalavra;
-         
-        
-	}
-	
-	public static String errar() 
-	{
-		 
-		 return "Voce errou"; 
-		 
-		/*Se a pessoa errou a letra ou a palavra, retornar comunicadoDeErro */
-	}
-	
-	public static String errarletra() throws Exception
-	{
-	    PedidoDeLetra pedidodeletra = new PedidoDeLetra (conexao, letra);
-	    Palavra palavrasorteada = null;
-	    try
-	    {
-	    palavrasorteada = bancodepalavras.getPalavraSorteada();
-	    }
-	    catch (Exception erro) {}
-        Palavra copiapalavra;
-        copiapalavra = palavrasorteada;
-        int quantidade = copiapalavra.getTamanho();
-	    String letrasAtrasDoPainel[] = new String [quantidade];
-	    
-	    int contemLetra = copiapalavra.getQuantidade(letra);
-	    
-	    int posicaoDaLetra = copiapalavra.getPosicaoDaIezimaOcorrencia(contemLetra, letra);
-	    
-	    if (contemLetra == 0)
-	   throw new Exception ("Letra nao encontrada");
-	    
-		return "Voc� errou a letra";			    	
 
 	}
-	
-	public static String errarpalavra() throws Exception
-	{
-		 PedidoDeLetra pedidodeletra = new PedidoDeLetra (conexao, letra);
-		    Palavra palavrasorteada = null;
-		    try
-		    {
-		    palavrasorteada = bancodepalavras.getPalavraSorteada();
-		    }
-		    catch (Exception erro) {}
-	        Palavra copiapalavra;
-	        copiapalavra = palavrasorteada;
-	        Palavra chutepalavra = null;
-	        
-	        if (chutepalavra != copiapalavra)
-	        
-	        	System.out.print("Palavra nao encontrada + \n"); ;
-				return "Voce errou a palavra" ;
-	       		
+
+	public static String errar() {
+
+		return "Voce errou";
+
+		/* Se a pessoa errou a letra ou a palavra, retornar comunicadoDeErro */
 	}
-	
+
+	public static String errarletra() throws Exception {
+		try {
+			palavrasorteada = bancodepalavras.getPalavraSorteada();
+		} catch (Exception erro) {
+		}
+		Palavra copiapalavra;
+		copiapalavra = palavrasorteada;
+		int quantidade = copiapalavra.getTamanho();
+		String letrasAtrasDoPainel[] = new String[quantidade];
+
+		int contemLetra = copiapalavra.getQuantidade(letra);
+
+		int posicaoDaLetra = copiapalavra.getPosicaoDaIezimaOcorrencia(contemLetra, letra);
+
+		if (contemLetra == 0)
+			throw new Exception("Letra nao encontrada");
+
+		return "Voc� errou a letra";
+
+	}
+
+	public static String errarpalavra() throws Exception {
+
+		try {
+			palavrasorteada = bancodepalavras.getPalavraSorteada();
+		} catch (Exception erro) {
+		}
+		Palavra copiapalavra;
+		copiapalavra = palavrasorteada;
+		Palavra chutepalavra = null;
+
+		if (chutepalavra != copiapalavra)
+
+			System.err.print("Palavra nao encontrada + \n");
+		;
+		return "Voce errou a palavra";
+
+	}
+
 	public static String vencer() throws Exception {
-		
+
 		Palavra clienteacertouapalavra = controladoradepartida.acertarpalavra();
 		String clientecompletoupalavra = controladoradepartida.completarpalavra();
-			
-		
-		if ( clienteacertouapalavra != null)
-				return "Voce venceu!";
-		
-		
-		 if (clientecompletoupalavra != null)
-             return "Voce venceu!";
-		 
+
+		if (clienteacertouapalavra == null)
+			return "Voce venceu!";
+
+		if (clientecompletoupalavra == null)
+			return "Voce venceu!";
+
 		return clientecompletoupalavra;
-		 
-			
-		  /*METODO VENCER
-          else (chute palavra == copia palavra)
-          System.out.println ("Jogador [falar a posicao do jogador ativo] você ganhou"!);
-          dar comunicado de vitoria
-          chamar método perder aos demais da sala para dar comunicado de desligamento
-          encerrar partida para todos via objeto todo mundo (grupo ou controladora de partida);
-          
-          
-            SITUAÇÃO 2 DO MÉTODO VENCER
-            Como eu sei que o jogador passou uma letra que realmente era a última faltante para completar a copia da palavra?
-          */
-		
+
 	}
 
 	public static String perder() throws Exception {
-	
+
 		String clienterroupalavra = controladoradepartida.errarpalavra();
-		
-		if(clienterroupalavra  != null)
-		return "Voce perdeu e sera removido da partida";
+
+		if (clienterroupalavra != null)
+			return "Voce perdeu e sera removido da partida";
 		return clienterroupalavra;
-		
-		
-		/*  A partir desses resultados, incrementar na lógica para quando:
-        chute palavra = o que o jogador digitar
-        
-        METODO PERDER
-        if (chute palavra != copia palavra)
-        System.out.println ("Jogador ´[falar a posicao do jogador ativo] você perdeu");
-        dar comunicados de perda;
-       chamar método VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
-       */
+
 	}
-	
-	
-	
+
 }
