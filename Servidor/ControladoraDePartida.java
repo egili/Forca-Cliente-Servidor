@@ -1,6 +1,6 @@
 /*
  essa classe representa uma estrutra de dados que, a cada vez que um jogador tenta se conectar, 
- eh armazenado num objeto dela e, será direcionado para a partida quando o grupo possuir 
+ eh armazenado num objeto dela e, serÃ¡ direcionado para a partida quando o grupo possuir 
  3 jogadores (que sao objetos da futura classe Cliente)
  uma unica thread a cada grupo de 3 clientes!
  
@@ -10,11 +10,11 @@
 	 3. starta a aceitadora de conexao (lembrando que uma aceitadora para varias supervisoras (1 - N))
  
  como deve funcionar a classe:
- 	1.cada vez que a aceitadora de conexao for startada, o ciente que tentou se conectar será armazenado no grupo (estrutura de dados)
+ 	1.cada vez que a aceitadora de conexao for startada, o ciente que tentou se conectar serÃ¡ armazenado no grupo (estrutura de dados)
  	2.o primeiro jogador a entrar no grupo eh o primeiro a jogar (principio de FILA)
- 	3.aceitadora de conexao instancia um objeto da classe Grupo -> chama um método que adiciona(push?) o cliente naquele grupo
- 	4. método pop(?) acontece quando o cliente perde a partida -> excluido do grupo, logo, excluido da partida
- 	5.cada vez que uma aceitadora startar uma supervisora, ela passará a estrutura como parametro para o construtor
+ 	3.aceitadora de conexao instancia um objeto da classe Grupo -> chama um mÃ©todo que adiciona(push?) o cliente naquele grupo
+ 	4. mÃ©todo pop(?) acontece quando o cliente perde a partida -> excluido do grupo, logo, excluido da partida
+ 	5.cada vez que uma aceitadora startar uma supervisora, ela passarÃ¡ a estrutura como parametro para o construtor
  
  obs: cliente = jogador
  */
@@ -33,11 +33,15 @@ public class ControladoraDePartida {
 		this.grupo = new Grupo<Cliente>(jogadores);
 	}
 	
-	// Em que momento será colocado no cliente que a partida começou porque temos 3 jogadores?
+	// Em que momento serÃ¡ colocado no cliente que a partida comeÃ§ou porque temos 3 jogadores?
 
 	public static void vezDeJogar() throws Exception {
-		// se o jogador estiver na partida há mais tempo -> primeiro a jogar
-		// vai remover o jogador do Grupo e depois inseri-lo novamente
+		/* a classe Grupo ja possibilita que ordem de jogada seja como numa fila,
+		   a logica aqui vai ser remover o jogador do Grupo e depois inseri-lo novamente,
+		   isso pois, o jogador removido eh sempre o primeiro do Grupo e sempre sera inserido 
+		   como  ultimo do grupo
+		   
+		   TODO: a ideia deste metodo eh fazer com que o jogador saiba que eh sua vez de jogar e que ele possa ser unico a jogar */
 	}
 
 	public static ComunicadoDeAcerto acertar() throws Exception
@@ -58,14 +62,14 @@ public class ControladoraDePartida {
 		
 		  /*METODO VENCER
           else (chute palavra == copia palavra)
-          System.out.println ("Jogador [falar a posicao do jogador ativo] você ganhou"!);
+          System.out.println ("Jogador [falar a posicao do jogador ativo] vocÃª ganhou"!);
           dar comunicado de vitoria
-          chamar método perder aos demais da sala para dar comunicado de desligamento
+          chamar mÃ©todo perder aos demais da sala para dar comunicado de desligamento
           encerrar partida para todos via objeto todo mundo (grupo ou controladora de partida);
           
           
-            SITUAÇÃO 2 DO MÉTODO VENCER
-            Como eu sei que o jogador passou uma letra que realmente era a última faltante para completar a copia da palavra?
+            SITUAÃ‡ÃƒO 2 DO MÃ‰TODO VENCER
+            Como eu sei que o jogador passou uma letra que realmente era a Ãºltima faltante para completar a copia da palavra?
           */
 		
 	}
@@ -75,14 +79,14 @@ public class ControladoraDePartida {
 		return "Voce perdeu e sera removido da partida";
 		
 		
-		/*  A partir desses resultados, incrementar na lógica para quando:
+		/*  A partir desses resultados, incrementar na lÃ³gica para quando:
         chute palavra = o que o jogador digitar
         
         METODO PERDER
         if (chute palavra != copia palavra)
-        System.out.println ("Jogador ´[falar a posicao do jogador ativo] você perdeu");
+        System.out.println ("Jogador Â´[falar a posicao do jogador ativo] vocÃª perdeu");
         dar comunicados de perda;
-       chamar método VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
+       chamar mÃ©todo VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
        */
 	}
 	
