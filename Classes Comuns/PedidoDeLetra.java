@@ -6,10 +6,9 @@ import java.util.Arrays;
 
 public class PedidoDeLetra extends Comunicado {
 	private static ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
+	private static Grupo grupo;
 	private static Palavra palavra;
-    private final ArrayList<String> letrasJaDigitadas;
-    //ControladorDeLetrasJaDigitadas letra = new ControladorDeLetrasJaDigitadas();  
-    private char umaletra;
+       private char umaletra;
     private char letra = umaletra;
     private final byte posicao, quantasvezes;
 	private Socket             conexao;
@@ -19,17 +18,16 @@ public class PedidoDeLetra extends Comunicado {
     String porta= Servidor.PORTA_PADRAO;
 	
    public PedidoDeLetra(Socket conexao, char umaletra) throws Exception {
-	   Grupo[] jogadores = new Grupo[3]; 
+	    
 	   
 	   // como eu sei que começou a partida????
-	   if (jogadores.length == 3)
-	   {
-		     
+	   if (grupo.isCheio())
+	     {  
 		   
 		     if (conexao==null)
 	            throw new Exception ("Conexao ausente");
 		     
-		     if  (umaletra == '\0') // char não lê nulo, por padrão ele é zero
+		     if  (umaletra == '\0')
 				   throw new Exception ("Letra ausente");
 			
 		     ObjectOutputStream transmissor;
@@ -55,24 +53,24 @@ public class PedidoDeLetra extends Comunicado {
 		        {
 		        	return;
 		        }
-		  Parceiro servidor = null;
-		  servidor = new Parceiro (conexao, receptor, transmissor);
+		  Parceiro cliente = null;
+		  cliente = new Parceiro (conexao, receptor, transmissor);
 		  ComunicadoComecouPartida comunicadocomecoupartida =null;
 		  Comunicado comunicado = null;		
 		   
 		    
 		   do
 		   {
-			   comunicado = (Comunicado)servidor.espie ();
+			   comunicado = (Comunicado)cliente.espie ();
 		   }
 		   
 		   while (!(comunicado instanceof ComunicadoComecouPartida))
-			   servidor.receba(new ComunicadoComecouPartida());
+			   cliente.receba(new ComunicadoComecouPartida());
 		       this.umaletra = '\0';
 		    
 		  // valida se letra for um número e se a letra já foi escrita,
 		   //senão acrescenta em letrasJaDigitadas
-		   controladorDeLetrasJaDigitadas.registrarletra(umaletra, posicao);
+		   controladorDeLetrasJaDigitadas.registrarletra(umaletra);
 		   
 		       	            
 		   // registra a umaletra dentro da variavel umaletra.
@@ -83,14 +81,15 @@ public class PedidoDeLetra extends Comunicado {
 	      
    }
    
-   public String adicioneLetraNaPalavra(byte quantasvezes, char charc) throws Exception
+   
+     
+   /*public String contemLetraNaPalavra (byte quantasvezes, char charc) throws Exception
    {
 	     String palavramontada= null;
 	        int quantidade = palavramontada.length();
 			String LetrasAtrasDoPainel[] = new String [quantidade];  
 	          char charc1 = umaletra;
-	       Arrays.toString(letrasJaDigitadas.toArray());
-	       this.letrasJaDigitadas.indexOf(charc1);
+	    	this.letrasJaDigitadas.indexOf(charc1);
 	       String palavrasorteada = null;
 	   	  palavra = BancoDePalavras.getPalavraSorteada();
 	      
@@ -124,7 +123,7 @@ public class PedidoDeLetra extends Comunicado {
 		        
 	       return palavramontada;
 			 
-   }
+   }*/
 
    public char getLetra() {
        return umaletra;

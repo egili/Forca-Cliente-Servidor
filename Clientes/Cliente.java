@@ -142,12 +142,15 @@ public class Cliente
 			}
             
             /**quando o comunicado for uma aceitadora de conexão, o servidor envia uma aceitadora de conexao, e depois esse jogador tem que entrar no grupo a espera 
-             * até formar um trio na salapara realmente jogar**/
+             * até formar um trio na sala para realmente jogar**/
             
             
-			while (!(comunicado instanceof AceitadoraDeConexao));
-             AceitadoraDeConexao aceitadoradeconexao = (AceitadoraDeConexao) servidor.envie();
-            System.out.println("Jogador, a sua conexão com o nosso servidor foi aceita");
+            while (!(comunicado instanceof ComunicadoSalaCheia));
+            comunicado = servidor.envie();
+            if (comunicado instanceof ComunicadoSalaCheia)
+            	System.out.println ("Sala cheia");
+             
+            
             
             }
             //*Se entrar na opção 2, o servidor recebe um pedido de letra e o comunicado começa nulo, entra no do de espiar o comunicado. *//

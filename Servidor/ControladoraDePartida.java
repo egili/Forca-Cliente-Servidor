@@ -21,8 +21,16 @@
 
 public class ControladoraDePartida {
 
-	public ControladoraDePartida() {
-		// construtor
+	private Grupo<Cliente> grupo;
+	
+	public ControladoraDePartida(Cliente[] jogadores) throws Exception {
+		
+		if (jogadores == null)
+			throw new Exception ("Jogador nao pode ser nulo!");
+		if (!grupo.isCheio())
+			throw new Exception ("Grupo precisa ter 3 jogadores!");
+		
+		this.grupo = new Grupo<Cliente>(jogadores);
 	}
 	
 	// Em que momento será colocado no cliente que a partida começou porque temos 3 jogadores?
@@ -32,6 +40,19 @@ public class ControladoraDePartida {
 		// vai remover o jogador do Grupo e depois inseri-lo novamente
 	}
 
+	public static ComunicadoDeAcerto acertar() throws Exception
+	{
+		return new ComunicadoDeAcerto();
+	}
+	
+	public static String errar() 
+	{
+		 
+		 return "Voce errou"; 
+		 
+		/*Se a pessoa errou a letra ou a palavra, retornar comunicadoDeErro */
+	}
+	
 	public static String vencer() throws Exception {
 		return "Voce venceu!";
 		
@@ -50,7 +71,10 @@ public class ControladoraDePartida {
 	}
 
 	public static String perder() throws Exception {
+		
 		return "Voce perdeu e sera removido da partida";
+		
+		
 		/*  A partir desses resultados, incrementar na lógica para quando:
         chute palavra = o que o jogador digitar
         
@@ -61,4 +85,7 @@ public class ControladoraDePartida {
        chamar método VezDeJogar e comunicados aos demais da sala sobre a vez de jogar.
        */
 	}
+	
+	
+	
 }

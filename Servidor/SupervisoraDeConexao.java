@@ -8,10 +8,11 @@ public class SupervisoraDeConexao extends Thread
 	private double valor = 0;
 	private Parceiro usuario;
 	private Socket conexao;
-	private final ArrayList<Parceiro> usuarios;
+	//private final ArrayList<Parceiro> usuarios;
+	private Grupo<Cliente> usuarios;
 	private static Palavra palavra;
 	private static Tracinhos tracinhos;
-	private static ControladorDeErro controladorDeErros;
+	private static ControladoraDePartida controladoradepartida;
 	private static ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
 
 	public SupervisoraDeConexao
@@ -76,15 +77,15 @@ public class SupervisoraDeConexao extends Thread
         {
             synchronized (this.usuarios)
             {
-                this.usuarios.add  (this.usuario);
-                if(usuarios.size()%3==0)
+                this.usuarios.inserirJogadorNoGrupo(); //parametro deste método é um objeto da classe Cliente
+                if(usuarios.isCheio())
                 {
                 	palavra = BancoDePalavras.getPalavraSorteada();
                 	tracinhos = new Tracinhos(palavra.getTamanho());
-                    int jogadores = usuarios.size();
+                    int jogadores = usuarios.length;
            
                     for (Parceiro jogador: this.usuarios) {
-                       jogador.receba(new ControladorDePartida());
+                       jogador.receba(new ComunicadoComecouPartida()); 
                     }
                     this.usuarios.get(0).receba(new ComunicadoDeVez());
                 }
@@ -94,10 +95,30 @@ public class SupervisoraDeConexao extends Thread
 
             for(;;)
             {
-               Comunicado comunicado = this.usuario.envie();
+               Comunicado comunicado;
+			try {
+				comunicado = this.usuario.envie();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
                
                if (comunicado == null)
             	   return;
+               else if (comunicado instanceof PedidoParaEntrar)
+               {
+            	int posJogador = this.usuarios.indexOf(usuario);
+            	if (posJogador > 2)
+            	{
+            	 try {
+					usuario.receba(new ComunicadoSalaCheia());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	 
+            	}
+               }
                else if (comunicado instanceof PedidoDeLetra ) {
                    boolean jaDigitadas = false;
                    boolean palavraTemLetra =false;
@@ -107,29 +128,60 @@ public class SupervisoraDeConexao extends Thread
                        jaDigitadas = true;
 					else
 					{
-						controladorDeLetrasJaDigitadas.registrarletra(letra,(byte) posicao);
+						try {
+							controladorDeLetrasJaDigitadas.registrarletra(letra);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 						int qtd = palavra.getQuantidade (letra);
 
 						if (qtd==0)
 						{
 							System.err.println ("A palavra nao tem essa letra!\n");
-							controladorDeErros.registreUmErro ();
+							try {
+								controladoradepartida.erro ();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 						else
 						{
 							for (int i=0; i<qtd; i++)
 							{
-								int posicao = palavra.getPosicaoDaIezimaOcorrencia (i,letra);
-								tracinhos.revele (posicao, letra);
+								int posicao;
+								try {
+									posicao = palavra.getPosicaoDaIezimaOcorrencia (i,letra);
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								try {
+									tracinhos.revele (posicao, letra);
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}
-							this.usuario.receba(new ComunicadoDeVitoria());
+							try {
+								this.usuario.receba(new ComunicadoDeVitoria());
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
                 }
                    ComunicadoDeLetra comunicadoDeLetra = new ComunicadoDeLetra();
                    comunicadoDeLetra.setJaDigitada(jaDigitadas);
                    comunicadoDeLetra.setPalavraTemLetra(palavraTemLetra);
-                   this.usuario.receba(comunicadoDeLetra);
+                   try {
+					this.usuario.receba(comunicadoDeLetra);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                }
         }
     }  

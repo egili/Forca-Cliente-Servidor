@@ -1,6 +1,6 @@
 public class BancoDePalavras
 {
-    private static String[] palavras = 
+    public static String[] palavras = 
     {
     		"Axioma",
     		"Azulejo",

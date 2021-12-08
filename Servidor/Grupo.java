@@ -5,7 +5,7 @@ public class Grupo<X> { // fila
 	private byte primeiro, ultimo, total;
 	private static final byte TAMANHO_GRUPO = 3;
 
-	public Grupo() // sera que o construtor recebe o primeiro como parametro?
+	public Grupo(Cliente[] jogadores) // sera que o construtor recebe o primeiro como parametro?
 	{ 
 		this.jogadores = (X[]) new Object[Grupo.TAMANHO_GRUPO];
 		this.primeiro = 0;

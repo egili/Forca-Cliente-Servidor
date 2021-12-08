@@ -10,13 +10,9 @@ import java.util.List;
 import java.lang.StringBuilder;
 import java.net.Socket;
 
- 
-
 public class ControladorDeLetrasJaDigitadas implements Cloneable
-{ 
-     private ArrayList<String> letrasJaDigitadas = new ArrayList<String>();
-//     List<ArrayList<String>> listaDeArrayDeletrasjadigitadas = Arrays.asList(letrasJaDigitadas);
-     ArrayList<String> arrayletrasJaDigitadas = letrasJaDigitadas;
+{    
+	private String letrasJaDigitadas;
      private char letra;
 //     private  char  caracter = letra;
      private byte qtd, posicao;
@@ -26,10 +22,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
 
       	  if (letrasJaDigitadas == null)
                 throw new Exception ("Letras ausentes");   
-              	
-       this.letrasJaDigitadas = new ArrayList<String>(qtd); 
-       this.qtd = 0;
-         
+              
      }
     
     public byte size()
@@ -41,7 +34,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     
         {
      	 	
-         for (int i = 0 ; i<letrasJaDigitadas.size(); letra ++)
+         for (int i = 0 ; i<letrasJaDigitadas.length(); letra ++)
     	{
          i = this.letrasJaDigitadas.indexOf(letra);
 	     
@@ -52,22 +45,9 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
          return true;
     }
 
-    
-    public synchronized void adicionarletra (char letra, byte posicao)
-	{ 
-    	 Arrays.toString(letrasJaDigitadas.toArray());
-        //if (this.qtd==this.letrasJaDigitadas.size())
-	    this.letrasJaDigitadas.set(posicao, letrasJaDigitadas.get(this.qtd) + letra);
-       this.qtd++;
- 
-	}
 
-
-    public synchronized void registrarletra (char letra,  byte posicao) throws Exception
+    public synchronized void registrarletra (char letra) throws Exception
     {
-    	// verifica se a letra já foi digitada e se o jogador passa um numero no lugar de letra;
-    	// senão tiver erros, adiciona a letra na posição do letrasjadigitadas, tal como um estoque
-    	// das letras já digitadas.
         if(isJaDigitada(letra))
             throw new Exception("Letra já foi digitada");
         
@@ -81,18 +61,19 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         if (num) 
             throw new Exception(" Letra não pode ser numero");
         
-         this.adicionarletra(letra, posicao);
+        this.letrasJaDigitadas = this.letrasJaDigitadas + letra;
+        
     
                
       }
 
-    /*
+    
     @Override
     public String toString ()
     {
     	
         String ret = "";
-        for (int letra = 0; letra < this.letrasJaDigitadas.size(); letra++){
+        for (int letra = 0; letra < this.letrasJaDigitadas.length(); letra++){
             ret += letrasJaDigitadas.charAt(letra) + ",";
         }
 
@@ -140,5 +121,5 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }
         catch (Exception ignored) {}        
         return ret;
-    } */
+    } 
 } 
