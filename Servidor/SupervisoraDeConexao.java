@@ -65,6 +65,21 @@ public class SupervisoraDeConexao extends Thread {
 					// para chamar comunicado de vez ai vai da a vez para primeiro jogador
 					this.usuarios.get(0).receba(new ComunicadoDeVez(dadosDaForca));
 				}
+				//if (comunicado == null)
+	            	   //return;
+	                if (comunicado instanceof PedidoParaEntrar)
+	               {
+	            	int posJogador = this.usuarios.indexOf(usuario);
+	            	if (posJogador > 2)
+	            	{
+	            	 try {
+						usuario.receba(new ComunicadoSalaCheia());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            	 
+	            	}
 				System.out.println("Infelizmente servidor esta cheio");
 			}
 
