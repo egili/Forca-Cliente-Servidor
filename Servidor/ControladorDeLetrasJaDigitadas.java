@@ -1,26 +1,55 @@
-public class ControladorDeLetrasJaDigitadas implements Cloneable
-{
-    private String letrasJaDigitadas;
+import java.lang.String;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.Object;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.lang.StringBuilder;
+import java.net.Socket;
 
-    public ControladorDeLetrasJaDigitadas ()
+public class ControladorDeLetrasJaDigitadas implements Cloneable
+{    
+	private String letrasJaDigitadas;
+     private char letra;
+//     private  char  caracter = letra;
+     private byte qtd, posicao;
+	 //private StringBuilder stringBuilder = new StringBuilder(); 
+	
+    public ControladorDeLetrasJaDigitadas() throws Exception{
+
+      	  if (letrasJaDigitadas == null)
+                throw new Exception ("Letras ausentes");   
+              
+     }
+    
+    public byte size()
     {
-        this.letrasJaDigitadas = "";
+      return this.qtd;
     }
 
     public boolean isJaDigitada (char letra)
-    {
-        int i = this.letrasJaDigitadas.indexOf(letra);
-        if (i == -1)
-
-            return false;
-
-        return true;
+    
+        {
+     	 	
+         for (int i = 0 ; i<letrasJaDigitadas.length(); letra ++)
+    	{
+         i = this.letrasJaDigitadas.indexOf(letra);
+	     
+         if (i == -1)
+            return false; 
+          
+    	}
+         return true;
     }
 
-    public void registre (char letra) throws Exception
+
+    public synchronized void registrarletra (char letra) throws Exception
     {
         if(isJaDigitada(letra))
-            throw new Exception("Letra ja digitada");
+            throw new Exception("Letra já foi digitada");
         
         boolean num = false;
         try{
@@ -29,16 +58,20 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         }catch (NumberFormatException erro){
             num = false;
         }
-        if (num) {
-            throw new Exception("não pode ser numero");
-        }
+        if (num) 
+            throw new Exception(" Letra não pode ser numero");
         
         this.letrasJaDigitadas = this.letrasJaDigitadas + letra;
- 
-    }
+        
+    
+               
+      }
+
+    
     @Override
     public String toString ()
     {
+    	
         String ret = "";
         for (int letra = 0; letra < this.letrasJaDigitadas.length(); letra++){
             ret += letrasJaDigitadas.charAt(letra) + ",";
@@ -72,22 +105,21 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             ret = - ret;
         return  ret;
     }
-
-    public ControladorDeLetrasJaDigitadas(ControladorDeLetrasJaDigitadas c) throws Exception // construtor de c�pia
+    
+    public ControladorDeLetrasJaDigitadas(ControladorDeLetrasJaDigitadas c) throws Exception // construtor de copia
     {
         if(c == null)
             throw new Exception("c era null");
         this.letrasJaDigitadas = c.letrasJaDigitadas;
     }
-/*
+
     public Object clone ()
     {
         ControladorDeLetrasJaDigitadas ret = null;
         try{
             ret = new ControladorDeLetrasJaDigitadas(this);
         }
-        catch (Exception ignored) {
-        }
+        catch (Exception ignored) {}        
         return ret;
-    }*/
-}
+    } 
+} 

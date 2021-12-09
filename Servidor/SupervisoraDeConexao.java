@@ -71,9 +71,9 @@ public class SupervisoraDeConexao extends Thread {
 			for (;;) {
 				Comunicado comunicado = this.usuario.envie();
 
-				// Pede a letra para cliente aqui esta jogo todo, verifica se ela já foi
-				// digitada, verifica erros se já digitou ou não
-				// pega a posição das letras os tracinhos dela
+				// Pede a letra para cliente aqui esta jogo todo, verifica se ela jï¿½ foi
+				// digitada, verifica erros se jï¿½ digitou ou nï¿½o
+				// pega a posiï¿½ï¿½o das letras os tracinhos dela
 				if (comunicado == null)
 					return;
 				else if (comunicado instanceof ComunicadoDeDados) {
@@ -82,9 +82,9 @@ public class SupervisoraDeConexao extends Thread {
 					PedidoDePalavra pedidoPalavra = (PedidoDePalavra) comunicado;
 					String palavra = pedidoPalavra.palavra;
 
-					// Verifica se o jogador acertou ou não a palavra na FORCA
+					// Verifica se o jogador acertou ou nï¿½o a palavra na FORCA
 					if (palavra.equals(dadosDaForca.getPalavra().toString())) {
-						// Ele é avisado da vitória no jogo
+						// Ele ï¿½ avisado da vitï¿½ria no jogo
 						usuario.receba(new ComunicadoDeResultadoPalavra(true));
 
 					} else {

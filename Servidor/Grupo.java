@@ -5,7 +5,7 @@ public class Grupo<X> { // fila
 	private byte primeiro, ultimo, total;
 	private static final byte TAMANHO_GRUPO = 3;
 
-	public Grupo() // sera que o construtor recebe o primeiro como parametro?
+	public Grupo(Cliente[] jogadores) // sera que o construtor recebe o primeiro como parametro?
 	{ 
 		this.jogadores = (X[]) new Object[Grupo.TAMANHO_GRUPO];
 		this.primeiro = 0;
@@ -44,6 +44,25 @@ public class Grupo<X> { // fila
 		return jogadores.length == this.TAMANHO_GRUPO ? true : false;
 	}
 
+	// vai armazenar o primeiro jogador para que ele possa ser inserido novamente 
+	//apos ser removido
+	
+	public Cliente getJogadorDaVez() throws Exception 
+	{
+		if (this.isVazio())
+			throw new Exception ("O grupo nao pode ser vazio");
+		
+		//Nao vai usar !isCheio pois pode acontecer de haver 2 jogadores no grupo, como
+		// na situacao de um jogador errar a palavra a ser adivinhada. 
+		
+       return (Cliente) this.removerJogadorDoGrupo();	
+     }
+	
+	/*public byte isVezDeJogar() 
+	{
+		return 
+	}*/
+	
 	@Override
 	public String toString() 
 	{

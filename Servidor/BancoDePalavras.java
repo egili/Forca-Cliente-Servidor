@@ -1,17 +1,23 @@
 public class BancoDePalavras
 {
-    private static String[] palavras = 
+    public static String[] palavras = 
     {
     		"Axioma",
     		"Azulejo",
-    		"Topázio",
+    		"Caleidoscopio",
     		"Catarro",
-    		"Coçar",
+    		"Cocar",
     		"Crespo",
     		"Cripta",
     		"Duplex",
-    		"Icterícia",
+    		"Ictericia",
+    		"Inconstitucionalissimamente",
     		"Intrigante",
+    		"Ornitorrinco",
+    		"Otorrinolaringologista",
+    		"Paralelepipedo",
+    		"Proparoxitona",
+    		"Topazio",
     		"Vertiginoso",
     		"Xilofone"
     };
