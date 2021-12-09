@@ -59,7 +59,7 @@ public class SupervisoraDeConexao extends Thread {
 					int jogadores = usuarios.size();
 
 					for (Parceiro jogador : this.usuarios) {
-						jogador.receba(new ControladorDePartida());
+						jogador.receba(new ComunicadoComecouPartida());
 					}
 					dadosDaForca = new ComunicadoDeDados();
 					// para chamar comunicado de vez ai vai da a vez para primeiro jogador
@@ -100,7 +100,7 @@ public class SupervisoraDeConexao extends Thread {
 					if (controladorDeLetrasJaDigitadas.isJaDigitada(letra))
 						jaDigitadas = true;
 					else {
-						dadosDaForca.getControladorDeLetrasJaDigitadas().registre(letra);
+						dadosDaForca.getControladorDeLetrasJaDigitadas().registrarletra(letra);
 						int qtd = palavra.getQuantidade(letra);
 
 						if (qtd == 0) {

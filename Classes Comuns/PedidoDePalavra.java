@@ -24,7 +24,7 @@ public class PedidoDePalavra extends Comunicado {
     		   if (conexao==null)
    	            throw new Exception ("Conexao ausente");
    		     
-   		     if  (chutepalavra == "null" || chutepalavra == "" ) // char não lê nulo, por padrão ele é zero
+   		     if  (chutepalavra == "null" || chutepalavra == "" ) // char nao eh nulo, por padrão ele é zero
    				   throw new Exception ("Palavra não pode ser nula!");
    		     
    		    
