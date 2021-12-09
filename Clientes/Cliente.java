@@ -11,25 +11,24 @@ public class Cliente {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Bem-vindo(a) ao jogo forca servidor! - Trabalho final de java");
-		System.out.println("Instituição Estudantil: Cotuca/Unicamp");
-		System.out.println("Curso: 59 - Técnico em Desenvolvimento de Sistemas Noturno");
-		System.out.println("Disciplina: DS201 - Técnicas De Programação II");
-		System.out.println("Professor: André de Carvalho");
+		System.out.println("Instituicao Estudantil: Cotuca/Unicamp");
+		System.out.println("Curso: 59 - Tecnico em Desenvolvimento de Sistemas Noturno");
+		System.out.println("Disciplina: DS201 - Tecnicas De Programacao II");
+		System.out.println("Professor: Andre de Carvalho");
 		System.out.println("Esse jogo foi desenvolvido por:");
-		System.out.println("RA 20668 - Elisângela Sanntos, RA 20669 - Eliseu Gili");
+		System.out.println("RA 20668 - Elisangela Santos, RA 20669 - Eliseu Gili");
 		System.out.println("RA 21101 - Leandro de Freitas, RA 21106 - Lunara Cunha");
 		System.out.println("Antes de passarmos ao menu, vamos te passar algumas regras desse jogo \n");
 	
-		System.out.println("Regra 1: Você pode escolher digitar uma letra ou palavra quando for a sua vez de jogar na partida");
-		System.out.println("Regra 2: Você terá uma palavra a ser advinhada por partida para o grupo de 3 jogadores");
-		System.out.println("Regra 3: Sempre terá um ganhador e dois perdedores por partida");
-		System.out.println("Regra 4: Para cada palavra terá uma dica para ajudar na advinhação da palavra");
-		System.out.println("Regra 5: Você pode escolher uma palavra a qualquer momento da partida");
-		System.out.println("Regra 6: Se você digitar a palavra e errar; seu jogo acaba,você termina como perdedor, e os outros dois jogadores continuam na sala até um dos dois advinharem a palavra sorteada");
-		System.out.println("Regra 7: Se você digitar a palavra e acertar, seu jogo acaba, você termina como ganhador e os outros dois jogadores ficam como perdedores");
-		System.out.println("Regra 8: Se você digitar uma letra e errar, passa a vez para o próximo jogador em sentido horário na sala, até que um dos 3 acerte a palavra sorteada ");
-		System.out.println("Regra 9: Se você digitar a última letra para a palavra e acertar, você termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
-		System.out.println("Regra 10: Se por algum motivo você sair do jogo pois perdeu e tentar voltar ao jogo, terá que esperar em uma sala para aguardar futuros jogadores que vão estar nessa sala até completar um grupo de 3 jogadores para iniciar uma nova partida");
+		System.out.println("Regra 1: voce pode escolher digitar uma letra ou palavra quando for a sua vez de jogar na partida");
+		System.out.println("Regra 2: voce tera uma palavra a ser advinhada por partida para o grupo de 3 jogadores");
+		System.out.println("Regra 3: Sempre tera um ganhador e dois perdedores por partida");
+		System.out.println("Regra 4: voce pode escolher uma palavra a qualquer momento da partida");
+		System.out.println("Regra 5: Se voce digitar a palavra e errar; seu jogo acaba,você termina como perdedor, e os outros dois jogadores continuam na sala até um dos dois advinharem a palavra sorteada");
+		System.out.println("Regra 6: Se voce digitar a palavra e acertar, seu jogo acaba, voce termina como ganhador e os outros dois jogadores ficam como perdedores");
+		System.out.println("Regra 7: Se voce digitar uma letra e errar, passa a vez para o proximo jogador em sentido horario na sala, ate que um dos 3 acerte a palavra sorteada ");
+		System.out.println("Regra 8: Se voce digitar a ultima letra para a palavra e acertar, voce termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
+		System.out.println("Regra 9: Se por algum motivo você sair do jogo pois perdeu e tentar voltar ao jogo, terá que esperar em uma sala para aguardar futuros jogadores que vão estar nessa sala até completar um grupo de 3 jogadores para iniciar uma nova partida");
 
 		if (args.length > 2) {
 			System.err.println("Uso esperado: java Cliente [HOST [PORTA]]\n");
@@ -43,7 +42,7 @@ public class Cliente {
 		ObjectInputStream receptor = null;
 		Parceiro servidor = null;
 		Comunicado comunicado = null;
-		ControladorDePartida suavez = null;
+		ComunicadoComecouPartida suavez = null;
 
 		try {
 			conexao = Instanciacao.instanciarConexao(args);
