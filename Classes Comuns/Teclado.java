@@ -3,6 +3,9 @@
 //import java.io.IOException;
 
 import java.io.*;
+package classes comuns;
+import clientes;
+import servidor;
 
 public class Teclado
 {

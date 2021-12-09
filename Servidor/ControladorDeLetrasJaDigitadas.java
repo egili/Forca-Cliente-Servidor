@@ -1,14 +1,17 @@
+package servidor;
+import classes comuns;
+import clientes;
 import java.lang.String;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.lang.Object;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.lang.StringBuilder;
-import java.net.Socket;
+//import java.io.ObjectInputStream;
+//import java.io.ObjectOutputStream;
+//import java.util.ArrayList;
+//import java.util.Arrays;
+//import java.util.Collection;
+//import java.util.Collections;
+//import java.util.List;
+//import java.lang.StringBuilder;
+//import java.net.Socket;
 
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 {    

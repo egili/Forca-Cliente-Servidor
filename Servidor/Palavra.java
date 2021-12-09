@@ -1,3 +1,6 @@
+package servidor;
+import classes comuns;
+import clientes;
 /*
  possivelmente sera alterada para usar com sockets --> usar a mesma estrutura de parceiros
   (ou referenciar parceiros?)

@@ -1,4 +1,7 @@
- 
+package servidor;
+import classes comuns;
+import clientes;
+
 public class Grupo<X> { // fila
 
 	private Object[] jogadores;

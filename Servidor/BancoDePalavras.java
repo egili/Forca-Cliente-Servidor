@@ -1,3 +1,7 @@
+package servidor;
+import classes comuns;
+import clientes;
+
 public class BancoDePalavras
 {
     public static String[] palavras = 

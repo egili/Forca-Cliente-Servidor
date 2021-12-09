@@ -1,3 +1,7 @@
+package servidor;
+import classes comuns;
+import clientes;
+
 /*
  possivelmente sera alterada para usar com sockets
  implementar metodo clone --> ok para clone
