@@ -100,7 +100,7 @@ public class SupervisoraDeConexao extends Thread {
 					if (controladorDeLetrasJaDigitadas.isJaDigitada(letra))
 						jaDigitadas = true;
 					else {
-						dadosDaForca.getControladorDeLetrasJaDigitadas().registre(letra);
+						dadosDaForca.getControladorDeLetrasJaDigitadas().registrarletra(letra);
 						int qtd = palavra.getQuantidade(letra);
 
 						if (qtd == 0) {
