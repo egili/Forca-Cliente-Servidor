@@ -1,3 +1,6 @@
+package servidor;
+import classes comuns;
+import clientes;
 import java.io.*;
 import java.net.*;
 import java.util.*;

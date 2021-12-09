@@ -1,3 +1,6 @@
+package classes comuns;
+import clientes;
+import servidor;
 
 public class ComunicadoDeLetra extends Comunicado {
 	public boolean isJaDigitada() {

@@ -1,7 +1,10 @@
+package servidor;
+import classes comuns;
+import clientes;
 import java.lang.String;
+import java.lang.Object;
 //import java.io.ObjectInputStream;
 //import java.io.ObjectOutputStream;
-import java.lang.Object;
 //import java.util.ArrayList;
 //import java.util.Arrays;
 //import java.util.Collection;

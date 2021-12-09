@@ -1,6 +1,8 @@
 /*PS: SEGUNDO MONITORIA EM 07-12-2021 (FABRICIO): EM PEDIDO DE LETRA SE PASSA UM CHAR E VIA PEDIDO O TRATAMENTO
  * É FEITO DIRETAMENTE NA SUPERVISORA.*/
-
+package classes comuns;
+import clientes;
+import servidor;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;

@@ -1,6 +1,6 @@
-
-
-
+package clientes;
+import classes comuns;
+import servidor;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

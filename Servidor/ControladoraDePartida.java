@@ -1,5 +1,8 @@
 /*ATENCAO: VALIDAR ENTRE O QUE ESTA NA CONTROLADORADEPARTIDA, PEDIDODELETRA, PEDIDODEPALAVRA
  * E NA SUPERVISORA POIS HÁ CODIGOS REPETIDOS !!!!*/
+package servidor;
+import classes comuns;
+import clientes;
 import java.net.Socket;
 import java.util.Random;
 
