@@ -11,9 +11,9 @@ public class Cliente {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Bem-vindo(a) ao jogo forca servidor! - Trabalho final de java");
-		System.out.println("Instituição Estudantil: Cotuca/Unicamp");
+		System.out.println("Instituicao Estudantil: Cotuca/Unicamp");
 		System.out.println("Curso: 59 - Técnico em Desenvolvimento de Sistemas Noturno");
-		System.out.println("Disciplina: DS201 - Técnicas De Programação II");
+		System.out.println("Disciplina: DS201 - Técnicas De Programacaoo II");
 		System.out.println("Professor: Andre de Carvalho");
 		System.out.println("Esse jogo foi desenvolvido por:");
 		System.out.println("RA 20668 - Elisangela Sanntos, RA 20669 - Eliseu Gili");
@@ -24,11 +24,11 @@ public class Cliente {
 		System.out.println("Regra 2: Voce tera uma palavra a ser advinhada por partida para o grupo de 3 jogadores");
 		System.out.println("Regra 3: Sempre tera um ganhador e dois perdedores por partida");
 		System.out.println("Regra 4: Voce pode escolher uma palavra a qualquer momento da partida");
-		System.out.println("Regra 5: Se voce digitar a palavra e errar; seu jogo acaba,você termina como perdedor, e os outros dois jogadores continuam na sala até um dos dois advinharem a palavra sorteada");
-		System.out.println("Regra 6: Se voce digitar a palavra e acertar, seu jogo acaba, você termina como ganhador e os outros dois jogadores ficam como perdedores");
-		System.out.println("Regra 7: Se voce digitar uma letra e errar, passa a vez para o próximo jogador em sentido horário na sala, até que um dos 3 acerte a palavra sorteada ");
-		System.out.println("Regra 8: Se voce digitar a última letra para a palavra e acertar, você termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
-		System.out.println("Regra 9: Se por algum motivo você sair do jogo pois perdeu e tentar voltar ao jogo, terá que esperar em uma sala para aguardar futuros jogadores que vão estar nessa sala até completar um grupo de 3 jogadores para iniciar uma nova partida");
+		System.out.println("Regra 5: Se voce digitar a palavra e errar; seu jogo acaba,voce termina como perdedor, e os outros dois jogadores continuam na sala ate um dos dois advinharem a palavra sorteada");
+		System.out.println("Regra 6: Se voce digitar a palavra e acertar, seu jogo acaba, voce termina como ganhador e os outros dois jogadores ficam como perdedores");
+		System.out.println("Regra 7: Se voce digitar uma letra e errar, passa a vez para o proximo jogador em sentido horario na sala, ate que um dos 3 acerte a palavra sorteada ");
+		System.out.println("Regra 8: Se voce digitar a ultima letra para a palavra e acertar, voce termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
+		System.out.println("Regra 9: Se por algum motivo voc�e sair do jogo pois perdeu e tentar voltar ao jogo, tera que esperar em uma sala para aguardar futuros jogadores que vao estar nessa sala ate completar um grupo de 3 jogadores para iniciar uma nova partida");
 
 		if (args.length > 2) {
 			System.err.println("Uso esperado: java Cliente [HOST [PORTA]]\n");
@@ -52,17 +52,23 @@ public class Cliente {
 			comunicado = Instanciacao.instanciarTratadora(servidor);
 		} catch (Exception err) {
 			System.err.println(err.getMessage());
-			System.err.println("Verefique se o servidor está ativo.\n"
-					+ "Se sim, verefique se o servidor e a porta provido estão corretos!\n");
+			System.err.println("Verifique se o servidor esta ativo.\n"
+					+ "Se sim, verifique se o servidor e a porta provido estao corretos!\n");
 			System.exit(0);
 		}
 
 		// Aguarde os usuarios entrarem
+		
+		while(!(comunicado instanceof ComunicadoSalaCheia))
+		comunicado = servidor.envie();
+		if(comunicado instanceof ComunicadoSalaCheia)
+			System.out.println("Sala cheia");
+		else
 		System.out.println("Aguarde os demais jogares entrarem na partida");
 
 		int opcao = ' ';
 
-		while (!(comunicado instanceof ComunicadoDeInicioDeJogo)) {
+		while (!(comunicado instanceof ComunicadoComecouPartida)) {
 			System.out.println("Jogador, a sua conexao com o nosso servidor foi aceita");
 			System.out.println("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
 			System.out.println("Tecle 1 para digitar a letra!");
@@ -70,7 +76,7 @@ public class Cliente {
 
 			/**
 			 * Capturar um int,se o que o jogador digitar for diferente de 1,2 dispara erro
-			 * de opção inválida
+			 * de opcao invalida;
 			 **/
 			try {
 				opcao = Teclado.getUmInt();

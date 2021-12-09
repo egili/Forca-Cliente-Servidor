@@ -1,3 +1,5 @@
+/*ATENCAO: VALIDAR ENTRE O QUE ESTA NA CONTROLADORADEPARTIDA, PEDIDODELETRA, PEDIDODEPALAVRA
+ * E NA SUPERVISORA POIS H� CODIGOS REPETIDOS !!!!*/
 import java.net.Socket;
 import java.util.Random;
 
@@ -43,7 +45,7 @@ public class ControladoraDePartida {
 		this.grupo = new Grupo<Cliente>(jogadores);
 	}
 
-	// Em que momento serÃ¡ colocado no cliente que a partida comeÃ§ou porque temos
+	// Em que momento sera colocado no cliente que a partida comecou porque temos
 	// 3 jogadores?
 
 	public static void vezDeJogar() throws Exception {
@@ -183,7 +185,7 @@ public class ControladoraDePartida {
 	    	
 	    
 	  	}
-          return "Você completou a palavra!";
+          return "Voce completou a palavra!";
  	 
 	}
 
@@ -198,7 +200,7 @@ public class ControladoraDePartida {
 
 		if (chutepalavra == copiapalavra)
 
-			System.out.print("Você acertou a palavra + \n");
+			System.out.print("Voce acertou a palavra + \n");
 		;
 
 		return copiapalavra;
@@ -229,7 +231,7 @@ public class ControladoraDePartida {
 		if (contemLetra == 0)
 			throw new Exception("Letra nao encontrada");
 
-		return "Você errou a letra";
+		return "Voce errou a letra";
 
 	}
 
@@ -256,10 +258,10 @@ public class ControladoraDePartida {
 		Palavra clienteacertouapalavra = controladoradepartida.acertarpalavra();
 		String clientecompletoupalavra = controladoradepartida.completarpalavra();
 
-		if (clienteacertouapalavra == null)
+		if (clienteacertouapalavra == copiapalavra)
 			return "Voce venceu!";
 
-		if (clientecompletoupalavra == null)
+		if (clientecompletoupalavra == copiapalavra)
 			return "Voce venceu!";
 
 		return clientecompletoupalavra;
@@ -270,7 +272,7 @@ public class ControladoraDePartida {
 
 		String clienterroupalavra = controladoradepartida.errarpalavra();
 
-		if (clienterroupalavra != null)
+		if (clienterroupalavra != copiapalavra)
 			return "Voce perdeu e sera removido da partida";
 		return clienterroupalavra;
 

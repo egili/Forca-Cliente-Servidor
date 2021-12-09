@@ -1,3 +1,6 @@
+/*PS: SEGUNDO MONITORIA EM 07-12-2021 (FABRICIO): EM PEDIDO DE PALAVRA SE PASSA UMA STRING
+ *  E VIA PEDIDO O TRATAMENTO  � FEITO DIRETAMENTE NA SUPERVISORA.*/
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -25,13 +28,13 @@ public class PedidoDePalavra extends Comunicado {
    	            throw new Exception ("Conexao ausente");
    		     
    		     if  (chutepalavra == "null" || chutepalavra == "" ) // char nao eh nulo, por padrão ele é zero
-   				   throw new Exception ("Palavra não pode ser nula!");
+   				   throw new Exception ("Palavra nao pode ser nula!");
    		     
    		    
    		     int numero = teclado.getUmInt();
    			
    		      if (chutepalavra == chutepalavra.valueOf(numero))
-   		       throw new Exception ("Palavra não pode ser numero!");
+   		       throw new Exception ("Palavra nao pode ser numero!");
    		      }
     	   
    		     ObjectOutputStream transmissor;

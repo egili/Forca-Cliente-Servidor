@@ -99,7 +99,7 @@ public class SupervisoraDeConexao extends Thread {
 
 					// Verifica se o jogador acertou ou n�o a palavra na FORCA
 					if (palavra.equals(dadosDaForca.getPalavra().toString())) {
-						// Ele � avisado da vit�ria no jogo
+						// Ele eh avisado da vitoria no jogo
 						usuario.receba(new ComunicadoDeResultadoPalavra(true));
 
 					} else {
