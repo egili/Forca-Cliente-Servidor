@@ -3,7 +3,7 @@ import java.util.Random;
 
 /*
  essa classe representa uma estrutra de dados que, a cada vez que um jogador tenta se conectar, 
- eh armazenado num objeto dela e, será direcionado para a partida quando o grupo possuir 
+ eh armazenado num objeto dela e, serÃ¡ direcionado para a partida quando o grupo possuir 
  3 jogadores (que sao objetos da futura classe Cliente)
  uma unica thread a cada grupo de 3 clientes!
  
@@ -13,11 +13,11 @@ import java.util.Random;
 	 3. starta a aceitadora de conexao (lembrando que uma aceitadora para varias supervisoras (1 - N))
  
  como deve funcionar a classe:
- 	1.cada vez que a aceitadora de conexao for startada, o ciente que tentou se conectar será armazenado no grupo (estrutura de dados)
+ 	1.cada vez que a aceitadora de conexao for startada, o ciente que tentou se conectar serÃ¡ armazenado no grupo (estrutura de dados)
  	2.o primeiro jogador a entrar no grupo eh o primeiro a jogar (principio de FILA)
- 	3.aceitadora de conexao instancia um objeto da classe Grupo -> chama um método que adiciona(push?) o cliente naquele grupo
- 	4. método pop(?) acontece quando o cliente perde a partida -> excluido do grupo, logo, excluido da partida
- 	5.cada vez que uma aceitadora startar uma supervisora, ela passará a estrutura como parametro para o construtor
+ 	3.aceitadora de conexao instancia um objeto da classe Grupo -> chama um mÃ©todo que adiciona(push?) o cliente naquele grupo
+ 	4. mÃ©todo pop(?) acontece quando o cliente perde a partida -> excluido do grupo, logo, excluido da partida
+ 	5.cada vez que uma aceitadora startar uma supervisora, ela passarÃ¡ a estrutura como parametro para o construtor
  
  obs: cliente = jogador
  */
@@ -43,7 +43,7 @@ public class ControladoraDePartida {
 		this.grupo = new Grupo<Cliente>(jogadores);
 	}
 
-	// Em que momento será colocado no cliente que a partida começou porque temos
+	// Em que momento serÃ¡ colocado no cliente que a partida comeÃ§ou porque temos
 	// 3 jogadores?
 
 	public static void vezDeJogar() throws Exception {
@@ -106,7 +106,7 @@ public class ControladoraDePartida {
 		return "Voce acertou a letra!";
 	}
 
-	// metodo para quando o cliente acertar o �ltimo tipo de letra que complete a
+	// metodo para quando o cliente acertar o último tipo de letra que complete a
 	// palavra
 	// a ser advinhada
 	public static String completarpalavra () throws Exception
@@ -183,7 +183,7 @@ public class ControladoraDePartida {
 	    	
 	    
 	  	}
-          return "Voc� completou a palavra!";
+          return "Você completou a palavra!";
  	 
 	}
 
@@ -198,7 +198,7 @@ public class ControladoraDePartida {
 
 		if (chutepalavra == copiapalavra)
 
-			System.out.print("Voc� acertou a palavra + \n");
+			System.out.print("Você acertou a palavra + \n");
 		;
 
 		return copiapalavra;
@@ -229,7 +229,7 @@ public class ControladoraDePartida {
 		if (contemLetra == 0)
 			throw new Exception("Letra nao encontrada");
 
-		return "Voc� errou a letra";
+		return "Você errou a letra";
 
 	}
 

@@ -24,14 +24,14 @@ public class PedidoDePalavra extends Comunicado {
     		   if (conexao==null)
    	            throw new Exception ("Conexao ausente");
    		     
-   		     if  (chutepalavra == "null" || chutepalavra == "" ) // char n„o lÍ nulo, por padr„o ele È zero
-   				   throw new Exception ("Palavra n„o pode ser nula!");
+   		     if  (chutepalavra == "null" || chutepalavra == "" ) // char n√£o l√™ nulo, por padr√£o ele √© zero
+   				   throw new Exception ("Palavra n√£o pode ser nula!");
    		     
    		    
    		     int numero = teclado.getUmInt();
    			
    		      if (chutepalavra == chutepalavra.valueOf(numero))
-   		       throw new Exception ("Palavra n„o pode ser numero!");
+   		       throw new Exception ("Palavra n√£o pode ser numero!");
    		      }
     	   
    		     ObjectOutputStream transmissor;
