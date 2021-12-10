@@ -81,7 +81,8 @@ public class ControladoraDePartida {
     @Override
     public boolean equals(Object obj) {
 
-        if (this == obj) return true;
+        if (this == obj)
+            return true;
 
         if(obj == null)
             return false;
@@ -93,29 +94,24 @@ public class ControladoraDePartida {
 
         if(controladora.j != j)
             return false;
-
-        //MantÃ©m assim porque hÃ¡ uma ordem para os jogadores terem sua vez
+    
         if(controladora.jogadores.size() == jogadores.size()){
             for(int i = 0; i < jogadores.size(); i++){
                 if(!jogadores.get(i).equals(controladora.jogadores.get(i))) {
                     return false;
                 }
             }
-
             return true;
         }
-
         return false;
     }
 
     @Override
     public int hashCode() {
         int ret = 31;
-
-        //Atributos e objetos mais simples
+     
         ret = ret * 7 + Integer.valueOf(j).hashCode();
 
-        //Estrutura de dados
         for (int i = 0; i < jogadores.size(); i++){
             ret = ret * 7 + jogadores.get(i).hashCode();
         }
@@ -125,5 +121,4 @@ public class ControladoraDePartida {
         
         return ret;
     }
-
 }
