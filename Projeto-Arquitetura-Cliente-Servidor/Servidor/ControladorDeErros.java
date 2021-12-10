@@ -1,8 +1,5 @@
 package Servidor;
 
-import ClassesComuns.*;
-import Clientes.*;
-
 public class ControladorDeErros implements Cloneable { // interface usada para poder sobrescrever o método clone()
 	private int qtdMax, qtdErr = 0;
 

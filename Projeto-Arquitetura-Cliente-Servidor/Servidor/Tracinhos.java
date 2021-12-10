@@ -1,6 +1,7 @@
 package Servidor;
 
 public class Tracinhos implements Cloneable {
+	
 	private char texto[];
 
 	public Tracinhos(int qtd) throws Exception {

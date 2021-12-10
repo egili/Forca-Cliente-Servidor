@@ -4,76 +4,91 @@ import ClassesComuns.*;
 
 import java.util.ArrayList;
 
-public class ControladoraDePartida {
+public class ControladoraDePartida 
+{
     private final ArrayList<Parceiro> jogadores;
     private final ArrayList<SupervisoraDeConexao> supervisoras = new ArrayList<>();
-    private int j = 0;
+    private int posicaoJogador = 0;
 
-    public ControladoraDePartida (ArrayList<Parceiro> jogadores) throws Exception {
+    public ControladoraDePartida (ArrayList<Parceiro> jogadores) throws Exception 
+    {
         if (jogadores == null)
-            throw new Exception("Usuario passado pelo parametro eh nulo");
+            throw new Exception("Nenhum jogador no grupo");
 
         this.jogadores = jogadores;
     }
 
-    public void proximoJogador() {
-        synchronized (jogadores) {
-            j++;
-            if (j == jogadores.size())
-                j = 0;
+    public void proximoJogador() // reimplementando a ideia de fila
+    {
+        synchronized (jogadores) 
+        {
+            posicaoJogador++;
+            
+            if (posicaoJogador == jogadores.size())
+                posicaoJogador = 0;
         }
     }
 
-    public boolean pode(Parceiro cliente) throws Exception {
-        try {
-            synchronized (jogadores) {
-
-                return cliente == jogadores.get(j);
+    public boolean podeJogar(Parceiro jogador) throws Exception 
+    {
+        try 
+        {
+            synchronized (jogadores) 
+            {
+                return jogador == jogadores.get(posicaoJogador);
             }
-        } catch (Exception e) {
-            throw new Exception("Usuario retirado");
+        } 
+        catch (Exception e)
+        {
+            throw new Exception("jogador removido");
         }
     }
 
-    public ArrayList<Parceiro> getUsuarios(){
+    public ArrayList<Parceiro> getJogadores()
+    {
         return jogadores;
     }
 
-    public int getJ() {
-        return j;
+    public int getPosicaoJogador()
+    {
+        return posicaoJogador;
     }
 
-    public void setJ(int j) {
-        this.j = j;
+    public void setPosicaoJogador (int posicao) 
+    {
+        this.posicaoJogador = posicao;
     }
 
-    public void addSupervisora(SupervisoraDeConexao sup) throws Exception{
-        if(sup == null)
+    public void adicionarSupervisora (SupervisoraDeConexao supervisora) throws Exception
+    {
+        if(supervisora == null)
             throw new Exception("Supervisora nula");
 
-        supervisoras.add(sup);
+        supervisoras.add(supervisora);
     }
-
 
     public ArrayList<SupervisoraDeConexao> getSupervisoras()
     {
         return supervisoras;
     }
 
-    public void fimThreadSup()
+    public void fimThreadSupervisora()
     {
-        synchronized (supervisoras){
-            for (int i = 0; i < supervisoras.size(); i++){
+        synchronized (supervisoras)
+        {
+            for (int i = 0; i < supervisoras.size(); i++)
+            {
                 supervisoras.get(i).fim = false;
             }
         }
     }
 
     @Override
-    public String toString() {
-        return "GerenciadoraDeRodada{" +
-                "usuarios=" + jogadores +
-                ", j=" + j +
+    public String toString() 
+    {
+        return "Controladora de Partida{" +
+                "Jogadores = " + jogadores +
+                ", posicao =" + posicaoJogador +
                 '}';
     }
 
@@ -91,12 +106,15 @@ public class ControladoraDePartida {
 
         ControladoraDePartida controladora = (ControladoraDePartida) obj;
 
-        if(controladora.j != j)
+        if(controladora.posicaoJogador != posicaoJogador)
             return false;
     
-        if(controladora.jogadores.size() == jogadores.size()){
-            for(int i = 0; i < jogadores.size(); i++){
-                if(!jogadores.get(i).equals(controladora.jogadores.get(i))) {
+        if(controladora.jogadores.size() == jogadores.size())
+        {
+            for(int i = 0; i < jogadores.size(); i++)
+            {
+                if(!jogadores.get(i).equals(controladora.jogadores.get(i))) 
+                {
                     return false;
                 }
             }
@@ -106,12 +124,14 @@ public class ControladoraDePartida {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() 
+    {
         int ret = 31;
      
-        ret = ret * 7 + Integer.valueOf(j).hashCode();
+        ret = ret * 7 + new Integer(posicaoJogador).hashCode();
 
-        for (int i = 0; i < jogadores.size(); i++){
+        for (int i = 0; i < jogadores.size(); i++)
+        {
             ret = ret * 7 + jogadores.get(i).hashCode();
         }
 

@@ -2,7 +2,6 @@
  *  E VIA PEDIDO O TRATAMENTO  É FEITO DIRETAMENTE NA SUPERVISORA.*/
 package ClassesComuns;
 
-import Clientes.*;
 import Servidor.*;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -74,7 +73,7 @@ public class PedidoDePalavra extends Comunicado {
 			   comunicado = (Comunicado)cliente.espie ();
 		   }
 		   
-		   while (!(comunicado instanceof ComunicadoComecouPartida))
+		   while (!(comunicado instanceof ComunicadoComecouPartida));
 			   cliente.receba(new ComunicadoComecouPartida());
 		       this.chutepalavra = "null";
 		    		              

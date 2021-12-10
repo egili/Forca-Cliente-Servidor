@@ -69,7 +69,7 @@ public class PedidoDeLetra extends Comunicado {
 			   comunicado = (Comunicado)cliente.espie ();
 		   }
 		   
-		   while (!(comunicado instanceof ComunicadoComecouPartida))
+		   while (!(comunicado instanceof ComunicadoComecouPartida));
 			   cliente.receba(new ComunicadoComecouPartida());
 		       this.letra = '\0';
 		    
