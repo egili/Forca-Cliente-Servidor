@@ -10,7 +10,7 @@ public class SupervisoraDeConexao extends Thread {
 	private Socket conexao;
 	private ControladoraDePartida controladora;
 	private Parceiro jogador;
-	private ArrayList<Parceiro> usuarios;
+	private ArrayList<Parceiro> jogadores;
 	private ObjectOutputStream transmissor;
 	private ObjectInputStream receptor;
 	public boolean fim = true;
@@ -27,7 +27,7 @@ public class SupervisoraDeConexao extends Thread {
 			throw new Exception("Controladora nula");
 
 		this.conexao = conexao;
-		this.usuarios = usuarios;
+		this.jogadores = usuarios;
 		this.controladora = controladora;
 	}
 
@@ -66,9 +66,9 @@ public class SupervisoraDeConexao extends Thread {
 
 		try 
 		{
-			synchronized (usuarios)
+			synchronized (jogadores)
 			{
-				this.usuarios.add(this.jogador);
+				this.jogadores.add(this.jogador);
 			}
 		}
 		catch (Exception erro)
@@ -102,9 +102,9 @@ public class SupervisoraDeConexao extends Thread {
 		{
 			try 
 			{
-				if (controladora.pode(jogador)) 
+				if (controladora.podeJogar(jogador)) 
 				{
-					vezDoUsuario();
+					vezDeJogar();
 				}
 			} 
 			catch (Exception e) 
@@ -115,7 +115,7 @@ public class SupervisoraDeConexao extends Thread {
 
 	}
 
-	private void vezDoUsuario() 
+	private void vezDeJogar() 
 	{
 		try {
 
@@ -158,11 +158,11 @@ public class SupervisoraDeConexao extends Thread {
 		if (!this.transmissor.equals(supervisora.transmissor))
 			return false;
 
-		if (this.usuarios.size() != supervisora.usuarios.size())
+		if (this.jogadores.size() != supervisora.jogadores.size())
 			return false;
 
-		for (int i = 0; i < this.usuarios.size(); i++) {
-			if (!this.usuarios.get(i).equals(supervisora.usuarios.get(i)))
+		for (int i = 0; i < this.jogadores.size(); i++) {
+			if (!this.jogadores.get(i).equals(supervisora.jogadores.get(i)))
 				return false;
 		}
 
@@ -180,8 +180,8 @@ public class SupervisoraDeConexao extends Thread {
 		ret = ret * 11 + this.receptor.hashCode();
 		ret = ret * 11 + this.transmissor.hashCode();
 
-		for (Parceiro parc : usuarios)
-			ret = ret * 11 + parc.hashCode();
+		for (Parceiro cliente : jogadores)
+			ret = ret * 11 + cliente.hashCode();
 
 		if(ret < 0)
 			ret = -ret;
