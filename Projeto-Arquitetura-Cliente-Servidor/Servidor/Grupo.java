@@ -1,6 +1,5 @@
 package Servidor;
 
-import ClassesComuns.*;
 import Clientes.*;
 
 public class Grupo<X> { // fila

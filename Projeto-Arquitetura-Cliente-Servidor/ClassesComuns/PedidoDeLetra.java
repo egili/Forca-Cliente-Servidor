@@ -69,13 +69,13 @@ public class PedidoDeLetra extends Comunicado {
 			   comunicado = (Comunicado)cliente.espie ();
 		   }
 		   
-		   while (!(comunicado instanceof ComunicadoComecouPartida))
+		   while (!(comunicado instanceof ComunicadoComecouPartida));
 			   cliente.receba(new ComunicadoComecouPartida());
 		       this.letra = '\0';
 		    
 		  // valida se letra for um número e se a letra já foi escrita,
 		   //senão acrescenta em letrasJaDigitadas
-		   controladorDeLetrasJaDigitadas.registrarletra(letra);
+		   controladorDeLetrasJaDigitadas.registre(letra);
 		   
 		       	            
 		   // registra a umaletra dentro da variavel umaletra.

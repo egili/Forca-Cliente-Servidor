@@ -1,10 +1,7 @@
 package ClassesComuns;
 
-import Clientes.*;
-import Servidor.*;
 import java.io.*;
 import java.net.*;
-import java.util.*;
 import java.util.concurrent.Semaphore;
 
 public class Parceiro

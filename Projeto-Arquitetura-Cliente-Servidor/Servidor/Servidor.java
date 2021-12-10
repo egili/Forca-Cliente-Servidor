@@ -1,12 +1,11 @@
 package Servidor;
 
 import java.util.ArrayList;
-
 import ClassesComuns.*;
 
 public class Servidor {
-	public static final String PORTA_PADRAO = "3000";
-	public static final String HOST_PADRAO = "localhost";
+
+	public static String PORTA_PADRAO = "3000";
 
 	public static void main(String[] args) {
 		
@@ -19,54 +18,49 @@ public class Servidor {
 
 		if (args.length == 1)
 			porta = args[0];
-		
+
 		String comando = " ";
 		AceitadoraDeConexao aceitadora;
-		ArrayList<Parceiro> usuarios;
-		
-		usuarios = new ArrayList<>();
-		
-		try 
-		{
-			aceitadora = new AceitadoraDeConexao(porta, usuarios);
+		ArrayList<Parceiro> jogadores;
+
+		jogadores = new ArrayList<>();
+
+		try {
+			aceitadora = new AceitadoraDeConexao(porta, jogadores);
 			aceitadora.start();
-		}catch(Exception e)
-		{
-			System.err.print(e.getMessage());			
+		} catch (Exception e) {
+			System.err.print("escolha uma porta apropriada e liberada para uso");
+			return;
 		}
-		
-		while (true)
-		{
+
+		while (true) {
 			System.out.println("O servidor esta ativo! Para desativa-lo,");
 			System.out.println("use o comando \"desativar\"\n");
 			System.out.print("> ");
 
 			try {
-				comando = (Teclado.getUmString().toLowerCase());
+				comando = (Teclado.getUmString().toUpperCase());
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
 
 			if (comando.equals("desativar")) {
-				synchronized (usuarios) {
-					ComunicadoDeDesligamento comunicadoDeDesligamento =
-							new ComunicadoDeDesligamento();
+				synchronized (jogadores) {
+					ComunicadoDeDesligamento comunicadoDeDesligamento = new ComunicadoDeDesligamento();
 
-					for (Parceiro usuario : usuarios) {
+					for (Parceiro cliente : jogadores) {
 						try {
-							usuario.receba(comunicadoDeDesligamento);
-							usuario.adeus();
+							cliente.receba(comunicadoDeDesligamento);
+							cliente.adeus();
 						} catch (Exception erro) {
 						}
 					}
+
+					System.out.println("O servidor foi desativado!\n");
+					System.exit(0);
 				}
-
-				System.out.println("O servidor foi desativado!\n");
-				System.exit(0);
-			} else
+			} else 
 				System.err.println("Comando invalido");
-
-
 		}
 	}
 }
