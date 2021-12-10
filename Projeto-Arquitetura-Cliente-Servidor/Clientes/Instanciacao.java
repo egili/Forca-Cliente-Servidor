@@ -16,14 +16,16 @@ public class Instanciacao
         Socket ret = null;
         try {
             String host = Cliente.HOST_PADRAO;
-            int porta = Cliente.PORTA_PADRAO;
+            int   porta = Cliente.PORTA_PADRAO;
 
             if (args.length > 0)
-                host = args[1];
+                host = args[0];
             if (args.length == 2)
-                porta = Integer.parseInt(args[1]);
+            	  porta = Integer.parseInt(args[1]);
 
-            ret = new Socket(host, porta);
+      
+
+            ret = new Socket(host,porta);
         }
         catch (Exception err)
         {

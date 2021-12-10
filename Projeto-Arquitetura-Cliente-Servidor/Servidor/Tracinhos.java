@@ -20,7 +20,7 @@ public class Tracinhos implements Cloneable {
 	public void revele(int posicao, char letra) throws Exception {
 		if (posicao < 0 || posicao >= this.texto.length)
 
-			throw new Exception("posicao inválida");
+			throw new Exception("posicao invalida");
 
 		this.texto[posicao] = letra;
 	}
