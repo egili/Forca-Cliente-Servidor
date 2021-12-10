@@ -19,7 +19,7 @@ public class PedidoDePalavra extends Comunicado {
 	private ObjectOutputStream transmissor;
 	String host = Servidor.HOST_PADRAO;
     String porta= Servidor.PORTA_PADRAO;	
-	private String chutepalavra;
+	private Palavra chutepalavra;
     
     public PedidoDePalavra (Socket conexao, String chutepalavra) throws Exception
     {
