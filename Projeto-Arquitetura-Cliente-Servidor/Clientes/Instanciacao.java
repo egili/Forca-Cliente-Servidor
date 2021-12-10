@@ -1,5 +1,6 @@
 package Clientes;
 
+import ClassesComuns.Comunicado;
 import ClassesComuns.*;
 import Servidor.*;
 import java.io.IOException;
