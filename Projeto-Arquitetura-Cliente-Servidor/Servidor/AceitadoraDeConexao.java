@@ -100,10 +100,10 @@ public class AceitadoraDeConexao extends Thread{
 					try
 					{
 						if (usuarios.size() ==2)
-						usuarios.get(1).receba(new ComunicadoDeComecoPartida());
+						usuarios.get(1).receba(new ComunicadoComecouPartida());
 						else
 							if (usuarios.size() ==3)
-								usuarios.get(2).receba(new ComunicadoDeComecoPartida());
+								usuarios.get(2).receba(new ComunicadoComecouPartida());
 					}
 					catch (Exception e)
 					{}
@@ -145,7 +145,6 @@ public class AceitadoraDeConexao extends Thread{
 
 		if(!this.isComecou.equals(act.isComecou)) 
 			return false;
-
 
 		if (this.usuarios.size() != act.usuarios.size())
 			return false;
