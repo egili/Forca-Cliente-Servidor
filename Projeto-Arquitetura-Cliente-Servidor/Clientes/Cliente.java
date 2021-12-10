@@ -16,7 +16,7 @@ public class Cliente {
 
 		System.out.println("Bem-vindo(a) ao jogo forca servidor! - Trabalho final de java");
 		System.out.println("Instituicao Estudantil: Cotuca/Unicamp");
-		System.out.println("Curso: 59 - Técnico em Desenvolvimento de Sistemas Noturno");
+		System.out.println("Curso: 59 - Tecnico em Desenvolvimento de Sistemas Noturno");
 		System.out.println("Disciplina: DS201 - Técnicas De Programacaoo II");
 		System.out.println("Professor: Andre de Carvalho");
 		System.out.println("Esse jogo foi desenvolvido por:");
@@ -39,7 +39,7 @@ public class Cliente {
 			return;
 		}
 
-		// Criando os objetos que serão instanciados
+		// Criando os objetos que serao instanciados
 
 		Socket conexao = null;
 		ObjectOutputStream transmissor = null;

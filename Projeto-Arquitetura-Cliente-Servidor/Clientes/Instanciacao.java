@@ -60,18 +60,23 @@ public class Instanciacao
     public static Parceiro instanciarServidor(Socket conexao, ObjectInputStream receptor, ObjectOutputStream transmissor) throws Exception {
         Parceiro ret = null;
         try {
-            ret = new Parceiro(conexao, receptor, transmissor);
+          
+           ret = new Parceiro(conexao, receptor, transmissor);
+                      
         } catch (Exception err) {
             throw new Exception("Ocorreu um erro na instanciação do \"servidor\".");
         }
-
+        Parceiro servidor = ret;
         return ret;
     }
 
     public static Comunicado instanciarTratadora(Parceiro servidor) throws Exception {
-        Comunicado ret = null;
+        
+    	Comunicado ret = null;
+         
         try {
-            ret = new Comunicado(servidor);
+         ret = Comunicado(servidor);
+         
         } catch (Exception err) {
             throw new Exception("Ocorreu um erro na instanciação da \"tratadoraDeDesligamento\"");
         }

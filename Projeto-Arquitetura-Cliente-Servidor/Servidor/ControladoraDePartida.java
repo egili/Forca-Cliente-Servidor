@@ -1,12 +1,13 @@
 /*ATENCAO: VALIDAR ENTRE O QUE ESTA NA CONTROLADORADEPARTIDA, PEDIDODELETRA, PEDIDODEPALAVRA
  * E NA SUPERVISORA POIS H� CODIGOS REPETIDOS !!!!*/
-package Servidor;
 
+/*
+ * package Servidor;
 import ClassesComuns.*;
 import Clientes.*;
 import java.net.Socket;
 import java.util.Random;
-
+*/
 /*
  essa classe representa uma estrutra de dados que, a cada vez que um jogador tenta se conectar, 
  eh armazenado num objeto dela e, serÃ¡ direcionado para a partida quando o grupo possuir 
@@ -27,9 +28,10 @@ import java.util.Random;
  
  obs: cliente = jogador
  */
-
+/*
 public class ControladoraDePartida {
 
+	/*
 	private static Grupo<Cliente> grupo;
 	private static char letra;
 	private static Socket conexao;
@@ -37,7 +39,7 @@ public class ControladoraDePartida {
 	private static Palavra palavra;
 	private static ControladoraDePartida controladoradepartida;
 	PedidoDeLetra pedidodeletra = new PedidoDeLetra(conexao, letra);
-	Palavra palavrasorteada = null;
+	static Palavra palavrasorteada = null;
 
 	public ControladoraDePartida(Cliente[] jogadores) throws Exception {
 
@@ -47,11 +49,12 @@ public class ControladoraDePartida {
 			throw new Exception("Grupo precisa ter 3 jogadores!");
 
 		this.grupo = new Grupo<Cliente>(jogadores);
-	}
+	}*/
 
 	// Em que momento sera colocado no cliente que a partida comecou porque temos
 	// 3 jogadores?
 
+    /*	
 	public static void vezDeJogar() throws Exception {
 		
 		Cliente jogadorDaVez = grupo.getJogadorDaVez();
@@ -72,21 +75,18 @@ public class ControladoraDePartida {
 			catch (Exception erro) {}
 		}
 		while ((!(comunicado instanceof ComunicadoDeVitoria));)
-		
-		/* a classe Grupo ja possibilita que ordem de jogada seja como numa fila,
-		   a logica aqui vai ser remover o jogador do Grupo e depois inseri-lo novamente,
-		   isso pois, o jogador removido eh sempre o primeiro do Grupo e sempre sera inserido 
-		   como  ultimo do grupo
-		   
-		   TODO: a ideia deste metodo eh fazer com que o jogador saiba que eh sua vez de jogar e que ele possa ser unico a jogar */
+			
 	}
+	*/
 
+	/*
 	public static ComunicadoDeAcerto acertar() throws Exception {
 		return new ComunicadoDeAcerto();
-	}
+	}*/
 
 	// metodo para quando o cliente acertar a letra retorna que acertou a letra;
 
+    /*
 	public static String acertarletra() throws Exception {
 
 		try {
@@ -110,11 +110,11 @@ public class ControladoraDePartida {
 		}
 
 		return "Voce acertou a letra!";
-	}
+	} */
 
-	// metodo para quando o cliente acertar o último tipo de letra que complete a
-	// palavra
-	// a ser advinhada
+	// metodo para quando o cliente acertar o ultimo tipo de letra que complete a
+	// palavra  a ser advinhada
+	/*
 	public static String completarpalavra () throws Exception
 	{
 	 String palavra1 = "Axioma";
@@ -136,7 +136,7 @@ public class ControladoraDePartida {
 	 String palavra17 = "Vertiginoso";
 	 String palavra18 = "Xilofone";
 			 
-	 String[] palavras = {palavra1, palavra2, palavra3, palavra4, palavra5, palavra6, palavra7, palavra8, palavra9, palavra10, palavra11, palavra12, palavra13, palavra14, palavra15, palavra16, palavra17, palavra18}
+	 String[] palavras = {palavra1, palavra2, palavra3, palavra4, palavra5, palavra6, palavra7, palavra8, palavra9, palavra10, palavra11, palavra12, palavra13, palavra14, palavra15, palavra16, palavra17, palavra18};
       	
 	  String[] tipodeletrap1 = {"a", "x", "i", "o", "m"};
 	  String[] tipodeletrap2 = {"a", "z", "u", "l", "e", "j", "o"};
@@ -157,7 +157,7 @@ public class ControladoraDePartida {
 	  String[] tipodeletrap17 = {"v", "e", "r", "t", "i", "g", "n", "o", "s"};
 	  String[] tipodeletrap18 = {"x", "i", "l", "o", "f", "n", "e"};
 	  
-	  String[] tipodeletraN = new String[18];
+	  String[] tipodeletraN = new String[18]
 	  tipodeletraN = {tipodeletrap1, tipodeletrap2, tipodeletrap3, tipodeletrap4, tipodeletrap5, tipodeletrap6, tipodeletrap7, tipodeletrap8, tipodeletrap9, tipodeletrap10, tipodeletrap11, tipodeletrap12, tipodeletrap13, tipodeletrap14, tipodeletrap15, tipodeletrap16, tipodeletrap17, tipodeletrap18};
 	  
 	   
@@ -191,8 +191,9 @@ public class ControladoraDePartida {
 	  	}
           return "Voce completou a palavra!";
  	 
-	}
-
+	} */
+	
+    /*
 	public static Palavra acertarpalavra() throws Exception {
 		try {
 			palavrasorteada = bancodepalavras.getPalavraSorteada();
@@ -209,15 +210,18 @@ public class ControladoraDePartida {
 
 		return copiapalavra;
 
-	}
+	} */
+	
+	/*
 
 	public static String errar() {
 
 		return "Voce errou";
-
+       } */
 		/* Se a pessoa errou a letra ou a palavra, retornar comunicadoDeErro */
-	}
-
+	 
+   
+     /*
 	public static String errarletra() throws Exception {
 		try {
 			palavrasorteada = bancodepalavras.getPalavraSorteada();
@@ -237,7 +241,9 @@ public class ControladoraDePartida {
 
 		return "Voce errou a letra";
 
-	}
+	} */
+	
+	/*
 
 	public static String errarpalavra() throws Exception {
 
@@ -270,8 +276,9 @@ public class ControladoraDePartida {
 
 		return clientecompletoupalavra;
 
-	}
-
+	} */
+	
+/*
 	public static String perder() throws Exception {
 
 		String clienterroupalavra = controladoradepartida.errarpalavra();
@@ -282,4 +289,4 @@ public class ControladoraDePartida {
 
 	}
 
-}
+} */

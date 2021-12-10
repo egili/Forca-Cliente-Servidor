@@ -77,15 +77,12 @@ public class PedidoDePalavra extends Comunicado {
 		   while (!(comunicado instanceof ComunicadoComecouPartida))
 			   cliente.receba(new ComunicadoComecouPartida());
 		       this.chutepalavra = "null";
-		    
-		        //String palavramontada= null;
-		        
+		    		              
 		        String palavrasorteada = null;
 			   	 palavra = BancoDePalavras.getPalavraSorteada();
 			   	 Palavra p1 = new Palavra(palavrasorteada);
 			    String copiapalavra = palavrasorteada;
 			   	int quantidade = copiapalavra.length();
-			     //Palavra p2 = new Palavra(palavramontada);
 		    	 Palavra p2 = new Palavra (chutepalavra);
 			     if (chutepalavra == copiapalavra)
 			     {
