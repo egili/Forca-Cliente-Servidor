@@ -1,8 +1,5 @@
 package Servidor;
 
-import ClassesComuns.*;
-import Clientes.*;
-
 public class BancoDePalavras
 {
     public static String[] palavras = 

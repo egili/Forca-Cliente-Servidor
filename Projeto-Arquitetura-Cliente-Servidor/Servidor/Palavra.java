@@ -1,13 +1,5 @@
 package Servidor;
 
-import ClassesComuns.*;
-import Clientes.*;
-/*
- possivelmente sera alterada para usar com sockets --> usar a mesma estrutura de parceiros
-  (ou referenciar parceiros?)
-
- */
-
 public class Palavra implements Comparable<Palavra> {
 
     private String texto;
@@ -15,7 +7,7 @@ public class Palavra implements Comparable<Palavra> {
     public Palavra (String texto) throws Exception
     {
         if(texto == null)
-            throw new Exception ("Palavra n„o pode estar nula");
+            throw new Exception ("Palavra n√£o pode estar nula");
 
         this.texto = texto;
     }
@@ -50,7 +42,7 @@ public class Palavra implements Comparable<Palavra> {
             }
         }
         if(quantidadeDeOcorrencias  == 0)
-            throw new Exception ("N„o foi encontrado a iezima posicao da letra fornecida!");
+            throw new Exception ("N√£o foi encontrado a iezima posicao da letra fornecida!");
         
         return qualALetra[i];
     }
