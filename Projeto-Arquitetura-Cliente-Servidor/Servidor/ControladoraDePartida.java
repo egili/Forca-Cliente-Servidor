@@ -31,7 +31,7 @@ public class ControladoraDePartida {
                 return cliente == jogadores.get(j);
             }
         } catch (Exception e) {
-            throw new Exception("UsuÃƒÂ¡rio retirado");
+            throw new Exception("Usuario retirado");
         }
     }
 

@@ -32,7 +32,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             num = false;
         }
         if (num) {
-            throw new Exception("não pode ser numero");
+            throw new Exception("nao pode ser numero");
         }
         
         this.letrasJaDigitadas = this.letrasJaDigitadas + letra;
