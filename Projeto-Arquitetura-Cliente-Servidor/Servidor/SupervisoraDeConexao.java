@@ -7,13 +7,14 @@ import java.net.*;
 import java.util.*;
 
 public class SupervisoraDeConexao extends Thread {
+	private static final String Comunicado = null;
 	private double valor = 0;
 	private Parceiro usuario;
 	private Socket conexao;
 	private final ArrayList<Parceiro> usuarios;
 	private static Palavra palavra;
 	private static Tracinhos tracinhos;
-	private static ControladorDeErro controladorDeErros;
+	private static ControladorDeErros controladorDeErros;
 	private static ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
 
 	public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios) throws Exception {
@@ -69,8 +70,9 @@ public class SupervisoraDeConexao extends Thread {
 					// para chamar comunicado de vez ai vai da a vez para primeiro jogador
 					this.usuarios.get(0).receba(new ComunicadoDeVez(dadosDaForca));
 				}
-				//if (comunicado == null)
-	            	   //return;
+				Comunicado comunicado;
+				if ( comunicado == null)
+	            	   return;
 	                if (comunicado instanceof PedidoParaEntrar)
 	               {
 	            	int posJogador = this.usuarios.indexOf(usuario);
@@ -88,17 +90,17 @@ public class SupervisoraDeConexao extends Thread {
 			}
 
 			for (;;) {
-				Comunicado comunicado = this.usuario.envie();
+				Comunicado comunicado2 = this.usuario.envie();
 
 				// Pede a letra para cliente aqui esta jogo todo, verifica se ela j� foi
 				// digitada, verifica erros se j� digitou ou n�o
 				// pega a posi��o das letras os tracinhos dela
-				if (comunicado == null)
+				if (comunicado2 == null)
 					return;
-				else if (comunicado instanceof ComunicadoDeDados) {
-					dadosDaForca = (ComunicadoDeDados) comunicado;
-				} else if (comunicado instanceof PedidoDePalavra) {
-					PedidoDePalavra pedidoPalavra = (PedidoDePalavra) comunicado;
+				else if (comunicado2 instanceof ComunicadoDeDados) {
+					dadosDaForca = (ComunicadoDeDados) comunicado2;
+				} else if (comunicado2 instanceof PedidoDePalavra) {
+					PedidoDePalavra pedidoPalavra = (PedidoDePalavra) comunicado2;
 					String palavra = pedidoPalavra.palavra;
 
 					// Verifica se o jogador acertou ou n�o a palavra na FORCA

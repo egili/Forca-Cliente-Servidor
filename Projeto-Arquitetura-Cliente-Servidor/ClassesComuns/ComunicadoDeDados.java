@@ -7,7 +7,7 @@ public class ComunicadoDeDados extends Comunicado{
 	 private Palavra palavra;
 	    private Tracinhos tracinhos;
 	    private ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
-	    private ControladorDeErro controladorDeErros;
+	    private ControladorDeErros controladorDeErros;
 
 	    public ComunicadoDeDados () {
 	        try
@@ -17,7 +17,7 @@ public class ComunicadoDeDados extends Comunicado{
 	            this.palavra = BancoDePalavras.getPalavraSorteada();
 	            this.tracinhos = new Tracinhos (palavra.getTamanho());
 	            this.controladorDeLetrasJaDigitadas = new ControladorDeLetrasJaDigitadas();
-	            this.controladorDeErros = new ControladorDeErro ((int)(palavra.getTamanho()*0.6));
+	            this.controladorDeErros = new ControladorDeErros ((int)(palavra.getTamanho()*0.6));
 
 	        }
 	        catch (Exception err)
@@ -52,11 +52,11 @@ public class ComunicadoDeDados extends Comunicado{
 	        this.controladorDeLetrasJaDigitadas = controladorDeLetrasJaDigitadas;
 	    }
 
-	    public ControladorDeErro getControladorDeErros() {
+	    public ControladorDeErros getControladorDeErros() {
 	        return controladorDeErros;
 	    }
 
-	    public void setControladorDeErros(ControladorDeErro controladorDeErros) {
+	    public void setControladorDeErros(ControladorDeErros controladorDeErros) {
 	        this.controladorDeErros = controladorDeErros;
 	    }
 
