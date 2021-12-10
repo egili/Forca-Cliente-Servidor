@@ -2,7 +2,6 @@ package Servidor;
 
 import ClassesComuns.*;
 
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class ControladoraDePartida {
@@ -32,7 +31,7 @@ public class ControladoraDePartida {
                 return cliente == jogadores.get(j);
             }
         } catch (Exception e) {
-            throw new Exception("UsuÃ¡rio retirado");
+            throw new Exception("UsuÃƒÂ¡rio retirado");
         }
     }
 

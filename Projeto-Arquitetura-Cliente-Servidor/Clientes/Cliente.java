@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class Cliente {
 	public static final String HOST_PADRAO = "localhost";
 	public static final int PORTA_PADRAO = 3000;
-
+	
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Bem-vindo(a) ao jogo forca servidor! - Trabalho final de java");
 		System.out.println("Instituicao Estudantil: Cotuca/Unicamp");
-		System.out.println("Curso: 59 - Técnico em Desenvolvimento de Sistemas Noturno");
+		System.out.println("Curso: 59 - Tecnico em Desenvolvimento de Sistemas Noturno");
 		System.out.println("Disciplina: DS201 - Técnicas De Programacaoo II");
 		System.out.println("Professor: Andre de Carvalho");
 		System.out.println("Esse jogo foi desenvolvido por:");
@@ -39,7 +39,7 @@ public class Cliente {
 			return;
 		}
 
-		// Criando os objetos que serão instanciados
+		// Criando os objetos que serao instanciados
 
 		Socket conexao = null;
 		ObjectOutputStream transmissor = null;
@@ -47,6 +47,7 @@ public class Cliente {
 		Parceiro servidor = null;
 		Comunicado comunicado = null;
 		ComunicadoComecouPartida suavez = null;
+		
 
 		try {
 			conexao = Instanciacao.instanciarConexao(args);
@@ -54,6 +55,8 @@ public class Cliente {
 			receptor = Instanciacao.instanciarReceptor(conexao);
 			servidor = Instanciacao.instanciarServidor(conexao, receptor, transmissor);
 			comunicado = Instanciacao.instanciarTratadora(servidor);
+			if(comunicado instanceof PedidoParaEntrar)
+				
 		} catch (Exception err) {
 			System.err.println(err.getMessage());
 			System.err.println("Verifique se o servidor esta ativo.\n"
@@ -97,12 +100,17 @@ public class Cliente {
 				if (opcao == 1) {
 					System.out.println("Digite uma letra");
 					char letra = Teclado.getUmChar();
-					servidor.receba(new PedidoDeLetra(letra));
+					servidor.receba(new PedidoDeLetra(conexao, letra));
 
 					comunicado = null;
 					do {
 						comunicado = (Comunicado) servidor.espie();
 					} while (!(comunicado instanceof ComunicadoDeLetra));
+					if(comunicado instanceof ComunicadoComecouPartida)
+					{
+						
+					}
+					
 
 				}
 			}
