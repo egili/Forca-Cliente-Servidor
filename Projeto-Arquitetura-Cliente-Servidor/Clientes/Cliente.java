@@ -308,102 +308,166 @@ public class Cliente {
 			catch (Exception erro) {
 			}
 
-			try {
-				if (opcao == 2)
-				{
-					
-				    String chutepalavra;
-					System.out.println("Digite uma Palavra" + chutepalavra);
-					servidor.receba(new PedidoDePalavra(conexao, chutepalavra));
-					comunicado = null;
-					do {
-						comunicado = (Comunicado) servidor.espie();
-					}
-
-					while (!(comunicado instanceof ComunicadoDePalavra)))
-
-					if ((comunicado instanceof ComunicadoDePerda) && (comunicado instanceof ComunicadoDeVitoria))
-					{
-						controladoraDePartida.getJ();
-						
-					}
-
-				}
-			} catch (Exception erro) {
-			}
-
-			try {
+			/** 1 - Pegar a palavra digitada e verificar se já foi digitada antes---Se sim, informa que já foi digitada e solicita nova palavra
+		     2 - Confirma se a palavra digitada é a mesma da sorteada --- se sim, preenche os tracinhos e informa que venceu a jogada e encerra o jogo
+		     Se não, informa que errou, tira o jogador da partida e segue o jogo com o proximo jogador
+		**/
+	}
+		if (opcao == 2)
+		{
+			
+		    String chutepalavra;
+		    
+			System.out.println("Digite uma Palavra" + chutepalavra);
+			palavradigitada = Teclado.getUmaString();
+			servidor.receba(new PedidoDePalavra(conexao, chutepalavra));
+			
+			comunicado = null;
+			do {
 				comunicado = (Comunicado) servidor.espie();
-			} catch (Exception err) {
-				System.err.print(err.getMessage());
 			}
 
-			try {
-				servidor.receba(comunicado);
-				comunicado = servidor.envie();
-			} catch (Exception e) {
-				System.err.print(e.getMessage());
+			while (!(comunicado instanceof ComunicadoDePalavra)))
+
+				if((controladorDePalavrasJaDigitadas.isJaDigitada(palavra) == true) &&(comunicado instanceof ComunicadoDePalavraJaDigitada))
+					
+					
+					 //verificar se tem um equals para comparar a palavra digitada com a palavra informada 
+					
+					System.out.println("A palavra: " + palavra + "ja foi tentada antes, tente novamente, por favor");
+				 comunicado = (ComunicadoDePalavraJaDigitada)servidor.envie();
+				
+
+			
+			if ((comunicado instanceof ComunicadoDePerda) && (comunicado instanceof ComunicadoDeVitoria))
+			{
+				controladoraDePartida.getJ();
+				int jogador j;
+				
+				comunicado = (ComunicadoDeAcerto) servidor.envie();
+	               System.out.println("Jogador" + j + "acertou a Palavra!");
+	               comunicado = (ComunicadoDeDados) servidor.envie();
+	               System.out.println(controladoraDePartida.getUsuarios());
+	               System.out.println(comunicadodedados.getTracinhos());
+	               System.out.println(tracinhos.revele(opcao,palavra));
+	               System.out.println(tracinhos.isAindaComTracinhos());
+	               System.out.println("Palavra:" + tracinhos);
+	               System.out.println("Digitadas.: "  + letrasJaDigitadas.toString());
+	               comunicado = (ComunicadoDeVez) servidor.envie();
+	               System.out.println("Eh a vez do proximo jogador");
+	               controladoraDePartida.toString();
+	               controladoraDePartida.proximoJogador());
+				
 			}
+			
+			else if((copiapalavra.getQuantidade(letra) == 0) && ((copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra) == 0)))
+			  {
+		           do
+		           { 
+		        	   comunicado = (Comunicado) servidor.espie();
+		           }
+		           while (comunicado instanceof ComunicadoDeErro)
+		        	   if ((comunicado instanceof ComunicadoDeDados) && (comunicado instanceof ComunicadoDeVez))
+			                  controladoraDePartida.getJ();
+		                      int j;
+				             int jogador = j;
+		               comunicado = (ComunicadoDeErro) servidor.envie();
+		               System.out.println("Jogador" + j + "errou a palavra!");
+		               comunicado = (ComunicadoDeDados) servidor.envie();
+		               System.out.println(controladoraDePartida.getUsuarios());
+		               System.out.println(comunicadodedados.getTracinhos());
+				       System.out.println(tracinhos.revele(opcao,letra));
+		               System.out.println(tracinhos.isAindaComTracinhos());
+		               System.out.println("Palavra:" + tracinhos);
+		               System.out.println("Digitadas.: "  + palavrasJaDigitadas.toString());
+		               comunicado = (ComunicadoDeVez) servidor.envie();
+		               System.out.println("Eh a vez do proximo jogador");
+		               controladoraDePartida.toString();
+		               controladoraDePartida.proximoJogador());
+		               
+		               
+	         }
+			
+			
 
-			System.out.println("O jogo comecou!");
+		}
+	} catch (Exception erro) {
+	}
 
-			while (true) {
-				Comunicado rodada = null;
+	
+	
+	try {
+		comunicado = (Comunicado) servidor.espie();
+	} catch (Exception err) {
+		System.err.print(err.getMessage());
+	}
 
-				try {
+	try {
+		servidor.receba(comunicado);
+		comunicado = servidor.envie();
+	} catch (Exception e) {
+		System.err.print(e.getMessage());
+	}
 
-					do {
-						rodada = servidor.espie();
-					} while (!(rodada instanceof PedidoVezDeJogar));
-					rodada = servidor.envie();
-				} catch (Exception e) {
-				}
+	System.out.println("O jogo comecou!");
 
-				System.out.println("\n-----------Sua vez comecou----------");
+	while (true) {
+		Comunicado rodada = null;
 
-				if (rodada instanceof PedidoVezDeJogar) {
-					comunicado = null;
-					do {
-						try {
-							comunicado = servidor.espie();
-						} catch (Exception err) {
-							System.err.println(err.getMessage() + " Erro ao espiar");
-						}
-					} while (!(comunicado instanceof ControladorDePartida));
+		try {
 
-					try {
-						suavez = (ControladorDePartida) servidor.envie();
-					} catch (Exception e) {
-						System.err.println(e.getMessage());
-					}
-
-					do {
-						try {
-							comunicado = servidor.espie();
-						} catch (Exception e) {
-							System.err.println(e.getMessage() + " Erro ao espiar");
-						}
-
-						do {
-
-							// O usuario espera o servidor enviar a sua vez de volta
-							comunicado = (Comunicado) servidor.espie();
-						}
-
-						while (!(comunicado instanceof ControladorDePartida));
-
-						// Usuario recebe sua vez de volta
-						suavez = (ControladorDePartida) servidor.envie();
-						System.out.println(suavez);
-
-					} while ("12".indexOf(opcao) != -1);
-
-				}
-			}
+			do {
+				rodada = servidor.espie();
+			} while (!(rodada instanceof PedidoVezDeJogar));
+			rodada = servidor.envie();
+		} catch (Exception e) {
 		}
 
-		System.out.println("Obrigado por usar esse programa !!");
-		System.exit(0);
-	}// end da main
+		System.out.println("\n-----------Sua vez comecou----------");
+
+		if (rodada instanceof PedidoVezDeJogar) {
+			comunicado = null;
+			do {
+				try {
+					comunicado = servidor.espie();
+				} catch (Exception err) {
+					System.err.println(err.getMessage() + " Erro ao espiar");
+				}
+			} while (!(comunicado instanceof ControladorDePartida));
+
+			try {
+				suavez = (ControladorDePartida) servidor.envie();
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+			}
+
+			do {
+				try {
+					comunicado = servidor.espie();
+				} catch (Exception e) {
+					System.err.println(e.getMessage() + " Erro ao espiar");
+				}
+
+				do {
+
+					// O usuario espera o servidor enviar a sua vez de volta
+					comunicado = (Comunicado) servidor.espie();
+				}
+
+				while (!(comunicado instanceof ControladorDePartida));
+
+				// Usuario recebe sua vez de volta
+				suavez = (ControladorDePartida) servidor.envie();
+				System.out.println(suavez);
+
+			} while ("12".indexOf(opcao) != -1);
+
+		}
+	}
+}
+
+System.out.println("Obrigado por usar esse programa !!");
+System.exit(0);
+}// end da main
 
 }// end da classe
