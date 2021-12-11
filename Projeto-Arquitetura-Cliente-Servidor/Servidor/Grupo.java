@@ -61,11 +61,6 @@ public class Grupo<X> { // fila
        return (Cliente) this.removerJogadorDoGrupo();	
      }
 	
-	/*public byte isVezDeJogar() 
-	{
-		return 
-	}*/
-	
 	@Override
 	public String toString() 
 	{

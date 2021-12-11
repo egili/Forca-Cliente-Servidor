@@ -39,7 +39,7 @@ public class Servidor {
 			System.out.print("> ");
 
 			try {
-				comando = (Teclado.getUmString().toUpperCase());
+				comando = (Teclado.getUmString().toLowerCase());
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
