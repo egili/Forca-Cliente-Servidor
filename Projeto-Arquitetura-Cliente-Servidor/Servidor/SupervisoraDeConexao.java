@@ -15,8 +15,9 @@ public class SupervisoraDeConexao extends Thread {
 	private ObjectInputStream receptor;
 	public boolean fim = true;
 
-	public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios, ControladoraDePartida controladora) throws Exception {
-		
+	public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios, ControladoraDePartida controladora)
+			throws Exception {
+
 		if (conexao == null)
 			throw new Exception("Conexao ausente");
 
@@ -31,114 +32,85 @@ public class SupervisoraDeConexao extends Thread {
 		this.controladora = controladora;
 	}
 
-	public void run() 
-	{
-		try 
-		{
+	public void run() {
+		try {
 			transmissor = new ObjectOutputStream(this.conexao.getOutputStream());
-		} 
-		catch (Exception erro) 
-		{
+		} catch (Exception erro) {
 			return;
 		}
 
-		try 
-		{
+		try {
 			receptor = new ObjectInputStream(this.conexao.getInputStream());
-		} 
-		catch (Exception erro)
-		{
-			try
-			{
+		} catch (Exception erro) {
+			try {
 				transmissor.close();
-			} 
-			catch (Exception falha)
-			{}
+			} catch (Exception falha) {
+			}
 			return;
 		}
 
-		try
-		{
+		try {
 			this.jogador = new Parceiro(this.conexao, receptor, transmissor);
-		} 
-		catch (Exception erro)
-		{}
+		} catch (Exception erro) {
+		}
 
-		try 
-		{
-			synchronized (jogadores)
-			{
+		try {
+			synchronized (jogadores) {
 				this.jogadores.add(this.jogador);
 			}
-		}
-		catch (Exception erro)
-		{
-			try 
-			{
+		} catch (Exception erro) {
+			try {
 				transmissor.close();
 				receptor.close();
-			} 
-			catch (Exception falha) 
-			{} // tentativa de fechar antes que a thread termine
+			} catch (Exception falha) {
+			} // tentativa de fechar antes que a thread termine
 			return;
 		}
 
-		try 
-		{
-			do 
-			{			
-				
-			} 
-			while (!(jogador.espie() instanceof ComunicadoDeVez));
-			
+		try {
+			do {
+
+			} while (!(jogador.espie() instanceof ComunicadoDeVez));
+
 			jogador.envie();
-		} 
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		while (fim) 
-		{
-			try 
-			{
-				if (controladora.podeJogar(jogador)) 
-				{
+		while (fim) {
+			try {
+				if (controladora.podeJogar(jogador)) {
 					vezDeJogar();
 				}
-			} 
-			catch (Exception e) 
-			{
+			} catch (Exception e) {
 				return;
 			}
 		}
 
 	}
 
-	private void vezDeJogar() 
-	{
+	private void vezDeJogar() {
 		try {
 
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		String ret = "Jogador: " + jogador;
 		return ret;
 	}
 
 	@Override
-	public boolean equals(Object obj)
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 
 		if (obj == null)
 			return false;
-		
-		if(this.getClass() != obj.getClass())
+
+		if (this.getClass() != obj.getClass())
 			return false;
 
 		SupervisoraDeConexao supervisora = (SupervisoraDeConexao) obj;
@@ -169,7 +141,6 @@ public class SupervisoraDeConexao extends Thread {
 		return true;
 	}
 
-
 	@Override
 	public int hashCode() {
 		int ret = 31;
@@ -183,9 +154,6 @@ public class SupervisoraDeConexao extends Thread {
 		for (Parceiro cliente : jogadores)
 			ret = ret * 11 + cliente.hashCode();
 
-		if(ret < 0)
-			ret = -ret;
-		
-		return ret;
+		return ret < 0 ? -ret : ret;
 	}
 }

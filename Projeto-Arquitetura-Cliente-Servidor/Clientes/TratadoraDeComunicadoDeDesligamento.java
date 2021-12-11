@@ -1,7 +1,6 @@
 package Clientes;
 
 import ClassesComuns.*;
-import Servidor.*;
 
 public class TratadoraDeComunicadoDeDesligamento extends Thread {
 /*Conforme o arquivo orginal do projeto Forca (servidor de Continhas), a TratadoraDeComunicadoDeDesligamento vai controlar

@@ -86,10 +86,7 @@ public class Palavra implements Comparable<Palavra> {
         
         ret = ret * 13 + new String(this.texto).hashCode();
 
-        if (ret < 0) 
-            ret = -ret;
-        
-        return ret;      
+        return ret < 0 ? -ret : ret;     
     } 
 
     @Override
