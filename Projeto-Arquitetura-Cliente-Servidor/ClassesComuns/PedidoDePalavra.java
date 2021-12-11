@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class PedidoDePalavra extends Comunicado {
+	private static BancoDePalavras bancoDePalavras;
 	private static Grupo grupo;
 	private static Palavra palavra;
 	private static Teclado teclado;
@@ -16,8 +17,6 @@ public class PedidoDePalavra extends Comunicado {
 	private Socket conexao;
 	private ObjectInputStream  receptor;
 	private ObjectOutputStream transmissor;
-	String host = Servidor.HOST_PADRAO;
-    String porta= Servidor.PORTA_PADRAO;	
 	private String chutepalavra;
     
     public PedidoDePalavra (Socket conexao, String chutepalavra) throws Exception
@@ -62,6 +61,7 @@ public class PedidoDePalavra extends Comunicado {
    		        {
    		        	return;
    		        }
+   		    /*    
    		  Parceiro cliente = null;
    		  cliente = new Parceiro (conexao, receptor, transmissor);
    		  ComunicadoComecouPartida comunicadocomecoupartida =null;
@@ -77,10 +77,10 @@ public class PedidoDePalavra extends Comunicado {
 			   cliente.receba(new ComunicadoComecouPartida());
 		       this.chutepalavra = "null";
 		    		              
-		        String palavrasorteada = null;
-			   	 palavra = BancoDePalavras.getPalavraSorteada();
-			   	 Palavra p1 = new Palavra(palavrasorteada);
-			    String copiapalavra = palavrasorteada;
+		       String palavra = null;
+		       Palavra p1 = new Palavra(palavra);
+			   	 p1 = bancoDePalavras.getPalavraSorteada();
+			   	String copiapalavra = palavra;
 			   	int quantidade = copiapalavra.length();
 		    	 Palavra p2 = new Palavra (chutepalavra);
 			     if (chutepalavra == copiapalavra)
@@ -92,6 +92,7 @@ public class PedidoDePalavra extends Comunicado {
 		       
     	   }
     
-    
+            */   
+   		         
 	
 }

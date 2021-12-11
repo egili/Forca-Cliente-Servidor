@@ -1,20 +1,20 @@
 package Servidor;
 
-import Clientes.*;
 import ClassesComuns.*;
+import Clientes.*;
 
-public class ControladorDeLetrasJaDigitadas implements Cloneable
-{
-    private String letrasJaDigitadas;
 
-    public ControladorDeLetrasJaDigitadas ()
+public class ControladorDePalavrasJaDigitadas implements Cloneable {
+    private String palavrasJaDigitadas;
+
+    public ControladorDePalavrasJaDigitadas ()
     {
-        this.letrasJaDigitadas = "";
+        this.palavrasJaDigitadas = "";
     }
 
     public boolean isJaDigitada (char letra)
     {
-        int i = this.letrasJaDigitadas.indexOf(letra);
+        int i = this.palavrasJaDigitadas.indexOf(letra);
         if (i == -1)
 
             return false;
@@ -25,7 +25,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     public void registre (char letra) throws Exception
     {
         if(isJaDigitada(letra))
-            throw new Exception("Letra ja digitada");
+            throw new Exception(" Palavra ja digitada");
         
         boolean num = false;
         try{
@@ -35,18 +35,19 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
             num = false;
         }
         if (num) {
-            throw new Exception("nao pode ser numero");
+            throw new Exception(" "
+            		+ " Palavra nao pode ser numero");
         }
         
-        this.letrasJaDigitadas = this.letrasJaDigitadas + letra;
+        this.palavrasJaDigitadas = this.palavrasJaDigitadas + letra;
  
     }
     @Override
     public String toString ()
     {
         String ret = "";
-        for (int letra = 0; letra < this.letrasJaDigitadas.length(); letra++){
-            ret += letrasJaDigitadas.charAt(letra) + ",";
+        for (int letra = 0; letra < this.palavrasJaDigitadas.length(); letra++){
+            ret += palavrasJaDigitadas.charAt(letra) + ",";
         }
 
         return  ret;
@@ -59,10 +60,10 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
 
         if (obj == null) return false;
 
-        if (obj.getClass() != ControladorDeLetrasJaDigitadas.class)
+        if (obj.getClass() != ControladorDePalavrasJaDigitadas.class)
             return false;
 
-        if(this.letrasJaDigitadas != ((ControladorDeLetrasJaDigitadas) obj) .letrasJaDigitadas)
+        if(this.palavrasJaDigitadas != ((ControladorDePalavrasJaDigitadas) obj) .palavrasJaDigitadas)
             return false;
 
         return  true;
@@ -72,24 +73,24 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
     public int hashCode ()
     {
         int ret = 17;
-        ret = ret * 17 + new String(letrasJaDigitadas).hashCode() ;
+        ret = ret * 17 + new String(palavrasJaDigitadas).hashCode() ;
         if (ret < 0)
             ret = - ret;
         return  ret;
     }
 
-    public ControladorDeLetrasJaDigitadas(ControladorDeLetrasJaDigitadas c) throws Exception // construtor de cï¿½pia
+    public ControladorDePalavrasJaDigitadas(ControladorDePalavrasJaDigitadas c) throws Exception // construtor de copia
     {
         if(c == null)
             throw new Exception("c era null");
-        this.letrasJaDigitadas = c.letrasJaDigitadas;
+        this.palavrasJaDigitadas = c.palavrasJaDigitadas;
     }
 
     public Object clone ()
     {
-        ControladorDeLetrasJaDigitadas ret = null;
+        ControladorDePalavrasJaDigitadas ret = null;
         try{
-            ret = new ControladorDeLetrasJaDigitadas(this);
+            ret = new ControladorDePalavrasJaDigitadas(this);
         }
         catch (Exception ignored) {
 
@@ -97,3 +98,5 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         return ret;
     }}
     
+
+}

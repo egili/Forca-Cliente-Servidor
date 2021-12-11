@@ -75,7 +75,7 @@ public class PedidoDeLetra extends Comunicado {
 		    
 		  // valida se letra for um número e se a letra já foi escrita,
 		   //senão acrescenta em letrasJaDigitadas
-		   controladorDeLetrasJaDigitadas.registre(letra);
+		   //controladorDeLetrasJaDigitadas.registre(letra);
 		   
 		       	            
 		   // registra a umaletra dentro da variavel umaletra.

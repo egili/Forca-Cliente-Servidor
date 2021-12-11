@@ -78,7 +78,7 @@ public class Instanciacao
     	Comunicado ret = null;
          
         try {
-         ret = Comunicado(servidor);
+         ret = Comunicado();
          
         } catch (Exception err) {
             throw new Exception("Ocorreu um erro na instanciação da \"tratadoraDeDesligamento\"");
