@@ -119,11 +119,11 @@ public class AceitadoraDeConexao extends Thread
 	@Override
 	public String toString ()
 	{
-		String ret ="";
+		
 
-		ret = "Servidor: " + servidor + "\nPartida iniciada: " + isComecou + "\n Controladora De Partida:" + controladoraPartida;
+		return "Servidor: " + servidor + "\nPartida iniciada: " + isComecou + "\n Controladora De Partida:" + controladoraPartida;
 
-		return ret;
+		
 	}
 
 	@Override
