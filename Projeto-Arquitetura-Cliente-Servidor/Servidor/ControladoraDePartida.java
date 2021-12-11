@@ -9,6 +9,7 @@ public class ControladoraDePartida {
 	private int posicaoJogador = 0;
 
 	public ControladoraDePartida(ArrayList<Parceiro> jogadores) throws Exception {
+
 		if (jogadores == null)
 			throw new Exception("Nenhum jogador no grupo");
 
@@ -26,6 +27,7 @@ public class ControladoraDePartida {
 	}
 
 	public boolean podeJogar(Parceiro jogador) throws Exception {
+		
 		try {
 			synchronized (jogadores) {
 				return jogador == jogadores.get(posicaoJogador);
@@ -48,6 +50,7 @@ public class ControladoraDePartida {
 	}
 
 	public void adicionarSupervisora(SupervisoraDeConexao supervisora) throws Exception {
+		
 		if (supervisora == null)
 			throw new Exception("Supervisora nula");
 
@@ -59,6 +62,7 @@ public class ControladoraDePartida {
 	}
 
 	public void fimThreadSupervisora() {
+		
 		synchronized (supervisoras) {
 			for (int i = 0; i < supervisoras.size(); i++) {
 				supervisoras.get(i).fim = false;
