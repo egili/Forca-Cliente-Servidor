@@ -12,9 +12,9 @@ public class ControladorDePalavrasJaDigitadas implements Cloneable {
         this.palavrasJaDigitadas = "";
     }
 
-    public boolean isJaDigitada (char letra)
+    public boolean isJaDigitada (String palavra)
     {
-        int i = this.palavrasJaDigitadas.indexOf(letra);
+        int i = this.palavrasJaDigitadas.indexOf(palavra);
         if (i == -1)
 
             return false;
@@ -22,14 +22,14 @@ public class ControladorDePalavrasJaDigitadas implements Cloneable {
         return true;
     }
 
-    public void registre (char letra) throws Exception
+    public void registrepalavra (String palavra) throws Exception
     {
-        if(isJaDigitada(letra))
+        if(isJaDigitada(palavra))
             throw new Exception(" Palavra ja digitada");
         
         boolean num = false;
         try{
-            double numero = Double.parseDouble(letra+"");
+            double numero = Double.parseDouble(palavra+"");
             num = true;
         }catch (NumberFormatException erro){
             num = false;
@@ -39,7 +39,7 @@ public class ControladorDePalavrasJaDigitadas implements Cloneable {
             		+ " Palavra nao pode ser numero");
         }
         
-        this.palavrasJaDigitadas = this.palavrasJaDigitadas + letra;
+        this.palavrasJaDigitadas = this.palavrasJaDigitadas + palavra;
  
     }
     @Override
