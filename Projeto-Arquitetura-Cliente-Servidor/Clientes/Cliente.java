@@ -65,7 +65,6 @@ public class Cliente {
 		ComunicadoDeErro errou = null;
 		ComunicadoDeLetra letradojogador = null;
 		ComunicadoDeLetraJaDigitada letraquejadigitou = null;
-		ComunicadoDePalavra palavradojogador = null;
 		ComunicadoDePerda perdeu = null;
 		ComunicadoDeVez suavez = null;
 		ComunicadoDeVitoria venceu = null;
@@ -119,7 +118,7 @@ public class Cliente {
 	
 		int opcao = ' ';
 
-		while (!(comunicado instanceof ComunicadoDeVez)) {
+		while (!(comunicado instanceof ComunicadoDeVez)); {
 			System.out.println("Jogador, a sua conexao com o nosso servidor foi aceita");
 			System.out.println("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
 			System.out.println("Tecle 1 para digitar a letra!");
@@ -295,7 +294,7 @@ public class Cliente {
 					comunicado = (Comunicado) servidor.espie();
 				}
 
-				while (!(comunicado instanceof ComunicadoDePalavra));
+				while (!(comunicado instanceof ComunicadoDeresultadoPalavra));
 
 					if((controladordePalavrasJaDigitadas.isJaDigitada(chutepalavra) == true) &&(comunicado instanceof ComunicadoDePalavraJaDigitada))
 						

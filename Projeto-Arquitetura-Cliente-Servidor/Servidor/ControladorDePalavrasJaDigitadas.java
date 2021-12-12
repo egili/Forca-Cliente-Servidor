@@ -1,8 +1,5 @@
 package Servidor;
 
-import ClassesComuns.*;
-import Clientes.*;
-
 public class ControladorDePalavrasJaDigitadas implements Cloneable {
 	private String palavrasJaDigitadas;
 

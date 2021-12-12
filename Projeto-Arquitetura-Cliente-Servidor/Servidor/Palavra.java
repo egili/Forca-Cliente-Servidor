@@ -1,8 +1,5 @@
 package Servidor;
 
-import Clientes.*;
-import ClassesComuns.*;
-
 public class Palavra implements Comparable<Palavra> {
 
     private String texto;
