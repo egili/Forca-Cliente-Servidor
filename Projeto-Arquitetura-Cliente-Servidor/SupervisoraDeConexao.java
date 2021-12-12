@@ -109,11 +109,11 @@ public class SupervisoraDeConexao extends Thread {
 				switch (oQueFoiPedido) {
 
 				case '1':
-
+						//TODO: acoes que acontecerao qnd o cliente escolher digitar uma letra
 					break;
 
 				case '2':
-
+					    //TODO: acoes que acontecerao qnd o cliente escolher digitar uma palavra
 					break;
 				}
 
@@ -132,12 +132,12 @@ public class SupervisoraDeConexao extends Thread {
 			}
 
 			else if (comunicado instanceof ComunicadoDePerda) {
-
+				// TODO: o que acontece qnd um usuario perde
 			}
 
 			if (!comunicadoDeDados.isTracinhos()) {
 				comunicado = new ComunicadoDeVitoria();
-
+					//TODO: o que acontece qnd um usuario ganha
 			}
 
 		} catch (Exception e) {
