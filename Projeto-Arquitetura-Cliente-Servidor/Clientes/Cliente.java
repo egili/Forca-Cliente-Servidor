@@ -159,7 +159,7 @@ public class Cliente {
 						Tracinhos tracinhos = null;
 						ComunicadoDeDados comunicadodedados = null;
 						Palavra copiapalavra = palavra;
-						String letrasJaDigitadas;
+						String letrasJaDigitadas = null;
 								try
 								{
 								    tracinhos = new Tracinhos (palavra.getTamanho());
@@ -179,7 +179,7 @@ public class Cliente {
 							int posicao = copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra);
 							tracinhos.revele (posicao, letra);
 						}
-				         int i;
+				         int i = 0;
 						if((copiapalavra.getQuantidade(letra) > 0) && ((copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra)>0)))
 				         {
 				           do
@@ -338,7 +338,7 @@ public class Cliente {
 			           while (!(comunicado instanceof ComunicadoDeErro));
 			        	   if ((comunicado instanceof ComunicadoDeDados) && (comunicado instanceof ComunicadoDeVez))
 				                  controladoraDePartida.getJogadores();
-			                      int j;
+			                      int j = 0;
 					             int jogador = j;
 			               comunicado = (ComunicadoDeErro) servidor.envie();
 			               System.out.println("Jogador" + j + "errou a palavra!");
@@ -439,10 +439,10 @@ public class Cliente {
 				} while ("12".indexOf(opcao) != -1);
 
 			}
+			System.out.println("Obrigado por usar esse programa !!");
+			System.exit(0);
 		}
 
-	System.out.println("Obrigado por usar esse programa !!");
-	System.exit(0);
 	}// end da main
 
 	}
