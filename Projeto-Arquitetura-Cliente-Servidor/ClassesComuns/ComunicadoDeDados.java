@@ -1,6 +1,5 @@
 package ClassesComuns;
 
-import Clientes.*;
 import Servidor.*;
 
 public class ComunicadoDeDados extends Comunicado{
@@ -8,6 +7,7 @@ public class ComunicadoDeDados extends Comunicado{
 	    private Tracinhos tracinhos;
 	    private ControladorDeLetrasJaDigitadas controladorDeLetrasJaDigitadas;
 	    private ControladorDeErros controladorDeErros;
+	    private ComunicadoDeDados comunicadoDeDados;
 
 	    public ComunicadoDeDados () {
 	        try
@@ -59,5 +59,9 @@ public class ComunicadoDeDados extends Comunicado{
 	    public void setControladorDeErros(ControladorDeErros controladorDeErros) {
 	        this.controladorDeErros = controladorDeErros;
 	    }
-
+          
+	    public ComunicadoDeDados getComunicadoDeDados()
+	    {
+	      return comunicadoDeDados;	
+	    }
 }

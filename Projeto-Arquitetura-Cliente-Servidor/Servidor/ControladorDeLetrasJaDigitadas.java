@@ -1,5 +1,8 @@
 package Servidor;
 
+import Clientes.*;
+import ClassesComuns.*;
+
 public class ControladorDeLetrasJaDigitadas implements Cloneable
 {
     private String letrasJaDigitadas;
@@ -19,7 +22,7 @@ public class ControladorDeLetrasJaDigitadas implements Cloneable
         return true;
     }
 
-    public void registre (char letra) throws Exception
+    public void registreletra (char letra) throws Exception
     {
         if(isJaDigitada(letra))
             throw new Exception("Letra ja digitada");

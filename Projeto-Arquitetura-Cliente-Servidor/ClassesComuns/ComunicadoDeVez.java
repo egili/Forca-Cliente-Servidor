@@ -1,8 +1,5 @@
 package ClassesComuns;
 
-import Clientes.*;
-import Servidor.*;
-
 public class ComunicadoDeVez extends Comunicado {
 	private int posicaoJogador;
 	

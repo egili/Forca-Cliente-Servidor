@@ -75,7 +75,6 @@ public class AceitadoraDeConexao extends Thread {
 							usuario.receba(new ComunicadoDeVez(null));
 					} catch (Exception e) {
 					}
-
 				} else if (isComecou) {
 					try {
 						if (jogadores.size() == 2)
@@ -86,18 +85,12 @@ public class AceitadoraDeConexao extends Thread {
 					}
 				}
 			}
-
 		}
 	}
 
 	@Override
 	public String toString() {
-		String ret = "";
-
-		ret = "Servidor: " + servidor + "\nPartida iniciada: " + isComecou + "\n Controladora De Partida:"
-				+ controladoraPartida;
-
-		return ret;
+			return "Servidor: " + servidor + "\nPartida iniciada: " + isComecou + "\n Controladora De Partida:" + controladoraPartida;	
 	}
 
 	@Override

@@ -1,9 +1,6 @@
 package ClassesComuns;
 
-import Clientes.*;
-import Servidor.*;
-
 public class PedidoParaSair extends Comunicado
 {/*
-	ha sentido em pedir pra sair do grupo?
+	o servidor manda um pedido para sair em situacoes cujo jogador vai sair do jogo
 */}

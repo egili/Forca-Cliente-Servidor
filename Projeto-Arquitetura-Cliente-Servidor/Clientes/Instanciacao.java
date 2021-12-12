@@ -21,7 +21,7 @@ public class Instanciacao {
 
 			ret = new Socket(host, porta);
 		} catch (Exception err) {
-			throw new Exception("Ocorreu um erro na instanciaÁ„o de \"conexao\".");
+			throw new Exception("Ocorreu um erro na instancia√ß√£o de \"conexao\".");
 		}
 		return ret;
 	}
@@ -31,7 +31,7 @@ public class Instanciacao {
 		try {
 			ret = new ObjectOutputStream(conexao.getOutputStream());
 		} catch (Exception err) {
-			throw new Exception("Ocorreu um erro na instanciaÁ„o do \"transmissor\".");
+			throw new Exception("Ocorreu um erro na instancia√ß√£o do \"transmissor\".");
 		}
 		return ret;
 	}
@@ -41,10 +41,10 @@ public class Instanciacao {
 		try {
 			ret = new ObjectInputStream(conexao.getInputStream());
 		} catch (IOException err) {
-			System.err.println("O servidor est· cheio, volte mais tarde !");
+			System.err.println("O servidor est√° cheio, volte mais tarde !");
 			System.exit(0);
 		} catch (Exception err) {
-			throw new Exception("Ocorreu um erro na instanciaÁ„o do \"receptor\".");
+			throw new Exception("Ocorreu um erro na instancia√ß√£o do \"receptor\".");
 		}
 
 		return ret;
@@ -57,7 +57,7 @@ public class Instanciacao {
 			ret = new Parceiro(conexao, receptor, transmissor);
 
 		} catch (Exception err) {
-			throw new Exception("Ocorreu um erro na instanciaÁ„o do \"servidor\".");
+			throw new Exception("Ocorreu um erro na instancia√ß√£o do \"servidor\".");
 		}
 		return ret;
 	}
@@ -71,7 +71,7 @@ public class Instanciacao {
 			ret = new TratadoraDeComunicados(servidor);
 
 		} catch (Exception err) {
-			throw new Exception("Ocorreu um erro na instanciaÁ„o da \"tratadoraDeComunicados\"");
+			throw new Exception("Ocorreu um erro na instancia√ß√£o da \"tratadoraDeComunicados\"");
 		}
 
 		return ret;

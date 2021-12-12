@@ -1,8 +1,5 @@
 package ClassesComuns;
 
-import Clientes.*;
-import Servidor.*;
-
 public class ComunicadoDeLetra extends Comunicado {
 	public boolean isJaDigitada() {
         return jaDigitada;
