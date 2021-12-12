@@ -29,7 +29,7 @@ public class ComunicadoDeDados extends Comunicado {
 		this.palavra = palavra;
 	}
 	public boolean isTracinhos() {
-		return tracinhos.isAindaComTracinhos() ? true : false;
+		return tracinhos.isAindaComTracinhos();
 	}
 
 	public Tracinhos getTracinhos() {
