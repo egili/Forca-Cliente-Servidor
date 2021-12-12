@@ -180,7 +180,11 @@ public class Cliente {
 							int posicao = copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra);
 							tracinhos.revele (posicao, letra);
 						}
+<<<<<<< HEAD
 				         int i = 0 ;
+=======
+				         int i = 0;
+>>>>>>> baa47b76ebe6a8b6caef48379f1b4f1387989f1f
 						if((copiapalavra.getQuantidade(letra) > 0) && ((copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra)>0)))
 				         {
 				           do
@@ -339,7 +343,12 @@ public class Cliente {
 			           while (!(comunicado instanceof ComunicadoDeErro));
 			        	   if ((comunicado instanceof ComunicadoDeDados) && (comunicado instanceof ComunicadoDeVez))
 				                  controladoraDePartida.getJogadores();
+<<<<<<< HEAD
 			                      
+=======
+			                      int j = 0;
+					             int jogador = j;
+>>>>>>> baa47b76ebe6a8b6caef48379f1b4f1387989f1f
 			               comunicado = (ComunicadoDeErro) servidor.envie();
 			               System.out.println("Jogador" + posjogador + "errou a palavra!");
 			               
@@ -439,7 +448,13 @@ public class Cliente {
 				} while ("12".indexOf(opcao) != -1);
 
 			}
+			System.out.println("Obrigado por usar esse programa !!");
+			System.exit(0);
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> baa47b76ebe6a8b6caef48379f1b4f1387989f1f
 	}// end da main
 
 	}
