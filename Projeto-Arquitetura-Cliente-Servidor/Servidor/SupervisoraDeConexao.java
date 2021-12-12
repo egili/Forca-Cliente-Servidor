@@ -15,7 +15,8 @@ public class SupervisoraDeConexao extends Thread {
 	private ObjectInputStream receptor;
 	public boolean fim = true;
 
-	public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios, ControladoraDePartida controladora) throws Exception {
+	public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios, ControladoraDePartida controladora)
+			throws Exception {
 
 		if (conexao == null)
 			throw new Exception("Conexao ausente");
@@ -68,10 +69,10 @@ public class SupervisoraDeConexao extends Thread {
 
 		try {
 			do {
-
 			} while (!(jogador.espie() instanceof ComunicadoDeVez));
 
 			jogador.envie();
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -142,7 +143,7 @@ public class SupervisoraDeConexao extends Thread {
 
 	@Override
 	public int hashCode() {
-		
+
 		int ret = 31;
 
 		ret = ret * 11 + this.controladora.hashCode();
