@@ -1,6 +1,6 @@
 package Clientes;
-import ClassesComuns.*;
 
+import ClassesComuns.*;
 
 public class TratadoraDeComunicados extends Thread {
 
@@ -85,4 +85,3 @@ public class TratadoraDeComunicados extends Thread {
 		return ret < 0 ? -ret : ret;
 	}
 }
-

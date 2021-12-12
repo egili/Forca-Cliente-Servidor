@@ -1,5 +1,3 @@
 package ClassesComuns;
 
-public class PedidoDePalavra extends Comunicado {
-
-}
+public class PedidoDePalavra extends Comunicado implements Cloneable{}

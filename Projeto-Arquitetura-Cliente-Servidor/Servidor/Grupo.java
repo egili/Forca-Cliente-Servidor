@@ -61,11 +61,6 @@ public class Grupo<X> { // fila
        return (Cliente) this.removerJogadorDoGrupo();	
      }
 	
-	/*public byte isVezDeJogar() 
-	{
-		return 
-	}*/
-	
 	@Override
 	public String toString() 
 	{
@@ -140,9 +135,6 @@ public class Grupo<X> { // fila
 		for (int i = 0; i < this.TAMANHO_GRUPO; i++)
 			ret = 13 * ret + this.jogadores[i].hashCode();
 
-		if (ret < 0)
-			ret = -ret;
-
-		return ret;
+		return ret < 0 ? -ret : ret;
 	}
 }

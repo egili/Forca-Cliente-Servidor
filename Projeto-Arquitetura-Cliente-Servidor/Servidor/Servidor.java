@@ -8,7 +8,7 @@ public class Servidor {
 	public static String PORTA_PADRAO = "3000";
 
 	public static void main(String[] args) {
-		
+
 		if (args.length > 1) {
 			System.err.println("Uso esperado: java Servidor [PORTA]\n");
 			return;
@@ -59,7 +59,7 @@ public class Servidor {
 					System.out.println("O servidor foi desativado!\n");
 					System.exit(0);
 				}
-			} else 
+			} else
 				System.err.println("Comando invalido");
 		}
 	}
