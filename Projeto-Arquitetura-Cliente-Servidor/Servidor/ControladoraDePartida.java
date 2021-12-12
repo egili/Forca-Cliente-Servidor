@@ -1,143 +1,118 @@
 package Servidor;
 
 import ClassesComuns.*;
-
 import java.util.ArrayList;
 
-public class ControladoraDePartida 
-{
-    private final ArrayList<Parceiro> jogadores;
-    private final ArrayList<SupervisoraDeConexao> supervisoras = new ArrayList<>();
-    private int posicaoJogador = 0;
+public class ControladoraDePartida {
+	private final ArrayList<Parceiro> jogadores;
+	private final ArrayList<SupervisoraDeConexao> supervisoras = new ArrayList<>();
+	private int posicaoJogador = 0;
 
-    public ControladoraDePartida (ArrayList<Parceiro> jogadores) throws Exception 
-    {
-        if (jogadores == null)
-            throw new Exception("Nenhum jogador no grupo");
+	public ControladoraDePartida(ArrayList<Parceiro> jogadores) throws Exception {
 
-        this.jogadores = jogadores;
-    }
+		if (jogadores == null)
+			throw new Exception("Nenhum jogador no grupo");
 
-    public void proximoJogador() // reimplementando a ideia de fila
-    {
-        synchronized (jogadores) 
-        {
-            posicaoJogador++;
-            
-            if (posicaoJogador == jogadores.size())
-                posicaoJogador = 0;
-        }
-    }
+		this.jogadores = jogadores;
+	}
 
-    public boolean podeJogar(Parceiro jogador) throws Exception 
-    {
-        try 
-        {
-            synchronized (jogadores) 
-            {
-                return jogador == jogadores.get(posicaoJogador);
-            }
-        } 
-        catch (Exception e)
-        {
-            throw new Exception("jogador removido");
-        }
-    }
+	public void proximoJogador() // reimplementando a ideia de fila
+	{
+		synchronized (jogadores) {
+			posicaoJogador++;
 
-    public ArrayList<Parceiro> getJogadores()
-    {
-        return jogadores;
-    }
+			if (posicaoJogador == jogadores.size())
+				posicaoJogador = 0;
+		}
+	}
 
-    public int getPosicaoJogador()
-    {
-        return posicaoJogador;
-    }
+	public boolean podeJogar(Parceiro jogador) throws Exception {
+		
+		try {
+			synchronized (jogadores) {
+				return jogador == jogadores.get(posicaoJogador);
+			}
+		} catch (Exception e) {
+			throw new Exception("jogador removido");
+		}
+	}
 
-    public void setPosicaoJogador (int posicao) 
-    {
-        this.posicaoJogador = posicao;
-    }
+	public ArrayList<Parceiro> getJogadores() {
+		return jogadores;
+	}
 
-    public void adicionarSupervisora (SupervisoraDeConexao supervisora) throws Exception
-    {
-        if(supervisora == null)
-            throw new Exception("Supervisora nula");
+	public int getPosicaoJogador() {
+		return posicaoJogador;
+	}
 
-        supervisoras.add(supervisora);
-    }
+	public void setPosicaoJogador(int posicao) {
+		this.posicaoJogador = posicao;
+	}
 
-    public ArrayList<SupervisoraDeConexao> getSupervisoras()
-    {
-        return supervisoras;
-    }
+	public void adicionarSupervisora(SupervisoraDeConexao supervisora) throws Exception {
+		
+		if (supervisora == null)
+			throw new Exception("Supervisora nula");
 
-    public void fimThreadSupervisora()
-    {
-        synchronized (supervisoras)
-        {
-            for (int i = 0; i < supervisoras.size(); i++)
-            {
-                supervisoras.get(i).fim = false;
-            }
-        }
-    }
+		supervisoras.add(supervisora);
+	}
 
-    @Override
-    public String toString() 
-    {
-        return "Controladora de Partida{" +
-                "Jogadores = " + jogadores +
-                ", posicao =" + posicaoJogador +
-                '}';
-    }
+	public ArrayList<SupervisoraDeConexao> getSupervisoras() {
+		return supervisoras;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
+	public void fimThreadSupervisora() {
+		
+		synchronized (supervisoras) {
+			for (int i = 0; i < supervisoras.size(); i++) {
+				supervisoras.get(i).fim = false;
+			}
+		}
+	}
 
-        if (this == obj)
-            return true;
+	@Override
+	public String toString() {
+		return "Controladora de Partida{" + "Jogadores = " + jogadores + ", posicao =" + posicaoJogador + '}';
+	}
 
-        if(obj == null)
-            return false;
+	@Override
+	public boolean equals(Object obj) {
 
-        if(obj.getClass() != this.getClass())
-            return false;
+		if (this == obj)
+			return true;
 
-        ControladoraDePartida controladora = (ControladoraDePartida) obj;
+		if (obj == null)
+			return false;
 
-        if(controladora.posicaoJogador != posicaoJogador)
-            return false;
-    
-        if(controladora.jogadores.size() == jogadores.size())
-        {
-            for(int i = 0; i < jogadores.size(); i++)
-            {
-                if(!jogadores.get(i).equals(controladora.jogadores.get(i))) 
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+		if (obj.getClass() != this.getClass())
+			return false;
 
-    @Override
-    public int hashCode() 
-    {
-        int ret = 31;
-     
-        ret = ret * 7 + new Integer(posicaoJogador).hashCode();
+		ControladoraDePartida controladora = (ControladoraDePartida) obj;
 
-        for (int i = 0; i < jogadores.size(); i++)
-        {
-            ret = ret * 7 + jogadores.get(i).hashCode();
-        }
+		if (controladora.posicaoJogador != posicaoJogador)
+			return false;
 
-        if(ret < 0 )
-        	ret = -ret;
-        
-        return ret;
-    }
+		if (controladora.jogadores.size() == jogadores.size()) {
+			for (int i = 0; i < jogadores.size(); i++) {
+				if (!jogadores.get(i).equals(controladora.jogadores.get(i))) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		int ret = 31;
+
+		ret = ret * 7 + new Integer(posicaoJogador).hashCode();
+
+		for (int i = 0; i < jogadores.size(); i++) {
+			ret = ret * 7 + jogadores.get(i).hashCode();
+		}
+
+		return ret < 0 ? -ret : ret;
+	}
 }

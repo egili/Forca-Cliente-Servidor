@@ -1,7 +1,6 @@
 package Servidor;
 
 import ClassesComuns.*;
-import Clientes.*;
 
 public class ComunicadoDeResultadoPalavra extends Comunicado{
 

@@ -67,13 +67,12 @@ public class Tracinhos implements Cloneable {
 
 	@Override
 	public int hashCode() {
+		
 		int ret = 31;
+		
 		ret = ret * 31 + new String(this.texto).hashCode(); // String é um vetor de caracteres
-
-		if (ret < 0)
-			ret = -ret;
-
-		return ret;
+		
+		return ret < 0 ? -ret : ret;
 	}
 
 	public Tracinhos(Tracinhos t) throws Exception { // construtor de cópia
