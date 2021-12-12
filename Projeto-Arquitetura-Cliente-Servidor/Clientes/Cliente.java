@@ -21,7 +21,7 @@ public class Cliente {
    	public static Palavra palavra;
 	public static SupervisoraDeConexao supervisora;
 	public static Tracinhos tracinhos;
-	public static TratadoraDeComunicadoDeDesligamento comunicadoDeDesligamento;
+	public static TratadoraDeComunicados comunicadoDeDesligamento;
     
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
@@ -83,7 +83,7 @@ public class Cliente {
 			transmissor = Instanciacao.instanciarTransmissor(conexao);
 			receptor = Instanciacao.instanciarReceptor(conexao);
 			servidor = Instanciacao.instanciarServidor(conexao, receptor, transmissor);
-			tratadora = Instanciacao.instanciarTratadora(servidor);
+			tratadora = Instanciacao.instanciarTratadoraDeComunicados(servidor);
 			AceitadoraDeConexao aceitadora = new AceitadoraDeConexao((Integer.toString(PORTA_PADRAO)), usuarios); 
 			if (comunicado instanceof PedidoParaEntrar)
 				servidor.receba (new PedidoParaEntrar());
