@@ -45,7 +45,8 @@ public class Cliente {
 		System.out.println("Regra 7: Se voce digitar uma letra e errar, passa a vez para o proximo jogador em sentido horario na sala, ate que um dos 3 acerte a palavra sorteada ");
 		System.out.println("Regra 8: Se voce digitar a ultima letra para a palavra e acertar, voce termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
 		System.out.println("Regra 9: Se por algum motivo voce sair do jogo pois perdeu e tentar voltar ao jogo, tera que esperar em uma sala para aguardar futuros jogadores que vao estar nessa sala ate completar um grupo de 3 jogadores para iniciar uma nova partida");
-
+		System.out.println("Jogador, a sua conexao com o nosso servidor foi aceita");
+	
 		if (args.length > 2) {
 			System.err.println("Uso esperado: java Cliente [HOST [PORTA]]\n");
 			return;
@@ -72,14 +73,9 @@ public class Cliente {
 		ComunicadoTracinhos pediutracinhos = null;
 		ComunicadoDeResultadoPalavra resultadodepalavra = null;
 		TratadoraDeComunicados tratadora = null;
-		//boolean desconectarJogador = false;
-		//boolean primeiravezdepalavra = false;
-		//boolean primeiravezdeletra = false;
-		boolean iniciardados = false;
-        //int posjogador = controladoraDePartida.getPosicaoJogador();
-		//ArrayList<Parceiro> grupojogador = controladoraDePartida.getJogadores();  
+        		//ArrayList<Parceiro> grupojogador = controladoraDePartida.getJogadores();  
 		char letra = Teclado.getUmChar();
-		int quantasletras = palavra.getQuantidade(letra);
+		//int quantasletras = palavra.getQuantidade(letra);
 		int posicaodaletra = Teclado.getUmInt();
 		int qtd = palavra.getPosicaoDaIezimaOcorrencia(posicaodaletra,letra);
 		try {
@@ -128,15 +124,20 @@ public class Cliente {
 			 * Capturar um int,se o que o jogador digitar for diferente de 1,2 dispara erro
 			 * de opcao invalida;
 			 **/
-			try {
-				opcao = Teclado.getUmInt();
-			}
+			do {
+				try {
+					opcao = Teclado.getUmInt();
+				}
 
-			catch (Exception erro) {
-				System.err.println("Opcao invalida!\n");
-				continue;
+				catch (Exception erro) {
+					System.err.println("Opcao invalida!\n");
+					continue;
+					
+				}
+					
 			}
-
+			while (opcao != 1  || opcao !=2 );
+			
 			// *Se entrar na opcao 1, o servidor recebe um pedido de letra e o comunicado
 			// comeca nulo, entra no do de espiar o comunicado. *//
 						/** 1 - Pegar a palavra digitada e verificar se já foi digitada antes---Se sim, informa que já foi digitada e solicita nova palavra
@@ -146,7 +147,7 @@ public class Cliente {
 			try {
 				if (opcao == 1) {
 					System.out.println("Digite uma letra" + letra);
-					PedidoDeLetra pedidodeletra = new PedidoDeLetra(conexao,letra);
+					PedidoDeLetra pedidodeletra = new PedidoDeLetra();
 					servidor.receba(pedidodeletra);
 
 					comunicado = null;
@@ -179,11 +180,9 @@ public class Cliente {
 							int posicao = copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra);
 							tracinhos.revele (posicao, letra);
 						}
-<<<<<<< HEAD
+
 				         int i = 0 ;
-=======
-				         int i = 0;
->>>>>>> baa47b76ebe6a8b6caef48379f1b4f1387989f1f
+
 						if((copiapalavra.getQuantidade(letra) > 0) && ((copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra)>0)))
 				         {
 				           do
@@ -195,7 +194,7 @@ public class Cliente {
 				        		   controladoraDePartida.getJogadores();
 				                    
 				               comunicado = (ComunicadoDeAcerto) servidor.envie();
-				               System.out.println("Jogador" + posjogador + "acertou a letra!");
+				               System.out.println("Jogador" + suavez.getposicaodoJogador() + "acertou a letra!");
 				               comunicado = (ComunicadoDeDados) servidor.envie();
 				               System.out.println(controladoraDePartida.getJogadores());
          				       System.out.println(comunicadodedados.getTracinhos());
@@ -222,7 +221,7 @@ public class Cliente {
 	                   controladoraDePartida.getJogadores();
 		                   
 		       			          comunicado = (ComunicadoDeAcerto) servidor.envie();
-                      System.out.println("Jogador" + posjogador + "acertou a letra!");
+                      System.out.println("Jogador" + suavez.getposicaodoJogador() + "acertou a letra!");
                       comunicado = (ComunicadoDeDados) servidor.envie();
                       System.out.println(controladoraDePartida.getJogadores());
 		              System.out.println(comunicadodedados.getTracinhos());
@@ -252,7 +251,7 @@ public class Cliente {
 						                  controladoraDePartida.getJogadores();
 					                      
 					               comunicado = (ComunicadoDeErro) servidor.envie();
-					               System.out.println("Jogador" + posjogador + "errou a letra!");
+					               System.out.println("Jogador" + suavez.getposicaodoJogador() + "errou a letra!");
 					               comunicado = (ComunicadoDeDados) servidor.envie();
 					               System.out.println(controladoraDePartida.getJogadores());
 					               System.out.println(comunicadodedados.getTracinhos());
@@ -287,14 +286,14 @@ public class Cliente {
 				
 				chutepalavra = Teclado.getUmString();
 				
-				servidor.receba(new PedidoDePalavra(conexao, chutepalavra));
+				servidor.receba(new PedidoDePalavra());
 				
 				comunicado = null;
 				do {
 					comunicado = (Comunicado) servidor.espie();
 				}
 
-				while (!(comunicado instanceof ComunicadoDeresultadoPalavra));
+				while (!(comunicado instanceof ComunicadoDeResultadoPalavra));
 
 					if((controladordePalavrasJaDigitadas.isJaDigitada(chutepalavra) == true) &&(comunicado instanceof ComunicadoDePalavraJaDigitada))
 						
@@ -309,14 +308,14 @@ public class Cliente {
 				if ((comunicado instanceof ComunicadoDePerda) && (comunicado instanceof ComunicadoDeVitoria))
 				{
 					controladoraDePartida.getJogadores();
-					int posJogador = controladoraDePartida.getPosicaoJogador();
+				
 					
 					
 					if (chutepalavra.equals(palavra))
 					comunicado = (ComunicadoDeAcerto) servidor.envie();
 					
 					
-		               System.out.println("Jogador" + posJogador + "acertou a Palavra!");
+		               System.out.println("Jogador" + suavez.getposicaodoJogador()  + "acertou a Palavra!");
 		               comunicado = (ComunicadoDeDados) servidor.envie();
 		               
 		               
@@ -342,14 +341,9 @@ public class Cliente {
 			           while (!(comunicado instanceof ComunicadoDeErro));
 			        	   if ((comunicado instanceof ComunicadoDeDados) && (comunicado instanceof ComunicadoDeVez))
 				                  controladoraDePartida.getJogadores();
-<<<<<<< HEAD
-			                      
-=======
-			                      int j = 0;
-					             int jogador = j;
->>>>>>> baa47b76ebe6a8b6caef48379f1b4f1387989f1f
+	                                                  
 			               comunicado = (ComunicadoDeErro) servidor.envie();
-			               System.out.println("Jogador" + posjogador + "errou a palavra!");
+			               System.out.println("Jogador" + suavez.getposicaodoJogador() + "errou a palavra!");
 			               
 			               String palavraJaDigitada = chutepalavra; //fazer na classe pedido de palavra para armazenar a palavra ja digitada e depois exibir igual as letras
 			               
@@ -450,10 +444,7 @@ public class Cliente {
 			System.out.println("Obrigado por usar esse programa !!");
 			System.exit(0);
 		}
-<<<<<<< HEAD
-=======
 
->>>>>>> baa47b76ebe6a8b6caef48379f1b4f1387989f1f
 	}// end da main
 
 	}
