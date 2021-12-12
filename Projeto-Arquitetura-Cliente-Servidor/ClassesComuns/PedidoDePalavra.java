@@ -6,14 +6,12 @@ import Servidor.*;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class PedidoDePalavra extends Comunicado {
 	private static BancoDePalavras bancoDePalavras;
 	private static Grupo grupo;
 	private static Palavra palavra;
 	private static Teclado teclado;
-	private char letra;
 	private Socket conexao;
 	private ObjectInputStream  receptor;
 	private ObjectOutputStream transmissor;
@@ -66,33 +64,10 @@ public class PedidoDePalavra extends Comunicado {
    		  cliente = new Parceiro (conexao, receptor, transmissor);
    		  ComunicadoComecouPartida comunicadocomecoupartida =null;
 		  Comunicado comunicado = null;		
-		   
+		  */  
 		    
-		   do
-		   {
-			   comunicado = (Comunicado)cliente.espie ();
-		   }
-		   
-		   while (!(comunicado instanceof ComunicadoComecouPartida));
-			   cliente.receba(new ComunicadoComecouPartida());
-		       this.chutepalavra = "null";
-		    		              
-		       String palavra = null;
-		       Palavra p1 = new Palavra(palavra);
-			   	 p1 = bancoDePalavras.getPalavraSorteada();
-			   	String copiapalavra = palavra;
-			   	int quantidade = copiapalavra.length();
-		    	 Palavra p2 = new Palavra (chutepalavra);
-			     if (chutepalavra == copiapalavra)
-			     {
-			    	 System.out.println(chutepalavra);
-			     }	
-		    	this.chutepalavra = chutepalavra;
-		    	
-		       
-    	   }
-    
-            */   
-   		         
+		  	         
 	
+}
+    
 }

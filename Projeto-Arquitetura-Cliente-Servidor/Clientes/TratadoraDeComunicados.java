@@ -1,6 +1,6 @@
 package Clientes;
 import ClassesComuns.*;
-import Servidor.*;
+
 
 public class TratadoraDeComunicados extends Thread {
 

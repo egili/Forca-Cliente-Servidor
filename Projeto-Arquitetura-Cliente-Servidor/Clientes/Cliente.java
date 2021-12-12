@@ -23,6 +23,7 @@ public class Cliente {
 	public static Tracinhos tracinhos;
 	public static TratadoraDeComunicadoDeDesligamento comunicadoDeDesligamento;
     
+	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Bem-vindo(a) ao jogo forca servidor! - Trabalho final de java");
@@ -34,7 +35,7 @@ public class Cliente {
 		System.out.println("RA 20668 - Elisangela Sanntos, RA 20669 - Eliseu Gili");
 		System.out.println("RA 21101 - Leandro de Freitas, RA 21106 - Lunara Cunha");
 		System.out.println("Antes de passarmos ao menu, vamos te passar algumas regras desse jogo \n");
-	
+        System.out.println ("------------------------------------------------------------------------------");	
 		System.out.println("Regra 1: Voce pode escolher digitar uma letra ou palavra quando for a sua vez de jogar na partida");
 		System.out.println("Regra 2: Voce tera uma palavra a ser advinhada por partida para o grupo de 3 jogadores");
 		System.out.println("Regra 3: Sempre tera um ganhador e dois perdedores por partida");
@@ -72,12 +73,12 @@ public class Cliente {
 		ComunicadoTracinhos pediutracinhos = null;
 		ComunicadoDeResultadoPalavra resultadodepalavra = null;
 		TratadoraDeComunicados tratadora = null;
-		boolean desconectarJogador = false;
-		boolean primeiravezdepalavra = false;
-		boolean primeiravezdeletra = false;
+		//boolean desconectarJogador = false;
+		//boolean primeiravezdepalavra = false;
+		//boolean primeiravezdeletra = false;
 		boolean iniciardados = false;
-        int posjogador = controladoraDePartida.getPosicaoJogador();
-		ArrayList<Parceiro> grupojogador = controladoraDePartida.getJogadores();  
+        //int posjogador = controladoraDePartida.getPosicaoJogador();
+		//ArrayList<Parceiro> grupojogador = controladoraDePartida.getJogadores();  
 		char letra = Teclado.getUmChar();
 		int quantasletras = palavra.getQuantidade(letra);
 		int posicaodaletra = Teclado.getUmInt();
@@ -118,7 +119,7 @@ public class Cliente {
 	
 		int opcao = ' ';
 
-		while (!(comunicado instanceof ComunicadoComecouPartida)) {
+		while (!(comunicado instanceof ComunicadoDeVez)) {
 			System.out.println("Jogador, a sua conexao com o nosso servidor foi aceita");
 			System.out.println("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
 			System.out.println("Tecle 1 para digitar a letra!");
@@ -159,7 +160,7 @@ public class Cliente {
 						Tracinhos tracinhos = null;
 						ComunicadoDeDados comunicadodedados = null;
 						Palavra copiapalavra = palavra;
-						String letrasJaDigitadas;
+						String letrasJaDigitadas = null;
 								try
 								{
 								    tracinhos = new Tracinhos (palavra.getTamanho());
@@ -179,7 +180,7 @@ public class Cliente {
 							int posicao = copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra);
 							tracinhos.revele (posicao, letra);
 						}
-				         int i;
+				         int i = 0 ;
 						if((copiapalavra.getQuantidade(letra) > 0) && ((copiapalavra.getPosicaoDaIezimaOcorrencia (i,letra)>0)))
 				         {
 				           do
@@ -338,10 +339,9 @@ public class Cliente {
 			           while (!(comunicado instanceof ComunicadoDeErro));
 			        	   if ((comunicado instanceof ComunicadoDeDados) && (comunicado instanceof ComunicadoDeVez))
 				                  controladoraDePartida.getJogadores();
-			                      int j;
-					             int jogador = j;
+			                      
 			               comunicado = (ComunicadoDeErro) servidor.envie();
-			               System.out.println("Jogador" + j + "errou a palavra!");
+			               System.out.println("Jogador" + posjogador + "errou a palavra!");
 			               
 			               String palavraJaDigitada = chutepalavra; //fazer na classe pedido de palavra para armazenar a palavra ja digitada e depois exibir igual as letras
 			               
@@ -440,9 +440,6 @@ public class Cliente {
 
 			}
 		}
-
-	System.out.println("Obrigado por usar esse programa !!");
-	System.exit(0);
 	}// end da main
 
 	}
