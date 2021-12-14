@@ -45,7 +45,7 @@ public class Cliente {
 		System.out.println("Regra 7: Se voce digitar uma letra e errar, passa a vez para o proximo jogador em sentido horario na sala, ate que um dos 3 acerte a palavra sorteada ");
 		System.out.println("Regra 8: Se voce digitar a ultima letra para a palavra e acertar, voce termina o jogo como ganhador e os demais ficam como perdedores, encerrando a partida");
 		System.out.println("Regra 9: Se por algum motivo voce sair do jogo pois perdeu e tentar voltar ao jogo, tera que esperar em uma sala para aguardar futuros jogadores que vao estar nessa sala ate completar um grupo de 3 jogadores para iniciar uma nova partida");
-		System.out.println("Jogador, a sua conexao com o nosso servidor foi aceita");
+		
 	
 		if (args.length > 2) {
 			System.err.println("Uso esperado: java Cliente [HOST [PORTA]]\n");
@@ -73,7 +73,7 @@ public class Cliente {
 		ComunicadoTracinhos pediutracinhos = null;
 		ComunicadoDeResultadoPalavra resultadodepalavra = null;
 		TratadoraDeComunicados tratadora = null;
-        		//ArrayList<Parceiro> grupojogador = controladoraDePartida.getJogadores();  
+        //ArrayList<Parceiro> grupojogador = controladoraDePartida.getJogadores();  
 		char letra = Teclado.getUmChar();
 		//int quantasletras = palavra.getQuantidade(letra);
 		int posicaodaletra = Teclado.getUmInt();
@@ -115,11 +115,10 @@ public class Cliente {
 		int opcao = ' ';
 
 		while (!(comunicado instanceof ComunicadoDeVez)); {
-			System.out.println("Jogador, a sua conexao com o nosso servidor foi aceita");
-			System.out.println("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
+			System.out.println("Jogador, a sua conexao com o nosso servidor foi aceitaaaaaaaaaa");
 			System.out.println("Tecle 1 para digitar a letra!");
 			System.out.println("Tecle 2 para digitar a palavra!");
-
+			System.out.println("Bem-vindo ao menu, tecle a sua opcao:" + opcao);
 			/**
 			 * Capturar um int,se o que o jogador digitar for diferente de 1,2 dispara erro
 			 * de opcao invalida;
@@ -444,9 +443,10 @@ public class Cliente {
 			System.out.println("Obrigado por usar esse programa !!");
 			System.exit(0);
 		}
+		
+
+	}//end While
 
 	}// end da main
-
-	}
 } //end da classe
 		

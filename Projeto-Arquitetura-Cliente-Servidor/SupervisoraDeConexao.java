@@ -80,7 +80,7 @@ public class SupervisoraDeConexao extends Thread {
 		while (fim) {
 			try {
 				if (controladora.podeJogar(jogador)) {
-					vezDeJogar();
+					//vezDeJogar();
 				}
 			} catch (Exception e) {
 				return;
@@ -89,7 +89,7 @@ public class SupervisoraDeConexao extends Thread {
 
 	}
 
-	private void vezDeJogar() {
+	/*private void vezDeJogar() {
 		try {
 			jogador.receba(new VezDeJogar());
 
@@ -144,7 +144,7 @@ public class SupervisoraDeConexao extends Thread {
 			
 			System.err.println(e.getMessage()); 
 		}
-	}
+	}*/
 
 	@Override
 	public String toString() {
