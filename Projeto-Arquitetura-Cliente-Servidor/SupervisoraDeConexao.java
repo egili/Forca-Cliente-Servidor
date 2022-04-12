@@ -106,16 +106,16 @@ public class SupervisoraDeConexao extends Thread {
 				Pedido pedido = (Pedido) comunicado;
 
 				Pedido oQueFoiPedido = pedido.getPedido();
-				switch (oQueFoiPedido) {
-
-				case '1':
-						//TODO: acoes que acontecerao qnd o cliente escolher digitar uma letra
-					break;
-
-				case '2':
-					    //TODO: acoes que acontecerao qnd o cliente escolher digitar uma palavra
-					break;
-				}
+//				switch (oQueFoiPedido) {
+//
+//				case '1':
+//						//TODO: acoes que acontecerao qnd o cliente escolher digitar uma letra
+//					break;
+//
+//				case '2':
+//					    //TODO: acoes que acontecerao qnd o cliente escolher digitar uma palavra
+//					break;
+//				}
 
 			}
 

@@ -71,7 +71,7 @@ public class ControladoraDePartida {
 
 	@Override
 	public String toString() {
-		return "Controladora de Partida{" + "Jogadores = " + jogadores + ", posicao =" + posicaoJogador + '}';
+		return "[ Jogadores = " + jogadores + ", posicao =" + posicaoJogador + ']';
 	}
 
 	@Override
@@ -102,12 +102,11 @@ public class ControladoraDePartida {
 		return false;
 	}
 
-	@SuppressWarnings("removal")
 	@Override
 	public int hashCode() {
 		int ret = 31;
 
-		ret = ret * 7 + new Integer(posicaoJogador).hashCode();
+		ret = ret * 7 + Integer.valueOf(posicaoJogador).hashCode();
 
 		for (int i = 0; i < jogadores.size(); i++) {
 			ret = ret * 7 + jogadores.get(i).hashCode();
